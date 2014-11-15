@@ -20,6 +20,7 @@
 <script type="text/javascript" src="assets/js/ajax.js"></script>
 
 <script type="text/javascript" src="app/app.js"></script>
+<script type="text/javascript" src="app/shoppingCart.js"></script>
 <script type="text/javascript" src="controllers/home_controller.js"></script>
 <script type="text/javascript" src="controllers/login_controller.js"></script>
 </body>
