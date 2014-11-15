@@ -39,4 +39,3 @@ angular
 			artist: 'Marina and The Diamonds'
 		}];
 	}]);
-
