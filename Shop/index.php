@@ -17,6 +17,7 @@
 <script type="text/javascript" src="assets/js/jquery.js"></script>
 <script type="text/javascript" src="assets/js/angular.min.js"></script>
 <script type="text/javascript" src="assets/js/angular-ui-router.min.js"></script>
+<script type="text/javascript" src="assets/js/ajax.js"></script>
 
 <script type="text/javascript" src="app/app.js"></script>
 <script type="text/javascript" src="controllers/home_controller.js"></script>
