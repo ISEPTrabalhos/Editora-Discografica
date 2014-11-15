@@ -4,16 +4,19 @@
 
 var products;
 
-$(document).ready(function() {
-	loadShoppingCart();
-});
-
 //load shopping cart 'session' 
 function loadShoppingCart()  {
 	if(localStorage.getItem('cart') == null) {
 		console.log("Não existe carrinho !!");
 		return false;
 	}
+	console.log('Existe');
+	var cart = document.getElementById("cart");
+	var image = document.createElement("img");
+	image.src = "assets/img/cart.png";
+	cart.appendChild(image);
+	cart.innerHTML += "(2)"; // size of current shopping cart
+	cart.style.display = "inline-block";
 	return true;
 }
 
@@ -23,8 +26,8 @@ function createShoppingCart(products) {
 }
 
 //add new cd product to shopping cart
-function addCDtoCart() {
-	console.log("Add to cart");
+function addCDtoCart(id) {
+	console.log("Add to cart" + id);
 	if(loadShoppingCart() == false) {
 		//simulate album product
 		var products = '{ "products" : [' +
@@ -33,16 +36,12 @@ function addCDtoCart() {
 		'{ "id":"3" , "name":"Album3" } ]}';
 		createShoppingCart(JSON.parse(products));
 	}
-	/*
-	var users = '{ "users" : [' +
-		'{ "firstName":"John" , "lastName":"Doe" },' +
-		'{ "firstName":"Anna" , "lastName":"Smith" },' +
-		'{ "firstName":"Peter" , "lastName":"Jones" } ]}';
-	//var users = JSON.parse(text);
-	//console.log(users);
-	//window.localStorage.setItem("users",JSON.stringify(users));*/
 }
 
 // remove cd from shopping cart
 function removeCDfromCart() {
+}
+
+function check() {
+	return "LOADED";
 }

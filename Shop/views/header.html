@@ -1,3 +1,8 @@
+<script type="text/javascript">
+	loadShoppingCart()
+</script>
+
+
 <h2>Shop</h2>
 
 	<nav id="menu">
@@ -6,7 +11,9 @@
 			<li><a ui-sref="#">Top 10</a></li>
 		</ul>
 	</nav>
-	<span id="cart">
+	<a href="javascript:check()">Check</a>
+	<span style="margin-left:100px;">
+		<a href="#" id="cart" style="display:none;"></a>
 	</span>
 	<div id="join">
 		<span><a ui-sref="#">Login</a></span>
