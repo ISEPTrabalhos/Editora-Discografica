@@ -11,6 +11,11 @@ app.config(['$urlRouterProvider', '$stateProvider', function($urlRouterProvider,
 			templateUrl: 'views/cds_view.html',
 			controller: 'home_controller'
 		})
+		.state('login', {
+			url: '/login',
+			templateUrl: 'views/login_view.html',
+			controller: 'login_controller'
+		})
 		.state('error', {
 			url: '/error',
 			templateUrl: 'views/error_view.html'
