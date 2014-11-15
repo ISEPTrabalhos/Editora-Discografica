@@ -10,6 +10,7 @@ using IDEIMusic.Models;
 
 namespace IDEIMusic.Controllers
 {
+    [Authorize(Roles = "Manager")]
     public class StoreManagerController : Controller
     {
         private MusicStoreEntities db = new MusicStoreEntities();
