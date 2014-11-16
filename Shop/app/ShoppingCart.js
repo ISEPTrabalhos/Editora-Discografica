@@ -55,12 +55,8 @@ function removeCDfromCart() {
 function updateCartInfo() {
 	var cart_label = document.getElementById("cart_label");
 	if(isSet()==true) {
-		console.log('sim');
 		var cart = getCart();
 		var items = cart.split(',').length;
 		cart_label.innerHTML = "(" + items + ")"; // number of items of current shopping cart
-	} else if(isSet()==false) {
-		console.log('nao');
-		cart_label.innerHTML = "(0)";
-	}
+	} 
 }
