@@ -34,20 +34,40 @@ function createShoppingCart(products) {
 }
 
 //add new cd product to shopping cart
-function addCDtoCart(id) {
-	console.log("Add to cart " + id);
+function addOrRemoveCDtoCart(id) {
+	var products;
 	if(isSet() == false) { // se nao exister carrinho
-		var products = [id];
+		products = [id];
 		createShoppingCart(products);
-	} else { // se existir adicionar
+	} else { // se existir carrinho
+		var cartImage = document.getElementById(id);
+		console.log(cartImage.src);
 		var products_string = getCart();
-		var products = products_string.split(',');
-		products.push(id);
-		createShoppingCart(products);
+		products = products_string.split(',');
+		var exists = existOnCart(id,products);
+		if(exists == -1) { // se produto não tiver sido adicionado, adicionar
+			products.push(id);
+			cartImage.src = "assets/img/cartRemove.png";
+		} else { // se já foi adicionado, remover
+			cartImage.src = "assets/img/cartAdd.png";
+			products.splice(exists, 1);
+			console.log(products);
+		}
+		if(products.length != 0) {
+			createShoppingCart(products);
+		}	
 	}
 }
 
-// remove cd from shopping cart
+//procurar produto no carrinho
+function existOnCart(id, products) {
+	for (var i = 0; i <= products.length; i++) {
+		if(products[i] == id) {
+			return i;
+		}
+	}
+	return -1;
+}
 function removeCDfromCart() {
 }
 
