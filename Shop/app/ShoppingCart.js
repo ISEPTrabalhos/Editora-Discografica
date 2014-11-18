@@ -35,12 +35,13 @@ function createShoppingCart(products) {
 
 //add new cd product to shopping cart
 function addOrRemoveCDtoCart(id) {
+	var cartImage = document.getElementById(id);
 	var products;
 	if(isSet() == false) { // if there's no cart
 		products = [id];
 		createShoppingCart(products);
+		cartImage.src = "assets/img/cartRemove.png";
 	} else { // se existir carrinho
-		var cartImage = document.getElementById(id);
 		var products_string = getCart();
 		products = products_string.split(',');
 		var exists = existOnCart(id,products);
@@ -50,11 +51,13 @@ function addOrRemoveCDtoCart(id) {
 		} else { // else remove it
 			cartImage.src = "assets/img/cartAdd.png";
 			products.splice(exists, 1);
-			console.log(products);
 		}
 		if(products.length != 0) {
 			createShoppingCart(products);
-		}	
+		} else {
+			localStorage.removeItem("cart");
+			updateCartInfo();
+		}
 	}
 }
 
@@ -72,12 +75,13 @@ function updateCartInfo() {
 		var cart = getCart();
 		var items = cart.split(',').length;
 		cart_label.innerHTML = "(" + items + ")"; // number of items of current shopping cart
-	} 
+	} else {
+		cart_label.innerHTML = "(0)";
+	}
 }
 
 // set add or remove image 
 function checkImages(id) {
-	console.log("--> " + id);
 	if(isSet()==true) { // if there's a cart
 		var products_string = getCart();
 		var products = products_string.split(',');
