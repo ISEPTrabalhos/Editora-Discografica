@@ -18,6 +18,7 @@ body {
 	width: 80%;
 	margin: 0 auto;
 	padding: 0;
+	background-color: #EDEDED;
 }
 
 main {}
@@ -37,21 +38,30 @@ header #menu ul {
 	list-style-type: none;
     margin: 0;
     padding: 0;
+    color: black;
 }
 
 header #menu ul li {
 	display: inline;
 	margin-left: 10px;
+	color: black;
+	padding: 5px 10px 5px 10px;
+	border-radius: 6px;
 }
-
+header #menu ul .active {
+	background: rgba(1,1,1,0.8);
+	color: white;
+}
+header #menu ul li:hover {
+	background: rgba(1,1,1,0.8);
+	color: white;
+}
 header #menu ul li a {
 	padding: 0 10px 0 10px;
 }
 
 header #menu ul .active,
 header #menu ul li a:hover {
-	background: #EDEDED;
-	border-radius: 6px;
 
 	transition: background 0.3s ease;
     -webkit-transition: background 0.3s ease;
@@ -59,12 +69,10 @@ header #menu ul li a:hover {
 
 #join {
 	float: right;
-	padding: 0 10px 2px 10px;
-	margin-top: -3px;
-
+	padding: 5px 15px 5px 15px;
 	background-color: #171717;
 	color: #fff;
-
+	margin-top: -3px;
 	border-bottom-right-radius: 7px;
 	border-bottom-left-radius: 7px;
 
@@ -73,7 +81,7 @@ header #menu ul li a:hover {
 	box-shadow:         1px 1px 2px 1px #ccc;
 }
 
-#join span {font-size: 9pt;}
+#join span {font-size: 10pt; /* padding: 0 10px 0 10px;*/}
 #join span:first-child {margin-right: 10px;}
 #join:after {content: ''; clear: both;}
 
@@ -103,6 +111,7 @@ header #menu ul li a:hover {
 #content article .albumImage {
 	width: 100%;
 }
+
 
 #content article .addCart {
 	width: 32px;
