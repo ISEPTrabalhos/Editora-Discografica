@@ -133,57 +133,59 @@ header #menu ul li a:hover {
 #login-box {
 	width: 370px;
 	margin: 0 auto;
-
-	padding: 5px 10px 5px 10px;
-	margin-top: 20px;
-
-	border: 1px solid #CCC;
+	background: white;
+	padding: 35px;
+	margin-top: 25px;
+	/*border: 1px solid #CCC;*/
 	border-radius: 5px;
 }
 
 #login-box .error_message {
 	width: 100%;
 	padding: 3px 5px 3px 5px;
-
 	background-color: #D43D3D;
 	color: white;
-
 	border-radius: 5px;
 	border: 1px solid #DE6666;
+	margin-top: -20px;
 }
-
+#login-box form {
+	text-align: center;
+}
 #login-box .field {
 	display: block;
 	width: 100%;
+	margin-bottom: 10px;
+	text-align: left;
 }
 
 #login-box .label {
 	width: 12%;
-	margin: 0;
+	margin-top: 10px;
 	padding: 0;
-
-	text-align: right;
 	font-size: 10pt;
 }
 
 #login-box input {
 	width: 100%;
-	margin: 0;
+	margin-top: 10px;
 	padding: 0;
-
 	text-align: left;
 	font-size: 12pt;
 	padding: 3px 5px 3px 5px;
-
 	border-radius: 4px;
 	border: 1px solid #9C9C9C;
 }
 
 #login-box button {
-	width: 100%;
-	margin: 10px 0 10px 0;
+	width: 35%;
+	margin: 0 auto;
+	margin-top: 10px;
 }
 
 #login-box a {
 	font-size: 10pt;
+}
+#login-box a:hover {
+	color: #C21515;
 }
