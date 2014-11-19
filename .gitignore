@@ -147,7 +147,7 @@ csx/
 AppPackages/
 
 # Others
-sql/
+IDEIMusic/sql/
 *.Cache
 ClientBin/
 [Ss]tyle[Cc]op.*
