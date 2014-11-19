@@ -74,19 +74,15 @@ angular
 				
 			//UPDATE CART AND DB
 			var qtds = document.querySelectorAll(".quantity");
-			console.log("Length: " + qtds.length);
 			var products = getCart().split(',');
-			console.log(products);
 			for(var i = 0; i < qtds.length; i++) {
 				var qtd = qtds[i].value;
 				var id = qtds[i].id;
 				if(qtd >= 1) { // user bought something
-					console.log("ID: " + id + ", QTD:" + qtd);
 					//UPDATE DB STOCK FROM THAT ALBUM, using that
 
 					//REMOVE IT FROM CART
 					var index = products.indexOf(id);
-					console.log("INDEX: " + index);
 					if(index !=-1 ) { // if exists on cart ( unnecessary but good for testing purpose )
 						products.splice(index, 1);
 					}
