@@ -39,9 +39,5 @@
 	}
 ?>
 
-<script type="text/javascript" src="controllers/header_controller.js"></script>
-<script type="text/javascript" src="controllers/home_controller.js"></script>
-<script type="text/javascript" src="controllers/login_controller.js"></script>
-<script type="text/javascript" src="controllers/cart_controller.js"></script>
 </body>
 </html>
