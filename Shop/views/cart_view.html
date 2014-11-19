@@ -1,0 +1,13 @@
+<form>
+	<div id="cart">
+		<p ng-repeat="cd in collection">
+			<img ng-src="{{cd.img}}" alt="albumpic"/>
+			<b>{{cd.album}}</b>, {{cd.artist}}, {{cd.price}}, 
+			Quantity: <input type="number" size="150" min="0" max="{{cd.qtd}}" value="1" oninvalid="setCustomValidity('Invalid quantity')"> <small>( Available Stock = {{cd.qtd}} )</small>
+		</p>
+		<p class="confirm">Total : {{totalPrice}}
+		<input type="submit" value="Confirm">
+		</p>
+	</div>
+</form>
+

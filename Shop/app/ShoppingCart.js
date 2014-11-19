@@ -21,13 +21,15 @@ function loadShoppingCart()  {
 }
 
 function getCart() {
-	return localStorage.getItem('cart');
+	if(isSet()) {
+		return localStorage.getItem('cart');
+	}
 }
 
 //create shopping cart 'session'
 function createShoppingCart(products) {
 	if(isSet()) { // if cart exists remove the old one
-		localStorage.removeItem("cart");
+		window.localStorage.removeItem("cart");
 	}
 	window.localStorage.setItem("cart",products);
 	updateCartInfo();
@@ -90,4 +92,3 @@ function checkImages(id) {
 		}
 	}
 }
-//

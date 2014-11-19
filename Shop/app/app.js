@@ -20,4 +20,9 @@ app.config(['$urlRouterProvider', '$stateProvider', function($urlRouterProvider,
 			url: '/error',
 			templateUrl: 'views/error_view.html'
 		})
+		.state('cart', {
+			url: '/cart',
+			templateUrl: 'views/cart_view.html',
+			controller: 'cart_controller'
+		})
 }]);

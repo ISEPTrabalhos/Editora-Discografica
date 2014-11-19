@@ -189,3 +189,25 @@ header #menu ul li a:hover {
 #login-box a:hover {
 	color: #C21515;
 }
+
+#cart { 
+	width: 100%;
+	margin-top: 20px;
+	background: white;
+	padding: 20px;
+	display: table;
+}
+
+#cart img {
+	width: 64px;
+	height: 64px;
+	vertical-align: middle;
+}
+#cart .confirm {
+	text-align: right;
+	font-weight: bold;
+	margin-right: 15px;
+}
+#cart .confirm input[type="submit"] {
+	margin-left: 10px;
+}
