@@ -3,11 +3,9 @@
 		<p ng-repeat="cd in collection">
 			<img ng-src="{{cd.img}}" alt="albumpic"/>
 			<b>{{cd.album}}</b>, {{cd.artist}}, {{cd.price}}, 
-			Quantity: <input type="number" size="150" min="0" max="{{cd.qtd}}" value="1" oninvalid="setCustomValidity('Invalid quantity')"> <small>( Available Stock = {{cd.qtd}} )</small>
+			Quantity: <input type="number" min="0" max="{{cd.qtd}}" value="1" oninvalid="setCustomValidity('Invalid quantity.')" class="quantity" id="{{cd.id}}"> <small>( Available Stock = {{cd.qtd}} )</small>
 		</p>
-		<p class="confirm">Total : {{totalPrice}}
-		<input type="submit" value="Confirm">
-		</p>
+		<p class="confirm">Total : {{totalPrice}} <button ng-click="confirm()">Confirm</button> </p>
 	</div>
 </form>
 
