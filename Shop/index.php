@@ -13,14 +13,32 @@
 	<footer ng-include="'views/footer.html'"></footer>
 </div>
 
+<!-- Load all the libs -->
+<?php
+	$files = scandir('libs');
+	foreach ($files as $file ) {
+		if($file != '.' && $file != '..'){
+			if(trim(pathinfo($file, PATHINFO_EXTENSION)) == 'js')
+				echo '<script type="text/javascript" src="libs/'. $file .'"></script>';
+		}
+	}
+?>
 
-<script type="text/javascript" src="assets/js/jquery.js"></script>
-<script type="text/javascript" src="assets/js/angular.min.js"></script>
-<script type="text/javascript" src="assets/js/angular-ui-router.min.js"></script>
-<script type="text/javascript" src="assets/js/ajax.js"></script>
-
+<!-- Load script files -->
 <script type="text/javascript" src="app/app.js"></script>
 <script type="text/javascript" src="app/ShoppingCart.js"></script>
+
+<!-- Load all the controllers -->
+<?php
+	$files = scandir('controllers');
+	foreach ($files as $file ) {
+		if($file != '.' && $file != '..'){
+			if(trim(pathinfo($file, PATHINFO_EXTENSION)) == 'js')
+				echo '<script type="text/javascript" src="controllers/'. $file .'"></script>';
+		}
+	}
+?>
+
 <script type="text/javascript" src="controllers/header_controller.js"></script>
 <script type="text/javascript" src="controllers/home_controller.js"></script>
 <script type="text/javascript" src="controllers/login_controller.js"></script>
