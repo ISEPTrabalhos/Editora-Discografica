@@ -25,4 +25,9 @@ app.config(['$urlRouterProvider', '$stateProvider', function($urlRouterProvider,
 			templateUrl: 'views/cart_view.html',
 			controller: 'cart_controller'
 		})
+		.state('popular', {
+			url: '/popular',
+			templateUrl: 'views/popular_view.html',
+			controller: 'popular_controller'
+		})
 }]);
