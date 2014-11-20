@@ -1,9 +1,10 @@
 angular
 	.module('app')
 	.controller('login_controller', ['$scope', '$location', '$http', function($scope, $location, $http) {
-		$scope.error = false;
-		$scope.logged =
 
+		$("#message").hide(); // hide eventually message 
+
+		$scope.error = false;
 		$scope.login = function() {
 			if($scope.username !== undefined && $scope.password !== undefined) {
 				if($scope.username.trim().length !== 0 && $scope.password.trim().length !== 0) {

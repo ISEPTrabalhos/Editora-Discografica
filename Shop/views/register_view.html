@@ -1,1 +1,32 @@
-{{var}}
+<div id="login-box">
+	<div ng-if="error" class="error_message">
+		<span>{{error}}</span>
+	</div>
+
+	<h3>Sign up</h3>
+
+	<form>
+		<div class="field">
+			<label for="email">Email:</label>
+			<input type="text" name="email" id="email" ng-model="email" autocomplete="on">
+		</div>
+
+		<div class="field">
+			<label for="username">Username:</label>
+			<input type="text" name="username" id="username" ng-model="username" autocomplete="off">
+		</div>
+
+		<div class="field">
+			<label for="password">Password:</label>
+			<input type="password" name="password" id="password" ng-model="password" autocomplete="off">
+		</div>
+
+		<div class="field">
+			<label for="newpassword">Confirm Password:</label>
+			<input type="password" name="password" id="password" ng-model="newpassword" autocomplete="off">
+		</div>
+
+		<button ng-click="register()">Register</button>
+	</form>
+
+</div>
