@@ -4,6 +4,8 @@ angular
 
 		$("#message").hide(); // hide eventually message 
 		
+		$scope.error = false;
+
 		$scope.var = "Register User Page";
 
 	}]);
