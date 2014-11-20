@@ -12,7 +12,6 @@ namespace IDEIMusic
     {
         protected void Application_Start()
         {
-            System.Data.Entity.Database.SetInitializer(new IDEIMusic.Models.SampleData());
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
