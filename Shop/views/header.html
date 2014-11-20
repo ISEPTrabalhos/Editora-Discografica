@@ -17,8 +17,12 @@
     -->
     <a ui-sref="cart" style="margin-left:100px;"><img src="assets/img/cart.png"/><span id="cart_label">(0)</span></a>
 
-    <div id="join">
+    <div id="join" ng-hide="isLoggedin()">
         <span><a ui-sref="login">Login</a></span>
         <span><a ui-sref="register">Sign up</a></span>
+    </div>
+    <div id="join" ng-show="isLoggedin()">
+        <span><a href>Settings</a></span>
+        <span ng-click="logout();"><a href>Log out</a></span>
     </div>
 </div>
