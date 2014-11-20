@@ -1,5 +1,5 @@
 <?php
-
+error_reporting(0);
 require 'connection.php';
 
 // DB_HOSTNAME DB_USERNAME DB_PASSWORD DB_DATABASE

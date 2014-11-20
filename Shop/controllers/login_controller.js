@@ -12,7 +12,7 @@ angular
 					.success(function(data) {
 						if(data.error === false){
 							window.localStorage.setItem("userid", data.user.id);
-							window.localStorage.setItem("message", "Welcome "+data.user.name);
+							window.localStorage.setItem("message", "Welcome <strong>"+data.user.name+"</strong>");
 							$location.path('/');
 							$location.replace();
 						}else $scope.error = data.error;
