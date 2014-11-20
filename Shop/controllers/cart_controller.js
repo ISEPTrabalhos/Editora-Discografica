@@ -1,6 +1,9 @@
 angular
 	.module('app')
 	.controller('cart_controller', ['$scope', '$location', function($scope, $location) {
+
+		$("#message").hide(); // hide eventually message 
+
 		//simulate collection received
 		$scope.collection = getCollection();
 		//check if user is logged in

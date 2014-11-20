@@ -9,6 +9,7 @@
 
 <div class="main-app" ng-app="app">
 	<header ng-include="'views/header.html'"></header>
+	<div id="message"></div>
 	<div ui-view></div>
 	<footer ng-include="'views/footer.html'"></footer>
 </div>

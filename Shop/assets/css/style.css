@@ -265,6 +265,15 @@ header #menu ul li a:hover {
 	text-align: center;
 }
 
+#message {
+	width: 100%;
+	padding: 10px 0 10px 0;
+	margin: 10px 0 20px 0;
+	border-radius: 5px;
+	text-align: center;
+	color: black;
+	display: none;
+}
 
 footer {
 	width: 100%;
