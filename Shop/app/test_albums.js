@@ -96,3 +96,32 @@ function getCollection() {
 			qtd: 5
 		}];
 }
+
+
+function getSalesAndTops() {
+	return [
+		{
+			id: 7,
+			img: 'http://userserve-ak.last.fm/serve/500/91409179/Save+Rock+and+Roll.png',
+			album: 'Save Rock and Roll',
+			artist: 'Fall Out Boy',
+			price: 8.99,
+			qtd: 5
+		},
+		{
+			id: 8,
+			img: 'http://userserve-ak.last.fm/serve/500/87338269/Native+Cover+JosepVinaixacom+Version.png',
+			album: 'Native',
+			artist: 'OneRepublic',
+			price: 5.99,
+			qtd: 5
+		},
+		{
+			id: 9,
+			img: 'http://userserve-ak.last.fm/serve/500/92744747/AM.png',
+			album: 'AM',
+			artist: 'Arctic Monkeys',
+			price: 8.99,
+			qtd: 5
+		}];
+}

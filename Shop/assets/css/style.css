@@ -238,6 +238,20 @@ header #menu ul li a:hover {
     }
 }
 
+#main, #sales, #top {
+	width: 100%;
+	background: rgba(255,255,255,0.7);
+	border-radius: 5px;
+	padding-bottom: 20px;
+}
+
+#sales, #top h2 {
+	padding-top: 10px;
+	text-align: center;
+}
+
+
+
 
 footer {
 	width: 100%;
@@ -249,3 +263,4 @@ footer {
 	color: black;
 	font-size: 13px;
 }
+

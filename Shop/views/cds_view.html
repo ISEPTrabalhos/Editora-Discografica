@@ -1,12 +1,14 @@
-<div id="content">
-	<article ng-repeat="cd in cds">
-		<a href="{{cd.url}}">
-			<img class="albumImage" ng-src="{{cd.img}}" alt="albumpic" />
-			<p class="albumname">{{cd.album}}
-			</p>
-			<p class="artistname">{{cd.artist}}
-				<img id="{{cd.id}}" class="addCart" onload="checkImages(this.id)" src="assets/img/cartAdd.png" onclick="addOrRemoveCDtoCart(this.id)"/>
-			</p>
-		</a>
-	</article>
+<div id="main">
+	<div id="content">
+		<article ng-repeat="cd in cds">
+			<a href="{{cd.url}}">
+				<img class="albumImage" ng-src="{{cd.img}}" alt="albumpic" />
+				<p class="albumname">{{cd.album}}
+				</p>
+				<p class="artistname">{{cd.artist}}
+					<img id="{{cd.id}}" class="addCart" onload="checkImages(this.id)" src="assets/img/cartAdd.png" onclick="addOrRemoveCDtoCart(this.id)"/>
+				</p>
+			</a>
+		</article>
+	</div>
 </div>

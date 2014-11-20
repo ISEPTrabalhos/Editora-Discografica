@@ -1,5 +1,7 @@
 angular
 	.module('app')
-	.controller('cart_controller', ['$scope', '$location', function($scope, $location) { 
-
-	}
+	.controller('popular_controller', ['$scope', function($scope) { 
+		// simulate get info from DB
+		$scope.sales = getSalesAndTops();
+		$scope.tops = getSalesAndTops();
+	}]);
