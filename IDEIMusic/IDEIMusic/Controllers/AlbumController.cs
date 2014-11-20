@@ -16,9 +16,34 @@ namespace IDEIMusic.Controllers
         private IDEIMusicContext db = new IDEIMusicContext();
 
         // GET: Album
-        public ActionResult Index()
+        public ActionResult Index(string sortOrder, string searchString)
         {
-            return View(db.Albums.ToList());
+            ViewBag.TitleSortParm = String.IsNullOrEmpty(sortOrder) ? "title_desc" : "";
+            ViewBag.PriceSortParm = sortOrder == "Price" ? "price_desc" : "Price";
+
+            var albums = from a in db.Albums
+                           select a;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                albums = albums.Where(a => a.title.Contains(searchString));
+            }
+            switch (sortOrder)
+            {
+                case "title_desc":
+                    albums = albums.OrderByDescending(a => a.title);
+                    break;
+                case "Price":
+                    albums = albums.OrderBy(a => a.price);
+                    break;
+                case "price_desc":
+                    albums = albums.OrderByDescending(a => a.price);
+                    break;
+                default:
+                    albums = albums.OrderBy(a => a.title);
+                    break;
+            }
+            return View(albums.ToList());
         }
 
         // GET: Album/Details/5
