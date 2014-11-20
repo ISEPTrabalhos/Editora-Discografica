@@ -5,6 +5,8 @@
 //check if cart exists
 function isSet() {
 	if(localStorage.getItem('cart')==null) {
+
+		console.log('isSet');
 		return false;
 	}
 	return true;
@@ -77,6 +79,7 @@ function existOnCart(id, products) {
 function updateCartInfo() {
 	var cart_label = document.getElementById("cart_label");
 	if(isSet()==true) {
+		console.log('ENTREI AQUI');
 		var cart = getCart();
 		var items = cart.split(',').length;
 		cart_label.innerHTML = "(" + items + ")"; // number of items of current shopping cart
@@ -90,7 +93,7 @@ function checkImages(id) {
 	if(isSet()==true) { // if there's a cart
 		var products_string = getCart();
 		var products = products_string.split(',');
-		if( existOnCart(id,products) != -1) { // if album belongs to cart
+		if(existOnCart(id,products) != -1) { // if album belongs to cart
 			document.getElementById(id).src="assets/img/cartRemove.png";
 		}
 	}

@@ -70,8 +70,6 @@ angular
 		}
 
 		$scope.confirm = function() {
-			alert("Confirmar Compra");
-				
 			//UPDATE CART AND DB
 			var qtds = document.querySelectorAll(".quantity");
 			var products = getCart().split(',');
@@ -93,8 +91,6 @@ angular
 			//REDIRECT TO HOMEPAGE
 			$location.path('/');
 			$location.replace();
-
-			alert("END");
 		}
 
 	}]);
