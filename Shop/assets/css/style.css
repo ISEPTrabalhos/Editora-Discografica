@@ -211,6 +211,33 @@ header #menu ul li a:hover {
 	margin-left: 10px;
 }
 
+.message {
+	-moz-animation: cssAnimation 0s ease 5s forwards;
+    /* Firefox */
+    -webkit-animation: cssAnimation 0s ease 5s forwards;
+    /* Safari and Chrome */
+    -o-animation: cssAnimation 0s ease 5s forwards;
+    /* Opera */
+    animation: cssAnimation 0s ease 5s forwards;
+    -webkit-animation-fill-mode: forwards;
+    animation-fill-mode: forwards;
+}
+
+@keyframes cssAnimation {
+    to {
+        width:0;
+        height:0;
+        overflow:hidden;
+    }
+}
+@-webkit-keyframes cssAnimation {
+    to {
+        width:0;
+        height:0;
+        visibility:hidden;
+    }
+}
+
 
 footer {
 	width: 100%;

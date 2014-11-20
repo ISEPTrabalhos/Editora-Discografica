@@ -6,7 +6,7 @@
 function isSet() {
 	if(localStorage.getItem('cart')==null) {
 
-		console.log('isSet');
+		//console.log('isSet');
 		return false;
 	}
 	return true;

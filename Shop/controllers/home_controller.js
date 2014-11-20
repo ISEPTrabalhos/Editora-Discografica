@@ -3,7 +3,7 @@ angular
 	.controller('home_controller', ['$scope', function($scope) {
 		//simulacao de conjunto de cds da base de dados da loja
 		//futuro metodo que chama PHP ( $http.get ) que retorna um array
-		
+
 		$scope.cds = [
 		{
 			id: 1,
@@ -47,4 +47,5 @@ angular
 			album: 'FROOT',
 			artist: 'Marina and The Diamonds'
 		}];
+
 	}]);

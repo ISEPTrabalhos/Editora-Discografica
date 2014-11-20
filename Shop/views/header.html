@@ -2,21 +2,29 @@
 	loadShoppingCart();
 </script>
 
-<h2>Shop</h2>
+<div ng-controller="header_controller as header">
+	<div ng-if="message" class="message" ng-controller="header_controller">
+		<span></span>
+	</div>
 
-<nav id="menu" ng-controller="header_controller as nav">
-	<ul>
-		<li ng-click="nav.setActive(0)" ng-class="{active: nav.isActive(0)}"><a ui-sref="home">Home</a></li>
-		<li ng-click="nav.setActive(1)" ng-class="{active: nav.isActive(1)}"><a href>Top 10</a></li>
-	</ul>
-</nav>
+	<span>{{header.getMessage()}}</span>
 
-<!-- Shopping Cart Info 
-	-> icon with number of items
--->
-<a ui-sref="cart" style="margin-left:100px;"><img src="assets/img/cart.png"/><span id="cart_label">(0)</span></a>
+	<h2>Shop</h2>
 
-<div id="join">
-	<span><a ui-sref="login">Login</a></span>
-	<span><a ui-sref="#">Sign up</a></span>
+	<nav id="menu">
+		<ul>
+			<li ng-click="header.setActive(0)" ng-class="{active: header.isActive(0)}"><a ui-sref="home">Home</a></li>
+			<li ng-click="header.setActive(1)" ng-class="{active: header.isActive(1)}"><a href>Top 10</a></li>
+		</ul>
+	</nav>
+
+	<!-- Shopping Cart Info 
+		-> icon with number of items
+	-->
+	<a ui-sref="cart" style="margin-left:100px;"><img src="assets/img/cart.png"/><span id="cart_label">(0)</span></a>
+
+	<div id="join">
+		<span><a ui-sref="login">Login</a></span>
+		<span><a ui-sref="#">Sign up</a></span>
+	</div>
 </div>
