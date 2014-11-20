@@ -139,6 +139,10 @@ header #menu ul li a:hover {
 	border-radius: 5px;
 }
 
+#login-box h3 {
+	text-align: center;
+}
+
 #login-box .error_message {
 	width: 100%;
 	padding: 3px 5px 3px 5px;
