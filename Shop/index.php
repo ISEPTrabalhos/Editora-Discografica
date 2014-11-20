@@ -23,6 +23,14 @@
 				echo '<script type="text/javascript" src="libs/'. $file .'"></script>';
 		}
 	}
+
+	$files = scandir('assets/js');
+	foreach ($files as $file ) {
+		if($file != '.' && $file != '..'){
+			if(trim(pathinfo($file, PATHINFO_EXTENSION)) == 'js')
+				echo '<script type="text/javascript" src="assets/js/'. $file .'"></script>';
+		}
+	}
 ?>
 
 <!-- Load script files -->

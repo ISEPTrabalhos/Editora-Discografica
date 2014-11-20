@@ -20,4 +20,13 @@ angular
             return $scope.tag === elem;
         };
 
+        $scope.isLoggedin = function() {
+            return (window.localStorage.getItem("userid") != null);
+        }
+
+        $scope.logout = function() {
+            window.localStorage.removeItem("message");
+            window.localStorage.removeItem("userid");
+        }
+
     }]);
