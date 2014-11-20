@@ -27,6 +27,7 @@
 <!-- Load script files -->
 <script type="text/javascript" src="app/app.js"></script>
 <script type="text/javascript" src="app/ShoppingCart.js"></script>
+<script type="text/javascript" src="app/test_albums.js"></script>
 
 <!-- Load all the controllers -->
 <?php
