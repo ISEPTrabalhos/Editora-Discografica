@@ -1,25 +1,23 @@
 angular
-	.module('app')
-	.controller('header_controller', function() {
-		this.tag = 0;
+    .module('app')
+    .controller('header_controller',['$scope', function($scope) {
+        $scope.tag = 0;
+        $scope.message = false;
 
-		loadShoppingCart();
-		
-		this.getMessage = function() {
-			var message = window.localStorage.getItem("message");
-			if(message == null) message = false;
-			else window.localStorage.removeItem("message");
-			return message;
-		};
+        loadShoppingCart();
 
-		this.setActive = function(elem) {
-			this.tag = elem;
-		};
+        var msg = window.localStorage.getItem("message");
+        if(msg != null) {
+            $scope.message = msg;
+            window.localStorage.removeItem("message");
+        };
 
-		this.isActive = function(elem) {
-			return this.tag === elem;
-		};
+        $scope.setActive = function(elem) {
+            $scope.tag = elem;
+        };
 
+        $scope.isActive = function(elem) {
+            return $scope.tag === elem;
+        };
 
-
-	});
+    }]);
