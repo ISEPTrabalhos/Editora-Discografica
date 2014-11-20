@@ -30,4 +30,9 @@ app.config(['$urlRouterProvider', '$stateProvider', function($urlRouterProvider,
 			templateUrl: 'views/popular_view.html',
 			controller: 'popular_controller'
 		})
+		.state('register', {
+			url: '/register',
+			templateUrl: 'views/register_view.html',
+			controller: 'register_controller'
+		})
 }]);
