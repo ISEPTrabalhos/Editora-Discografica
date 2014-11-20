@@ -79,7 +79,6 @@ function existOnCart(id, products) {
 function updateCartInfo() {
 	var cart_label = document.getElementById("cart_label");
 	if(isSet()==true) {
-		console.log('ENTREI AQUI');
 		var cart = getCart();
 		var items = cart.split(',').length;
 		cart_label.innerHTML = "(" + items + ")"; // number of items of current shopping cart
@@ -98,3 +97,4 @@ function checkImages(id) {
 		}
 	}
 }
+
