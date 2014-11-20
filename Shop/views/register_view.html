@@ -8,7 +8,8 @@
 	<form>
 		<div class="field">
 			<label for="email">Email:</label>
-			<input type="text" name="email" id="email" ng-model="email" autocomplete="on">
+			<input type="text" name="email" id="email" ng-model="email" autocomplete="on" 
+			oninvalid="setCustomValidity('Invalid format. Example: email@domain.com')">
 		</div>
 
 		<div class="field">
@@ -23,7 +24,7 @@
 
 		<div class="field">
 			<label for="newpassword">Confirm Password:</label>
-			<input type="password" name="password" id="password" ng-model="newpassword" autocomplete="off">
+			<input type="password" name="newpassword" id="newpassword" ng-model="newpassword" autocomplete="off">
 		</div>
 
 		<button ng-click="register()">Register</button>

@@ -145,7 +145,8 @@ header #menu ul li a:hover {
 
 #login-box .error_message {
 	width: 100%;
-	padding: 3px 5px 3px 5px;
+	padding: 3px 0 3px 0;
+	text-align: center;
 	background-color: #D43D3D;
 	color: white;
 	border-radius: 5px;
