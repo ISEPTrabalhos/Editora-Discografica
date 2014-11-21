@@ -1,10 +1,15 @@
 angular
 	.module('app')
-	.controller('home_controller', ['$scope', function($scope) {
+	.controller('home_controller', ['$scope', '$http', function($scope, $http) {
 
 		$("#message").hide(); // hide eventually message 
 		
-		//simulacao de conjunto de cds da base de dados da loja
-		//futuro metodo que chama PHP ( $http.get ) que retorna um array
-		$scope.cds = getCDS();
+
+		$http.get("assets/php/DB_Handler.php?func=getAllAlbums")
+		.success(function(data) {
+			if(data.error === false){
+				$scope.cds = data.albuns;
+			}
+		});
+		
 	}]);

@@ -79,12 +79,10 @@ function showCartMessage(option, albumName, bgColor) {
 	$("#message").hide();  // hide old so effect can be visible
 	if(option == 1) {
 		$("#message").html(albumName + " added to cart.");
-		//messageDiv.innerHTML = albumName + " added to cart.";
 	} else if(option == 2) {
-		//messageDiv.innerHTML = albumName + " removed from cart.";
 		$("#message").html(albumName + " removed from cart.");
 	}
-	$("#message").show("slow");
+	$("#message").show("medium");
 }
 
 //check if product is already in cart

@@ -21,7 +21,6 @@ angular
 						.success(function(data) {
 							console.log(data);
 							if(data === "true"){
-								alert("INSERIDO, DO STUFF");
 								$location.path('login');
 								$location.replace();
 							}else $scope.error = data;
