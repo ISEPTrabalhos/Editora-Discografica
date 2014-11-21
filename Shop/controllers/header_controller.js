@@ -29,4 +29,8 @@ angular
             window.localStorage.removeItem("userid");
         }
 
+        $scope.isAdmin = function() {
+            return (window.localStorage.getItem("userid") == 0);
+        }
+
     }]);

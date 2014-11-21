@@ -9,6 +9,7 @@
 		<ul>
 			<li ng-click="setActive(0)" ng-class="{active: isActive(0)}"><a ui-sref="home">Home</a></li>
 			<li ng-click="setActive(1)" ng-class="{active: isActive(1)}"><a ui-sref="popular">Popular</a></li>
+			<li ng-show="isAdmin()" ng-click="setActive(2)" ng-class="{active: isActive(2)}"><a ui-sref="admin">Admin Area</a></li>
 		</ul>
 	</nav>
 
