@@ -15,6 +15,10 @@ namespace IDEIMusic.DAL
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
         }
 
+        
         public System.Data.Entity.DbSet<IDEIMusic.Models.Album> Albums { get; set; }
+        public System.Data.Entity.DbSet<IDEIMusic.Models.Cart> Carts { get; set; }
+        public System.Data.Entity.DbSet<IDEIMusic.Models.Order> Orders { get; set; }
+        public System.Data.Entity.DbSet<IDEIMusic.Models.OrderDetail> OrderDetails { get; set; }
     }
 }

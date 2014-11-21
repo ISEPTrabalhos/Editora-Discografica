@@ -11,6 +11,6 @@ namespace IDEIMusic.Models
         public string title { get; set; }
         public string artistName {get;set;}
         public string img {get;set;}
-        public double price {get;set;}
+        public decimal price {get;set;}
     }
 }
