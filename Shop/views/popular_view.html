@@ -8,8 +8,11 @@
 				<p class="artistname">{{album.artist}}
 					<img id="{{album.id}}" class="addCart" onload="checkImages(this.id)" src="assets/img/cartAdd.png" onclick="addOrRemoveCDtoCart(this.id)"/>
 				</p>
-				<p>
-					<span class="off" ng-if="album.off != 0">Was {{album.price}}</span>
+				<p ng-if="album.off != 0">
+					<span class="off" >Was {{album.price}}</span>
+					<span>{{album.price * album.off | currency}}</span>
+				</p>
+				<p ng-if="album.off == 0">
 					<span ng-else"album.off == 0">{{album.price | currency}}</span>
 				</p>
 			</a>
@@ -29,8 +32,11 @@
 				<p class="artistname">{{album[0].artist}}
 					<img id="{{album[0].id}}" class="addCart" onload="checkImages(this.id)" src="assets/img/cartAdd.png" onclick="addOrRemoveCDtoCart(this.id)"/>
 				</p>
-				<p>
-					<span class="off" ng-if="album[0].off != 0">Was {{album[0].price}}</span>
+				<p ng-if="album[0].off != 0">
+					<span class="off" >Was {{album[0].price}}</span>
+					<span>{{album[0].price * album[0].off | currency}}</span>
+				</p>
+				<p ng-if="album[0].off == 0">
 					<span ng-else"album[0].off == 0">{{album[0].price | currency}}</span>
 				</p>
 			</a>

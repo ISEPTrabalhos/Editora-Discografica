@@ -13,13 +13,21 @@ angular
 			$http.get("assets/php/DB_Handler.php?func=getCartAlbumsInfo&cart="+cart.toString())
 			.success(function(data) {
 				$scope.cart = data.albums;
+				$scope.totalPrice = 0;
+				/* FIX THIS LATER, TOTAL PRICE IS WRONG
+				/*for (var i = 0; i < data.albums.length; i++) {
+					$scope.totalPrice+=data.albums[i][0].price;
+				}
+				console.log($scope.totalPrice);
+				$scope.total = 0;
+				$scope.cart.forEach(function(cd) {
+					console.log('--> ' + cd[0].price);
+					$scope.total = $scope.total + cd[0].price;
+				});
+				console.log($scope.total);
+				console.log($scope.cart[0][0].price + $scope.cart[1][0].price);*/
 			});
-			$scope.totalPrice = 0;
-			/* NEXT FIX
-			$scope.cart.forEach(function(cd) {
-				$scope.totalPrice += cd[0].price;
-			});*/
-			$scope.totalPrice = $scope.totalPrice.toFixed(2);
+			
 		} else {
 			$location.path('login');
 			$location.replace();
