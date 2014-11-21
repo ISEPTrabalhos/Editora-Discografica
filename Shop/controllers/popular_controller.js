@@ -15,8 +15,9 @@ angular
 		// get top sold albums
 		$http.get("assets/php/DB_Handler.php?func=getTopSold")
 		.success(function(data) {
-			//console.log(data);
+			console.log(data);
 			if(data.error === false){
+				console.log(data.albums);
 				$scope.tops = data.albums;
 			}
 		});

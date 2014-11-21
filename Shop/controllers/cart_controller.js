@@ -1,23 +1,24 @@
 angular
 	.module('app')
-	.controller('cart_controller', ['$scope', '$location', function($scope, $location) {
+	.controller('cart_controller', ['$scope', '$http', '$location', function($scope, $http, $location) {
 
 		$("#message").hide(); // hide eventually message 
 
-		//simulate collection received
-		$scope.collection = getCollection();
 		//check if user is logged in
 		if(window.localStorage.getItem('userid')!=null) {
 			var id = window.localStorage.getItem('userid');
-			//LOAD CART
+			// load cart
 			var cart = getCart();
-			//LOAD ALBUM COLLECTION FROM DB
-			//REQUEST TO GET WHAT I WANT (ALBUNS IN CART) 
-			//SIMULATING HERE IN COLLECTION ABOVE
-			$scope.totalPrice = 0;
-			$scope.collection.forEach(function(cd) {
-				$scope.totalPrice += cd.price;
+			// get cart albums info
+			$http.get("assets/php/DB_Handler.php?func=getCartAlbumsInfo&cart="+cart.toString())
+			.success(function(data) {
+				$scope.cart = data.albums;
 			});
+			$scope.totalPrice = 0;
+			/* NEXT FIX
+			$scope.cart.forEach(function(cd) {
+				$scope.totalPrice += cd[0].price;
+			});*/
 			$scope.totalPrice = $scope.totalPrice.toFixed(2);
 		} else {
 			$location.path('login');

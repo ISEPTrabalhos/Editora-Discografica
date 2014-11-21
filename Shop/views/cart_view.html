@@ -1,9 +1,9 @@
 <form>
 	<div id="cart">
-		<p ng-repeat="cd in collection">
-			<img ng-src="{{cd.img}}" alt="albumpic"/>
-			<b>{{cd.album}}</b>, {{cd.artist}}, {{cd.price}}, 
-			Quantity: <input type="number" min="0" max="{{cd.qtd}}" value="1" oninvalid="setCustomValidity('Invalid quantity.')" class="quantity" id="{{cd.id}}"> <small>( Available Stock = {{cd.qtd}} )</small>
+		<p ng-repeat="cd in cart">
+			<img ng-src="{{cd[0].img}}" alt="albumpic"/>
+			<b>{{cd[0].name}}</b>, {{cd[0].artist}}, {{cd[0].price}}, 
+			Quantity: <input type="number" min="0" max="{{cd[0].qtd}}" value="1" oninvalid="setCustomValidity('Invalid quantity.')" class="quantity" id="{{cd[0].id}}"> <small>( Available Stock = {{cd[0].qtd}} )</small>
 		</p>
 		<p class="confirm">Total : {{totalPrice}} <button ng-click="confirm()">Confirm</button> </p>
 	</div>

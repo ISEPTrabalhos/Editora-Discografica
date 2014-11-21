@@ -13,6 +13,10 @@ switch ($function) {
 		break;
 	case 'getTopSold':
 		echo getTopSold();
+		break;
+	case 'getCartAlbumsInfo':
+		echo getCartAlbumsInfo();
+		break;
 	default:
 		break;
 }
@@ -78,5 +82,27 @@ function getTopSold() {
 
 	return json_encode(array('albums' => $albums, 'error' => $error));
 }
+
+//1,5,6,7,10
+function getCartAlbumsInfo() {
+	$string = $_GET['cart'];
+	$cart = explode(",",$string);
+	$albums = array();
+
+	$db = new PDO('mysql:host='.DB_HOSTNAME.';dbname='.DB_DATABASE,
+						DB_USERNAME, DB_PASSWORD);
+	$db->exec("SET CHARACTER SET utf8");
+
+	// get cart albums INFO
+	for ($i=0; $i < sizeof($cart); $i++) {
+		$statement = $db->prepare("SELECT * FROM albums WHERE id = :id");
+		$statement->execute(array(':id' => $cart[$i]));
+		$results = $statement->fetchAll(PDO::FETCH_ASSOC);
+		$albums[] = $results;
+	}
+	
+	return json_encode(array('albums' => $albums, 'error' => false));
+}
+
 
 ?>
