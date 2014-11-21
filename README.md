@@ -11,6 +11,7 @@ implementada neste protótipo.
 Quer a editora, quer a empresa ImportMusic implementam serviços para poderem ser 
 notificadas do conteúdo das vendas nas lojas, de modo a gerirem mais eficazmente os seus 
 stocks. 
+
 Funcionalidades a implementar na aplicação: 
 • Autenticação dos utilizadores na aplicação Web da editora, com os seguintes perfis: loja 
 registada, gestor de produtos e administrador. Após o registo da loja, no site da editora, 
@@ -28,6 +29,7 @@ através do mesmo serviço.
 • Para ajudar o cliente da loja a efetuar as suas compras, é-lhe apresentada uma lista com 
 sugestões de alguns discos relacionados com as últimas vendas: mais vendidos, saldos, 
 etc. 
+
 Considerações tecnológicas para a implementação: 
 • A editora discográfica - Editora IDEIMusic - deve ser implementada em ASP.NET, 
 utilizando um dos padrões empresariais estudados: Table Module + Table Data Gateway; 
