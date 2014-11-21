@@ -3,14 +3,13 @@
 		<article ng-repeat="cd in cds">
 			<a href>
 				<img class="albumImage" ng-src="{{cd.img}}" alt="albumpic" />
-				<p class="albumname">{{cd.name}}
-				</p>
+				<p class="albumname">{{cd.name}}</p>
 				<p class="artistname">{{cd.artist}}
 					<img id="{{cd.id}}" class="addCart" onload="checkImages(this.id)" src="assets/img/cartAdd.png" onclick="addOrRemoveCDtoCart(this.id)"/>
 				<p>
-				<span class="off" ng-if="cd.off != 0">Was {{cd.price}}</span>
-				<span ng-else"cd.off == 0">{{cd.price | currency}}</span>
-				</p></p>
+					<span class="off" ng-if="cd.off != 0">Was {{cd.price}}</span>
+					<span ng-else"cd.off == 0">{{cd.price | currency}}</span>
+				</p>
 			</a>
 		</article>
 	</div>

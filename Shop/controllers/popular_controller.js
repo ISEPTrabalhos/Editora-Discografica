@@ -7,13 +7,18 @@ angular
 		// get albuns on sale
 		$http.get("assets/php/DB_Handler.php?func=getOffAlbums")
 		.success(function(data) {
-			console.log(data);
 			if(data.error === false){
 				$scope.sales = data.albuns;
 			}
 		});
 
+		// get top sold albums
+		$http.get("assets/php/DB_Handler.php?func=getTopSold")
+		.success(function(data) {
+			//console.log(data);
+			if(data.error === false){
+				$scope.tops = data.albums;
+			}
+		});
 
-		// simulate get info from DB
-		$scope.tops = getTops();
 	}]);

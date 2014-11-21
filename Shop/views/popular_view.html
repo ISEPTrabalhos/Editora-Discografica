@@ -1,17 +1,17 @@
 <div id="sales">
-	<h2>On Sale</h2>
+	<h2>Special Price</h2>
 	<div id="content">
 		<article ng-repeat="album in sales">
 			<a href>
 				<img class="albumImage" ng-src="{{album.img}}" alt="albumpic" />
-				<p class="albumname">{{album.name}}
-				</p>
+				<p class="albumname">{{album.name}}</p>
 				<p class="artistname">{{album.artist}}
 					<img id="{{album.id}}" class="addCart" onload="checkImages(this.id)" src="assets/img/cartAdd.png" onclick="addOrRemoveCDtoCart(this.id)"/>
 				</p>
+				<p>
+					<span class="off" ng-if="album.off != 0">Was {{album.price}}</span>
+					<span ng-else"album.off == 0">{{album.price | currency}}</span>
 				</p>
-				<span class="off" ng-if="album.off != 0">Was {{album.price}}</span>
-				<span ng-else"album.off == 0">{{album.price | currency}}</span>
 			</a>
 			
 
@@ -20,15 +20,18 @@
 </div>
 
 <div id="top">
-	<h2>Top 10</h2>
+	<h2>Top 5</h2>
 	<div id="content">
 		<article ng-repeat="album in tops">
 			<a href>
-				<img class="albumImage" ng-src="{{album.img}}" alt="albumpic" />
-				<p class="albumname">{{album.album}}
+				<img class="albumImage" ng-src="{{album[0].img}}" alt="albumpic" />
+				<p class="albumname">{{album[0].name}}</p>
+				<p class="artistname">{{album[0].artist}}
+					<img id="{{album[0].id}}" class="addCart" onload="checkImages(this.id)" src="assets/img/cartAdd.png" onclick="addOrRemoveCDtoCart(this.id)"/>
 				</p>
-				<p class="artistname">{{album.artist}}
-					<img id="{{album.id}}" class="addCart" onload="checkImages(this.id)" src="assets/img/cartAdd.png" onclick="addOrRemoveCDtoCart(this.id)"/>
+				<p>
+					<span class="off" ng-if="album[0].off != 0">Was {{album[0].price}}</span>
+					<span ng-else"album[0].off == 0">{{album[0].price | currency}}</span>
 				</p>
 			</a>
 		</article>
