@@ -9,8 +9,12 @@
 				<p class="artistname">{{album.artist}}
 					<img id="{{album.id}}" class="addCart" onload="checkImages(this.id)" src="assets/img/cartAdd.png" onclick="addOrRemoveCDtoCart(this.id)"/>
 				</p>
-				</p>{{cd.price * cd.off | currency}}</p>
+				</p>
+				<span class="off" ng-if="album.off != 0">Was {{album.price}}</span>
+				<span ng-else"album.off == 0">{{album.price | currency}}</span>
 			</a>
+			
+
 		</article>
 	</div>
 </div>
