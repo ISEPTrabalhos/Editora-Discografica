@@ -6,11 +6,13 @@ As lojas de discos têm um contrato com uma empresa ImportMusic, implementada em
 Quer a editora, quer a empresa ImportMusic implementam serviços para poderem ser notificadas do conteúdo das vendas nas lojas, de modo a gerirem mais eficazmente os seus stocks.
 
 ### Funcionalidades a implementar na aplicação:
-* Autenticação dos utilizadores na aplicação Web da editora, com os seguintes perfis: loja registada, gestor de produtos e administrador. Após o registo da loja a editora envia-lhe por serviço uma API_Key.
+* Autenticação dos utilizadores na aplicação Web da editora, com os seguintes perfis: loja registada, gestor de produtos e administrador. Após o registo da loja, no site da editora,  a editora envia-lhe por serviço uma API_Key.
 * O gestor de produtos da editora faz a gestão da informação sobre os produtos: inserção, atualização e “eliminação” dos discos editados.
 * O administrador da editora pode consultar informação sobre as vendas efectuadas. Essa informação pode ser função de parâmetros como volume de vendas ou períodos temporais.
-* Autenticação de utilizadores nas lojas de vendas dos discos. Considere apenas um perfil: utilizador registado.
-* O administrador da loja cliente faz as suas compras acrescentando produtos a um carrinho de compras. A aplicação da loja deve pedir inicialmente à editora, via serviço, o seu catálogo.
+* Autenticação de utilizadores nas lojas de vendas dos discos. Considere apenas os perfis: utilizador registado (cliente) e Administrador da loja
+* O administrador da loja para fazer uma encomenda à editora não usa a aplicação web 
+da editora. Usa um serviço da editora, para pedir o catálogo dos discos, com base no qual elabora uma UI para realizar a encomenda. Essa encomenda é enviada à editora 
+através do mesmo serviço.
 * Para ajudar o cliente da loja a efectuar as suas compras, é-lhe apresentada uma lista com sugestões de alguns discos relacionados com as últimas vendas: mais vendidos, saldos, etc.
 
 
@@ -20,10 +22,11 @@ Quer a editora, quer a empresa ImportMusic implementam serviços para poderem se
 * Deve ser implementada uma aplicação loja em PHP. Nesta loja devem implementar:
   * Registo de utilizadores
   * Apresentação do catálogo da loja aos utilizadores que é o resultado das
-encomendas à editora discográfica.
+encomendas à editora discográfica (acervo da loja), que se encontra na BD da 
+loja..
   * As encomendas do administrador à editora devem ser gravadas na BD.
   * Realização da compra de discos por um utilizador registado. Deve ser utilizado o
-conceito de Carrinho de Compras
+conceito de Carrinho de Compras e gravada a venda na BD.
 * Na aplicação da empresa ImportMusic, implementada em PHP, pretende-se apenas
 implementar um Serviço que recebe a informação sobre a venda realizada em cada loja
 e atualizar uma tabela com essa informação.
