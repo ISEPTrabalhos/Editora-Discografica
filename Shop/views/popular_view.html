@@ -4,11 +4,12 @@
 		<article ng-repeat="album in sales">
 			<a href>
 				<img class="albumImage" ng-src="{{album.img}}" alt="albumpic" />
-				<p class="albumname">{{album.album}}
+				<p class="albumname">{{album.name}}
 				</p>
 				<p class="artistname">{{album.artist}}
 					<img id="{{album.id}}" class="addCart" onload="checkImages(this.id)" src="assets/img/cartAdd.png" onclick="addOrRemoveCDtoCart(this.id)"/>
 				</p>
+				</p>{{cd.price * cd.off | currency}}</p>
 			</a>
 		</article>
 	</div>
