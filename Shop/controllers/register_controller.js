@@ -16,12 +16,13 @@ angular
 					&& $scope.name.trim().length!== 0)
 				{
 					if($scope.password === $scope.newpassword) {
-						//alert($scope.username + ", " + $scope.password + ", " + $scope.email);
 						$http.get("assets/php/register.php?username="+$scope.username+"&password="+$scope.password+"&email="+$scope.email+"&name="+$scope.name)
 						.success(function(data) {
-							console.log(data);
-							if(data === "true"){
-								$location.path('login');
+							if(data.error == false){
+								// sign in user
+								window.localStorage.setItem("userid", data.user);
+								window.localStorage.setItem("message", "You're now logged in.");
+								$location.path('/');
 								$location.replace();
 							}else $scope.error = data;
 						});

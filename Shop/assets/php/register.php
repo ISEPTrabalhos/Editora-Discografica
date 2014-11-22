@@ -5,6 +5,7 @@ require 'connection.php';
 // DB_HOSTNAME DB_USERNAME DB_PASSWORD DB_DATABASE
 
 $row = array();
+$error = false;
 if(isset($_GET['username']) && isset($_GET['password'])
 	&& isset($_GET['email']) && isset($_GET['name'])) {
 	$username = trim($_GET['username']);
@@ -21,15 +22,15 @@ if(isset($_GET['username']) && isset($_GET['password'])
 		$statement->execute(array(':username' => $username, ':email' => $email));
 		$row = $statement->fetchAll(PDO::FETCH_ASSOC);
 		if($row) {
-			echo 'Username or email already in use';
+			$error = 'Username or email already in use';
 		} else {
 			// insert user 
-			// redirect it to homepage
 			$statement = $db->prepare("INSERT INTO users (username,password,name,email) VALUES(:username,:password,:name,:email)");
 			$statement->execute(array(':username' => $username, ':password' => md5($password), ':email' => $email, ':name' => $name));	
-			//$statement->fetchAll(PDO::FETCH_ASSOC);
-			echo "true";
+			$id = $db->lastInsertId();
 		}
 		
-	} else echo 'There are invalid fields';
-} else echo 'There are invalid fields';
+	} else $error = 'There are invalid fields';
+} else $error = 'There are invalid fields';
+
+echo json_encode(array('user' => $id, 'error' => $error));
