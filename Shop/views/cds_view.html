@@ -8,10 +8,10 @@
 					<img id="{{cd.id}}" name="{{cd.name}}" class="addCart" onload="checkImages(this.id)" src="assets/img/cartAdd.png" onclick="addOrRemoveCDtoCart(this.id, this.name)"/>
 				<p ng-if="cd.off != 0">
 					<span class="off" >Was {{cd.price}}</span>
-					<span>{{cd.price * cd.off | currency}}</span>
+					<span>{{cd.price * cd.off | currency:"&euro;"}}</span>
 				</p>
 				<p ng-if="cd.off == 0">
-					<span ng-else"cd.off == 0">{{cd.price | currency}}</span>
+					<span ng-else"cd.off == 0">{{cd.price | currency:"&euro;"}}</span>
 				</p>
 			</a>
 		</article>

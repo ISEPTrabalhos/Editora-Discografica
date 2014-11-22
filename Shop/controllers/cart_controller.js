@@ -13,18 +13,9 @@ angular
 			.success(function(data) {
 				$scope.cart = data.albums;
 				$scope.totalPrice = 0;
-				/* FIX THIS LATER, TOTAL PRICE IS WRONG */
-				/*for (var i = 0; i < data.albums.length; i++) {
-					$scope.totalPrice+=data.albums[i][0].price;
-				}
-				console.log($scope.totalPrice);*/
-				$scope.total = 0;
 				$scope.cart.forEach(function(cd) {
-					console.log('--> ' + cd[0].price);
-					$scope.total = $scope.total + cd[0].price;
+					$scope.totalPrice += parseFloat(cd[0].price);
 				});
-				console.log($scope.total);
-				//console.log($scope.cart[0][0].price + $scope.cart[1][0].price);
 			});
 			
 		} else {

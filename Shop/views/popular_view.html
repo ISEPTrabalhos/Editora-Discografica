@@ -10,10 +10,10 @@
 				</p>
 				<p ng-if="album.off != 0">
 					<span class="off" >Was {{album.price}}</span>
-					<span>{{album.price * album.off | currency}}</span>
+					<span>{{album.price * album.off | currency:"&euro;"}}</span>
 				</p>
 				<p ng-if="album.off == 0">
-					<span ng-else"album.off == 0">{{album.price | currency}}</span>
+					<span ng-else"album.off == 0">{{album.price | currency:"&euro;"}}</span>
 				</p>
 			</a>
 		</article>
@@ -32,10 +32,10 @@
 				</p>
 				<p ng-if="album[0].off != 0">
 					<span class="off" >Was {{album[0].price}}</span>
-					<span>{{album[0].price * album[0].off | currency}}</span>
+					<span>{{album[0].price * album[0].off | currency:"&euro;"}}</span>
 				</p>
 				<p ng-if="album[0].off == 0">
-					<span ng-else"album[0].off == 0">{{album[0].price | currency}}</span>
+					<span ng-else"album[0].off == 0">{{album[0].price | currency:"&euro;"}}</span>
 				</p>
 			</a>
 		</article>

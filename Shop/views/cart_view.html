@@ -3,10 +3,10 @@
 		<h2>Your Shopping Cart</h2>
 		<p ng-repeat="cd in cart">
 			<img ng-src="{{cd[0].img}}" alt="albumpic"/>
-			<b>{{cd[0].name}}</b>, {{cd[0].artist}}, {{cd[0].price}}, 
+			<b>{{cd[0].name}}</b>, {{cd[0].artist}}, {{cd[0].price | currency:"&euro;"}}, 
 			Quantity: <input type="number" min="0" max="{{cd[0].qtd}}" value="1" oninvalid="setCustomValidity('Invalid quantity.')" class="quantity" id="{{cd[0].id}}"> <small>( Available Stock = {{cd[0].qtd}} )</small>
 		</p>
-		<p class="confirm">Total : {{totalPrice}} <button ng-click="confirm()">Confirm</button> </p>
+		<p class="confirm">Total : {{totalPrice | currency:"&euro;"}} <button ng-click="confirm()">Confirm</button> </p>
 	</div>
 </form>
 
