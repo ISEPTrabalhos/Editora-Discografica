@@ -65,11 +65,8 @@ function addOrRemoveCDtoCart(id, albumName) {
 		if(exists == -1) { // add product
 			products.push(id);
 			cartImage.src = "assets/img/cartRemove.png";
-<<<<<<< HEAD
 			showSuccess(albumName + " added to cart.");
-=======
-			showCartMessage(1, albumName, "#02AC1E");
->>>>>>> 0eb1d87e49c74ace5106c9b0ce54cfb44a83c160
+			// showCartMessage(1, albumName, "#02AC1E");
 		} else { // else remove it
 			cartImage.src = "assets/img/cartAdd.png";
 			products.splice(exists, 1);
