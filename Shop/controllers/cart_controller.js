@@ -17,10 +17,19 @@ angular
 					$scope.totalPrice += parseFloat(cd[0].price);
 				});
 			});
-			
 		} else {
 			$location.path('login');
 			$location.replace();
+		}
+
+		// NOT READY YET 
+		$scope.removeFromCart = function(id) {
+			console.log('--> ' + id);
+			var products = getCart().split(',');
+			var index = products.indexOf(id);
+			if(index != -1) {
+				products.splice(index, 1);
+			}
 		}
 
 		$scope.confirm = function() {
@@ -35,7 +44,7 @@ angular
 					// remove from cart
 					var index = products.indexOf(id);
 					if(index !=-1 ) { // if exists on cart ( unnecessary but good for testing purpose )
-						//products.splice(index, 1);
+						products.splice(index, 1);
 					}
 				}
 				stocks[i] = qtds[i].max - qtds[i].value;

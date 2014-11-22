@@ -3,6 +3,8 @@ angular
     .controller('header_controller',['$scope', function($scope) {
         $scope.tag = 0;
 
+        loadShoppingCart();
+
         $scope.setActive = function(elem) {
             $scope.tag = elem;
         };
