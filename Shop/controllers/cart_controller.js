@@ -2,32 +2,37 @@ angular
 	.module('app')
 	.controller('cart_controller', ['$scope', '$http', '$location', function($scope, $http, $location) {
 
-		//check if user is logged in
-		if(window.localStorage.getItem('userid')!=null) {
-			// load cart
-			var cart = getCart();
-			// get cart albums info
-			$http.get("assets/php/DB_Handler.php?func=getCartAlbumsInfo&cart="+cart.toString())
-			.success(function(data) {
-				$scope.cart = data.albums;
-				$scope.totalPrice = 0;
-				$scope.cart.forEach(function(cd) {
-					$scope.totalPrice += parseFloat(cd[0].price);
+		$scope.loadItems = function() {
+			//check if user is logged in
+			if(window.localStorage.getItem('userid')!=null) {
+				// load cart
+				var cart = getCart();
+				// get cart albums info
+				$http.get("assets/php/DB_Handler.php?func=getCartAlbumsInfo&cart="+cart.toString())
+				.success(function(data) {
+					$scope.cart = data.albums;
+					$scope.totalPrice = 0;
+					$scope.cart.forEach(function(cd) {
+						$scope.totalPrice += parseFloat(cd[0].price);
+					});
 				});
-			});
-		} else {
-			$location.path('login');
-			$location.replace();
+			} else {
+				$location.path('login');
+				$location.replace();
+			}
 		}
+		
+		$scope.loadItems();
 
 		// NOT READY YET 
 		$scope.removeFromCart = function(id) {
-			console.log('--> ' + id);
 			var products = getCart().split(',');
 			var index = products.indexOf(id);
 			if(index != -1) {
 				products.splice(index, 1);
 			}
+			createShoppingCart(products);
+			$scope.loadItems();
 		}
 
 		$scope.confirm = function() {

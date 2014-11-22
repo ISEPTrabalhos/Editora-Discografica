@@ -5,7 +5,7 @@
 			<img ng-src="{{cd[0].img}}" alt="albumpic"/>
 			<b>{{cd[0].name}}</b>, {{cd[0].artist}}, {{cd[0].price | currency:"&euro;"}}, 
 			Quantity: <input type="number" min="0" max="{{cd[0].qtd}}" value="1" oninvalid="setCustomValidity('Invalid quantity.')" class="quantity" id="{{cd[0].id}}"> <small>( Available Stock = {{cd[0].qtd}} )</small>
-			<button class="remove" id="{{cd[0].id}}" ng-click="removeFromCart(this.id)">Remove</button>
+			<button class="remove" ng-click="removeFromCart(this.cd[0].id)">Remove</button>
 		</p>
 		<p class="confirm">Total : {{totalPrice | currency:"&euro;"}} <button ng-click="confirm()">Confirm</button> </p>
 	</div>
