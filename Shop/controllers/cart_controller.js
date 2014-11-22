@@ -6,7 +6,6 @@ angular
 
 		//check if user is logged in
 		if(window.localStorage.getItem('userid')!=null) {
-			var id = window.localStorage.getItem('userid');
 			// load cart
 			var cart = getCart();
 			// get cart albums info
@@ -50,9 +49,9 @@ angular
 				}
 				stocks[i] = qtds[i].max - qtds[i].value;
 			}
-			console.log(stocks);
 			// update DB stock from that album
-			$http.get("assets/php/DB_Handler.php?func=updateStock&cart="+cart.toString()+"&stocks="+stocks.toString())
+			var userid = localStorage.getItem('userid');
+			$http.get("assets/php/DB_Handler.php?func=updateStock&cart="+cart.toString()+"&stocks="+stocks.toString()+"&userid="+userid)
 			.success(function(data) {
 				if(data == true) {
 					// delete shopping cart

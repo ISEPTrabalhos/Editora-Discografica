@@ -110,6 +110,7 @@ function getCartAlbumsInfo() {
 function updateStock() {
 	$cart = explode(",",$_GET['cart']);
 	$stocks = explode(",",$_GET['stocks']);
+	$userid = $_GET['userid'];
 
 	$db = new PDO('mysql:host='.DB_HOSTNAME.';dbname='.DB_DATABASE,
 						DB_USERNAME, DB_PASSWORD);
@@ -119,6 +120,10 @@ function updateStock() {
 	for ($i=0; $i < sizeof($cart); $i++) {
 		$statement = $db->prepare("UPDATE albums SET qtd = :qtd WHERE id = :id");
 		$statement->execute(array(':id' => $cart[$i], ':qtd' => $stocks[$i]));
+
+
+		$statement = $db->prepare("INSERT INTO sales (album_id,user_id) VALUES(:album,:user)");
+		$statement->execute(array(':album' => $cart[$i], ':user' => $userid));
 	}
 
 	return true;
