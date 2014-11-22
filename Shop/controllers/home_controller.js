@@ -3,10 +3,7 @@ angular
 	.controller('home_controller', ['$scope', '$http', function($scope, $http) {
 
 		if(window.localStorage.getItem('buy') != null) {
-			$("#message").css("background", "#FFFF00");
-			$("#message").html("Thank you !! You'll receive the album(s) soon !!");
-			$("#message").show("medium");
-			window.localStorage.removeItem('buy');
+			showMessage("Thank you !! You'll receive the album(s) soon !!");
 		} else {
 			$("#message").hide(); // hide eventually message 	
 		}

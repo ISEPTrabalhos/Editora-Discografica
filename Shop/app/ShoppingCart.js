@@ -5,8 +5,6 @@
 //check if cart exists
 function isSet() {
 	if(localStorage.getItem('cart')==null) {
-
-		//console.log('isSet');
 		return false;
 	}
 	return true;
@@ -49,24 +47,21 @@ function updateShoppingCart(products) {
 
 //add new cd product to shopping cart
 function addOrRemoveCDtoCart(id, albumName) {
-	console.log('--> ' + albumName);
 	var cartImage = document.getElementById(id);
 	var products;
 	if(isSet() == false) { // if there's no cart
 		products = [id];
 		createShoppingCart(products);
 		cartImage.src = "assets/img/cartRemove.png";
-		showCartMessage(1, albumName, "#02AC1E");
+		showSuccess(albumName + " added to cart.");
 	} else { // se existir carrinho
 		var products_string = getCart();
 		products = products_string.split(',');
-		//var albumName = "AlbumName"; // GET ALBUM NAME FROM DB OR SOMETHING
 		var exists = existOnCart(id,products);
 		if(exists == -1) { // add product
 			products.push(id);
 			cartImage.src = "assets/img/cartRemove.png";
 			showSuccess(albumName + " added to cart.");
-			// showCartMessage(1, albumName, "#02AC1E");
 		} else { // else remove it
 			cartImage.src = "assets/img/cartAdd.png";
 			products.splice(exists, 1);
