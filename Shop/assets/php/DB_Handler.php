@@ -17,6 +17,9 @@ switch ($function) {
 	case 'getCartAlbumsInfo':
 		echo getCartAlbumsInfo();
 		break;
+	case 'updateStock':
+		echo updateStock();
+		break;
 	default:
 		break;
 }
@@ -102,6 +105,24 @@ function getCartAlbumsInfo() {
 	}
 	
 	return json_encode(array('albums' => $albums, 'error' => false));
+}
+
+function updateStock() {
+	$cart = explode(",",$_GET['cart']);
+	$stocks = explode(",",$_GET['stocks']);
+
+	$db = new PDO('mysql:host='.DB_HOSTNAME.';dbname='.DB_DATABASE,
+						DB_USERNAME, DB_PASSWORD);
+	$db->exec("SET CHARACTER SET utf8");
+
+	// get cart albums INFO
+	for ($i=0; $i < sizeof($cart); $i++) {
+		$statement = $db->prepare("UPDATE albums SET qtd = :qtd WHERE id = :id");
+		$statement->execute(array(':id' => $cart[$i], ':qtd' => $stocks[$i]));
+	}
+
+	return true;
+
 }
 
 

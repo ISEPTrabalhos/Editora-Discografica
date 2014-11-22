@@ -34,27 +34,34 @@ angular
 		}
 
 		$scope.confirm = function() {
-			//UPDATE CART AND DB
+			// update cart and DB
 			var qtds = document.querySelectorAll(".quantity");
 			var products = getCart().split(',');
+			var stocks = [];
 			for(var i = 0; i < qtds.length; i++) {
 				var qtd = qtds[i].value;
 				var id = qtds[i].id;
 				if(qtd >= 1) { // user bought something
-					//UPDATE DB STOCK FROM THAT ALBUM, using that
-
-					//REMOVE IT FROM CART
+					// remove from cart
 					var index = products.indexOf(id);
 					if(index !=-1 ) { // if exists on cart ( unnecessary but good for testing purpose )
-						products.splice(index, 1);
+						//products.splice(index, 1);
 					}
 				}
+				stocks[i] = qtds[i].max - qtds[i].value;
 			}
-			updateShoppingCart(products);
-
-			//REDIRECT TO HOMEPAGE
-			$location.path('/');
-			$location.replace();
+			console.log(stocks);
+			// update DB stock from that album
+			$http.get("assets/php/DB_Handler.php?func=updateStock&cart="+cart.toString()+"&stocks="+stocks.toString())
+			.success(function(data) {
+				if(data == true) {
+					// delete shopping cart
+					window.localStorage.removeItem("cart");
+					updateCartInfo();
+					//REDIRECT TO HOMEPAGE
+					$location.path('/');
+					$location.replace();
+				}
+			});
 		}
-
 	}]);
