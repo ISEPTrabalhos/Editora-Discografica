@@ -1,7 +1,4 @@
 <div ng-controller="header_controller">
-    <div ng-if="message" class="message">
-        <span>{{message}}</span>
-    </div>
 
     <h2>Shop</h2>
 
@@ -27,3 +24,12 @@
         <span ng-click="logout();"><a href>Log out</a></span>
     </div>
 </div>
+
+<script type="text/javascript">
+    showMessage("123");
+    //var msg = window.localStorage.getItem("message");
+    //if(msg != null) {
+    //    showMessage(msg);
+        //window.localStorage.removeItem("message");
+    //}
+</script>

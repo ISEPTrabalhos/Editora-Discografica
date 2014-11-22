@@ -19,4 +19,12 @@ angular
 			}
 		});
 
+		$scope.$on('$viewContentLoaded', function(){
+	    	var msg = window.localStorage.getItem("message");
+	    	if(msg != null) {
+    		    showMessage(msg);
+    		    window.localStorage.removeItem("message");
+	    	}
+		});
+
 	}]);

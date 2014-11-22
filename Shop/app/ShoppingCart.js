@@ -65,26 +65,15 @@ function addOrRemoveCDtoCart(id, albumName) {
 		if(exists == -1) { // add product
 			products.push(id);
 			cartImage.src = "assets/img/cartRemove.png";
-			showCartMessage(1, albumName, "#02AC1E");
+			showSuccess(albumName + " added to cart.");
+			// showCartMessage(1, albumName, "#02AC1E");
 		} else { // else remove it
 			cartImage.src = "assets/img/cartAdd.png";
 			products.splice(exists, 1);
-			showCartMessage(2, albumName, "#F00B42");
+			showError(albumName + " removed from cart.");
 		}
 		updateShoppingCart(products);
 	}
-}
-
-
-function showCartMessage(option, albumName, bgColor) {
-	$("#message").css("background", bgColor);
-	$("#message").hide();  // hide old so effect can be visible
-	if(option == 1) {
-		$("#message").html(albumName + " added to cart.");
-	} else if(option == 2) {
-		$("#message").html(albumName + " removed from cart.");
-	}
-	$("#message").show("medium");
 }
 
 //check if product is already in cart
