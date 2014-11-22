@@ -11,9 +11,9 @@ angular
 					// ajax request
 					$http.get("assets/php/login.php?username="+$scope.username+"&password="+$scope.password)
 					.success(function(data) {
-						if(data.error === "true"){
+						if(data.error === false){
 							window.localStorage.setItem("userid", data.user.id);
-							window.localStorage.setItem("message", "Welcome <strong>"+data.user.name+"</strong>");
+							window.localStorage.setItem("message", "Welcome "+data.user.name);
 							$location.path('/');
 							$location.replace();
 						}else $scope.error = data.error;
