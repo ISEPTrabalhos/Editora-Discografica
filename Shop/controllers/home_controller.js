@@ -4,6 +4,7 @@ angular
 
 		if(window.localStorage.getItem('buy') != null) {
 			showMessage("Thank you !! You'll receive the album(s) soon !!");
+			window.localStorage.removeItem("buy");
 		} else {
 			$("#message").hide(); // hide eventually message 	
 		}
