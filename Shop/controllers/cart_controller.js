@@ -2,8 +2,6 @@ angular
 	.module('app')
 	.controller('cart_controller', ['$scope', '$http', '$location', function($scope, $http, $location) {
 
-		$("#message").hide(); // hide eventually message 
-
 		//check if user is logged in
 		if(window.localStorage.getItem('userid')!=null) {
 			// load cart
