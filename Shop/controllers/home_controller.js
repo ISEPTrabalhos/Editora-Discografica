@@ -2,7 +2,14 @@ angular
 	.module('app')
 	.controller('home_controller', ['$scope', '$http', function($scope, $http) {
 
-		$("#message").hide(); // hide eventually message 
+		if(window.localStorage.getItem('buy') != null) {
+			$("#message").css("background", "#FFFF00");
+			$("#message").html("Thank you !! You'll receive the album(s) soon !!");
+			$("#message").show("medium");
+			window.localStorage.removeItem('buy');
+		} else {
+			$("#message").hide(); // hide eventually message 	
+		}
 		
 		// get album collection
 		$http.get("assets/php/DB_Handler.php?func=getAllAlbums")

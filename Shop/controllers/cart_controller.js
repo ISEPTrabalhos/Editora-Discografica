@@ -56,6 +56,7 @@ angular
 				if(data == true) {
 					// delete shopping cart
 					window.localStorage.removeItem("cart");
+					window.localStorage.setItem("buy",true);
 					updateCartInfo();
 					//REDIRECT TO HOMEPAGE
 					$location.path('/');
