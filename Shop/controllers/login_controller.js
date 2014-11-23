@@ -1,6 +1,13 @@
 angular
 	.module('app')
 	.controller('login_controller', ['$scope', '$location', '$http', function($scope, $location, $http) {
+		$http.get("assets/php/dbstatus.php")
+        .success(function(data) {
+            if(data == 'false'){
+                $location.path('/dberror');
+                $location.replace();
+            }
+        });
 
 		$("#message").hide(); // hide eventually message 
 

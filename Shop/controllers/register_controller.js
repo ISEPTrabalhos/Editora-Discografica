@@ -1,7 +1,14 @@
 angular
 	.module('app')
 	.controller('register_controller', ['$scope', '$location', '$http', function($scope, $location, $http) { 
-
+		$http.get("assets/php/dbstatus.php")
+        .success(function(data) {
+            if(data == 'false'){
+                $location.path('/dberror');
+                $location.replace();
+            }
+        });
+		
 		$("#message").hide(); // hide eventually message
 		$('.error_message').hide();	// hide eventually inputs error message, maybe unnecessary because user is redirected in case of succes 
 		

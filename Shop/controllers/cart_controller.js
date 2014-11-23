@@ -1,6 +1,13 @@
 angular
 	.module('app')
 	.controller('cart_controller', ['$scope', '$http', '$location', function($scope, $http, $location) {
+		$http.get("assets/php/dbstatus.php")
+        .success(function(data) {
+            if(data == 'false'){
+                $location.path('/dberror');
+                $location.replace();
+            }
+        });
 
 		$scope.loadItems = function() {
 			//check if user is logged in

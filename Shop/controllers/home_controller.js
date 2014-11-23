@@ -1,6 +1,13 @@
 angular
 	.module('app')
-	.controller('home_controller', ['$scope', '$http', function($scope, $http) {
+	.controller('home_controller', ['$scope', '$http', '$location', function($scope, $http, $location) {
+		$http.get("assets/php/dbstatus.php")
+        .success(function(data) {
+            if(data == 'false'){
+                $location.path('/dberror');
+                $location.replace();
+            }
+        });
 
 		if(window.localStorage.getItem('buy') != null) {
 			showMessage("Thank you !! You'll receive the album(s) soon !!");

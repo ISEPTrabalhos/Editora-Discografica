@@ -35,6 +35,10 @@ app.config(['$urlRouterProvider', '$stateProvider', function($urlRouterProvider,
 			templateUrl: 'views/register_view.html',
 			controller: 'register_controller'
 		})
+		.state('dberror', {
+			url: '/dberror',
+			templateUrl: 'views/dberror_view.html'
+		})
 }]);
 
 $(document).ready(function(){

@@ -1,6 +1,13 @@
 angular
 	.module('app')
-	.controller('popular_controller', ['$scope', '$http', function($scope, $http) { 
+	.controller('popular_controller', ['$scope', '$http', '$location', function($scope, $http, $location) { 
+		$http.get("assets/php/dbstatus.php")
+        .success(function(data) {
+            if(data == 'false'){
+                $location.path('/dberror');
+                $location.replace();
+            }
+        });
 
 		// get albuns on sale
 		$http.get("assets/php/DB_Handler.php?func=getOffAlbums")
