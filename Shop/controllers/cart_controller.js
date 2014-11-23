@@ -1,6 +1,7 @@
 angular
 	.module('app')
 	.controller('cart_controller', ['$scope', '$http', '$location', function($scope, $http, $location) {
+		
 		$http.get("assets/php/dbstatus.php")
         .success(function(data) {
             if(data == 'false'){
@@ -35,11 +36,20 @@ angular
 		$scope.removeFromCart = function(id) {
 			var products = getCart().split(',');
 			var index = products.indexOf(id);
+			var size = products.length;
 			if(index != -1) {
 				products.splice(index, 1);
 			}
-			createShoppingCart(products);
-			$scope.loadItems();
+			if(size == 1) {
+				window.localStorage.removeItem('cart');
+				loadShoppingCart();
+				$location.path('/');
+				$location.replace();
+				loadShoppingCart();
+			} else {
+				updateShoppingCart(products);
+				$scope.loadItems();
+			}
 		}
 
 		$scope.confirm = function() {

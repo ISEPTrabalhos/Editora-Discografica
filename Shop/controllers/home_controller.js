@@ -1,6 +1,9 @@
 angular
 	.module('app')
 	.controller('home_controller', ['$scope', '$http', '$location', function($scope, $http, $location) {
+		
+		loadShoppingCart();
+
 		$http.get("assets/php/dbstatus.php")
         .success(function(data) {
             if(data == 'false'){
