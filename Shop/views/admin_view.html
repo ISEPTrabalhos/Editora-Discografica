@@ -1,0 +1,19 @@
+<div id="main">
+	<div id="content">
+		<h2>Catalog Here</h2>
+		<article ng-repeat="cd in catalog">
+			<a href>
+				<img class="albumImage" ng-src="{{cd.img}}" alt="albumpic" />
+				<p class="albumname">{{cd.name}}</p>
+				<p class="artistname">{{cd.artist}}
+					<img id="{{cd.id}}" name="{{cd.name}}" class="addCart"  src="assets/img/cartAdd.png" />
+					<!-- 
+					ADD THIS TO CART IMAGE, unnecessary for now, can cause problems because rest of the code isn't done 
+					onload="checkImages(this.id)" onclick="addOrRemoveCDtoCart(this.id, this.name)"
+					-->
+				</p>
+				<p>{{cd.price}}</p>
+			</a>
+		</article>
+	</div>
+</div>

@@ -39,6 +39,11 @@ app.config(['$urlRouterProvider', '$stateProvider', function($urlRouterProvider,
 			url: '/dberror',
 			templateUrl: 'views/dberror_view.html'
 		})
+		.state('admin',{
+			url: '/admin',
+			templateUrl: 'views/admin_view.html',
+			controller: 'admin_controller'
+		})
 }]);
 
 $(document).ready(function(){
