@@ -248,7 +248,7 @@ header #menu ul li a:hover {
 	margin: 10px 0 20px 0;
 	border-radius: 5px;
 	text-align: center;
-	color: black
+	color: black;
 	display: none;
 }
 
@@ -261,6 +261,23 @@ footer {
 	font-weight: bold;
 	color: black;
 	font-size: 13px;
+}
+
+.scrollToTop{
+	width: 50px;
+	height: 50px;
+	position: fixed;
+	bottom: 50px;
+	right: 2%;
+
+	display:none;
+	text-decoration: none;
+
+	background: url('../img/arrow_up.png') no-repeat;
+}
+
+.scrollToTop:hover{
+	text-decoration:none;
 }
 
 .off {
