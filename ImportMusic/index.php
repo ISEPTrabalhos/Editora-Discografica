@@ -7,9 +7,7 @@
 	$params = array();
 
 	$client = new SoapClient("http://wvm042.url");
-	foreach ($albums => $id) {
-		$params[] = $id;
-	}
+	$params = explode(',', $albums);
 	$result = $client->BuyAlbums($params);
 	echo $results;
 	
