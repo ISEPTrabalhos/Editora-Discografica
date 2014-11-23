@@ -12,6 +12,7 @@
 	<div id="message"></div>
 	<div ui-view></div>
 	<footer ng-include="'views/footer.html'"></footer>
+	<a href="#" class="scrollToTop"></a>
 </div>
 
 <!-- Load all the libs -->
