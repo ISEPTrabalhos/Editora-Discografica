@@ -12,9 +12,16 @@ angular
             }
         });
 
+        // show client confirmation message
 		if(window.localStorage.getItem('buy') != null) {
 			showMessage("Thank you !! You'll receive the album(s) soon !!");
 			window.localStorage.removeItem("buy");
+		}
+
+		 // show admin confirmation message
+		if(window.localStorage.getItem('order') != null) {
+			showMessage("Thank you !! You'll receive your order soon !!");
+			window.localStorage.removeItem("order");
 		}
 		
 		// get album collection

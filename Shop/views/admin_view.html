@@ -3,13 +3,12 @@
 		<h2>Catalog Here</h2>
 		<form>
 			<p ng-repeat="cd in catalog">
-				
 				<img style="width:64px; height=64px;" ng-src="{{cd.img}}" alt="albumpic" />
 				<span>Name: </span>{{cd.name}}
 				<span>Artist: </span>{{cd.artist}}
 				<span>Price: </span>{{cd.price | currency:"&euro;"}}
-				<span><input type="number" min="0" name="qtd" id="qtd" oninvalid="setCustomValidity('Invalid quantity.')" value="1"></span>
-				<input type="checkbox" name="check" id="{{cd.id}}"><label>Order this album</label>
+				<span><input type="number" min="0" name="qtd" id="{{cd.id}}" oninvalid="setCustomValidity('Invalid quantity.')" value="1"></span>
+				<input type="checkbox" class="check" id="{{cd.id}}"><label>Order this album</label>
 			</p>
 			<p class="confirm">Total :  <button ng-click="order()">Confirm</button>
 		</form>
