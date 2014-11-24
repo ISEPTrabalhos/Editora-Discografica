@@ -230,6 +230,18 @@ header #menu ul li a:hover {
 	cursor: pointer;
 }
 
+#cart span {
+	font-weight: bold;
+	padding: 0 7px 0 7px;
+}
+
+#cart label {
+	font-size: 12px;
+	vertical-align: middle;
+	padding-left: 10px;
+}
+
+
 #main, #sales, #top {
 	width: 100%;
 	background: rgba(255,255,255,0.7);

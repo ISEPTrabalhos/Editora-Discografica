@@ -1,19 +1,17 @@
 <div id="main">
-	<div id="content">
+	<div id="cart">
 		<h2>Catalog Here</h2>
-		<article ng-repeat="cd in catalog">
-			<a href>
-				<img class="albumImage" ng-src="{{cd.img}}" alt="albumpic" />
-				<p class="albumname">{{cd.name}}</p>
-				<p class="artistname">{{cd.artist}}
-					<img id="{{cd.id}}" name="{{cd.name}}" class="addCart"  src="assets/img/cartAdd.png" />
-					<!-- 
-					ADD THIS TO CART IMAGE, unnecessary for now, can cause problems because rest of the code isn't done 
-					onload="checkImages(this.id)" onclick="addOrRemoveCDtoCart(this.id, this.name)"
-					-->
-				</p>
-				<p>{{cd.price}}</p>
-			</a>
-		</article>
+		<form>
+			<p ng-repeat="cd in catalog">
+				
+				<img style="width:64px; height=64px;" ng-src="{{cd.img}}" alt="albumpic" />
+				<span>Name: </span>{{cd.name}}
+				<span>Artist: </span>{{cd.artist}}
+				<span>Price: </span>{{cd.price | currency:"&euro;"}}
+				<span><input type="number" min="0" name="qtd" id="qtd" oninvalid="setCustomValidity('Invalid quantity.')" value="1"></span>
+				<input type="checkbox" name="check" id="{{cd.id}}"><label>Order this album</label>
+			</p>
+			<p class="confirm">Total :  <button ng-click="order()">Confirm</button>
+		</form>
 	</div>
 </div>
