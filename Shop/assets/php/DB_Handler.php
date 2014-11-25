@@ -28,9 +28,7 @@ switch ($function) {
 }
 
 function getAllAlbums() {
-	$db = new PDO('mysql:host='.DB_HOSTNAME.';dbname='.DB_DATABASE,
-						DB_USERNAME, DB_PASSWORD);
-	$db->exec("SET CHARACTER SET utf8");
+	global $db;
 	$statement = $db->prepare("SELECT * FROM albums");
 	$statement->execute();
 	$results = $statement->fetchAll(PDO::FETCH_ASSOC);
@@ -44,9 +42,7 @@ function getAllAlbums() {
 }
 
 function getOffAlbums() {
-	$db = new PDO('mysql:host='.DB_HOSTNAME.';dbname='.DB_DATABASE,
-						DB_USERNAME, DB_PASSWORD);
-	$db->exec("SET CHARACTER SET utf8");
+	global $db;
 	$statement = $db->prepare("SELECT * FROM albums WHERE off != 0");
 	$statement->execute();	
 	$results = $statement->fetchAll(PDO::FETCH_ASSOC);
@@ -63,9 +59,7 @@ function getOffAlbums() {
 function getTopSold() {
 	$albums = array();
 	$error = false;
-	$db = new PDO('mysql:host='.DB_HOSTNAME.';dbname='.DB_DATABASE,
-						DB_USERNAME, DB_PASSWORD);
-	$db->exec("SET CHARACTER SET utf8");
+	global $db;
 
 	// get top albums => ID
 
@@ -95,9 +89,7 @@ function getCartAlbumsInfo() {
 	$cart = explode(",",$string);
 	$albums = array();
 
-	$db = new PDO('mysql:host='.DB_HOSTNAME.';dbname='.DB_DATABASE,
-						DB_USERNAME, DB_PASSWORD);
-	$db->exec("SET CHARACTER SET utf8");
+	global $db;
 
 	// get cart albums INFO
 	for ($i=0; $i < sizeof($cart); $i++) {
@@ -115,9 +107,7 @@ function updateStock() {
 	$stocks = explode(",",$_GET['stocks']);
 	$userid = $_GET['userid'];
 
-	$db = new PDO('mysql:host='.DB_HOSTNAME.';dbname='.DB_DATABASE,
-						DB_USERNAME, DB_PASSWORD);
-	$db->exec("SET CHARACTER SET utf8");
+	global $db;
 
 	// get cart albums INFO
 	for ($i=0; $i < sizeof($cart); $i++) {
@@ -136,19 +126,8 @@ function updateStock() {
 
 function saveNewAlbums() {
 	$albums = json_decode($_GET['albums']);
-	/*print_r($albums);
-	echo '<br/><br/>';
-	foreach($albums as $album){
-		echo '<br/>';
-     	echo $album->name;
-     	echo '<br/>';
-     	echo $album->tags;
-  	}
-  	echo '<br/>';*/
   	// save albums in database
-  	$db = new PDO('mysql:host='.DB_HOSTNAME.';dbname='.DB_DATABASE,
-						DB_USERNAME, DB_PASSWORD);
-	$db->exec("SET CHARACTER SET utf8");
+  	global $db;
 	foreach($albums as $album) { // loop through each album
 		$exists = false;
 		// check if album exists already

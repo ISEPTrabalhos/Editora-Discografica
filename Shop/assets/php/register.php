@@ -14,9 +14,7 @@ if(isset($_GET['username']) && isset($_GET['password'])
 	$name = trim($_GET['name']);
 
 	if(!empty($username) && !empty($password) && !empty($email)) {
-		$db = new PDO('mysql:host='.DB_HOSTNAME.';dbname='.DB_DATABASE,
-						DB_USERNAME, DB_PASSWORD);
-		$db->exec("SET CHARACTER SET utf8");
+		global $db;
 
 		$statement = $db->prepare("SELECT * FROM users WHERE username = :username OR email = :email");
 		$statement->execute(array(':username' => $username, ':email' => $email));
