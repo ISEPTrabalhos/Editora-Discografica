@@ -276,8 +276,8 @@ footer {
 }
 
 .scrollToTop{
-	width: 50px;
-	height: 50px;
+	width: 48px;
+	height: 48px;
 	position: fixed;
 	bottom: 50px;
 	right: 2%;
@@ -285,11 +285,11 @@ footer {
 	display:none;
 	text-decoration: none;
 
-	background: url('../img/arrow_up.png') no-repeat;
+	background: url('../img/arrow_white.png') no-repeat;
 }
-
 .scrollToTop:hover{
 	text-decoration:none;
+	background: url('../img/arrow_black.png') no-repeat;
 }
 
 .off {
