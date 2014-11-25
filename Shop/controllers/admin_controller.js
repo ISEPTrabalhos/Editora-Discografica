@@ -27,11 +27,13 @@ angular
 		}];
 
 		$scope.order = function() {
-			var albums = [];
+			var albums = []; // array to save selected albums
+			var selected = []; // array to save selected albums ID's ( editor sales history )
 			var checkboxes = document.getElementsByClassName("check"); // grab all checkboxes
 			for (var i = 0; i < checkboxes.length; i++) { 
 				var id = checkboxes[i].id;
-				if(checkboxes[i].checked == true) { // if checked 
+				if(checkboxes[i].checked == true) { // if checked
+					selected.push(id);
 					var input = document.getElementById(id);
 					var qtd = input.value; // get the quantity
 					$scope.catalog.forEach(function(cd) { // get the selected cd
@@ -43,8 +45,9 @@ angular
 			}
 			if(albums.length == 0) { // if nothing is selected
 				showError("You need to choose at least one album.");
-			} else {
-				//save albumns on db
+			} else { //save albums on db
+				// send sales to editor's
+				// ... console.log(selected);
 				var new_albums = JSON.stringify(albums);
 				var url = "assets/php/DB_Handler.php?func=saveNewAlbums&albums="+new_albums;
 				// get albuns on sale
