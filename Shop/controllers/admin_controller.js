@@ -38,6 +38,7 @@ angular
 					var qtd = input.value; // get the quantity
 					$scope.catalog.forEach(function(cd) { // get the selected cd
 						if(cd.id == id) {
+							cd['qtd'] = qtd;
 							albums.push(cd);
 						}
 					});
@@ -53,7 +54,6 @@ angular
 				// get albuns on sale
 				$http.get(url)
 				.success(function(data) {
-					console.log(data);
 					if(data == true){
 						// redirect to homepage
 						window.localStorage.setItem("order",true);
