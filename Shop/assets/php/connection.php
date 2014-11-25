@@ -1,8 +1,12 @@
 <?php
-	define(DB_HOSTNAME, "");
-	define(DB_USERNAME, "");
+	define(DB_HOSTNAME, "localhost");
+	define(DB_USERNAME, "root");
 	define(DB_PASSWORD, "");
-	define(DB_DATABASE, "");
+	define(DB_DATABASE, "myshop");
+
+	$db = new PDO('mysql:host='.DB_HOSTNAME.';dbname='.DB_DATABASE,
+						DB_USERNAME, DB_PASSWORD);
+	$db->exec("SET CHARACTER SET utf8");
 	
 /**
  * if change pls use the following command:
