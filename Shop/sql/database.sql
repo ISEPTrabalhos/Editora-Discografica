@@ -75,3 +75,5 @@ INSERT INTO `sales` (`id`, `album_id`, `user_id`, `date`) VALUES
 (16, 7, 6, '2014-11-21 18:36:11'),
 (17, 12, 6, '2014-11-21 18:36:11'),
 (18, 8, 5, '2014-11-21 18:37:26');
+
+ALTER TABLE `albums` ADD `tags` TEXT NOT NULL ;
