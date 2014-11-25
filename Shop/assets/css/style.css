@@ -163,6 +163,12 @@ header #menu ul li a:hover {
 	text-align: left;
 }
 
+#login-box .field span {
+	font-size: 12px;
+	color: red;
+	padding: 0 15px 0 15px;
+}
+
 #login-box .label {
 	width: 12%;
 	margin-top: 10px;

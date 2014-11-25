@@ -7,9 +7,9 @@
 
 	<form>
 		<div class="field">
-			<label for="email">Email:</label>
+			<label for="email">Email:</label><span>{{email_error}}</span>
 			<input type="text" name="email" id="email" ng-model="email" autocomplete="on" 
-			oninvalid="setCustomValidity('Invalid format. Example: email@domain.com')">
+			oninvalid="setCustomValidity('Invalid format. Example: email@domain.com')" ng-blur="checkEmail()">
 		</div>
 
 		<div class="field">
@@ -18,8 +18,8 @@
 		</div>
 
 		<div class="field">
-			<label for="username">Username:</label>
-			<input type="text" name="username" id="username" ng-model="username" autocomplete="off">
+			<label for="username">Username:</label><span>{{username_error}}</span>
+			<input type="text" name="username" id="username" ng-model="username" autocomplete="off" ng-blur="checkUsername()">
 		</div>
 
 		<div class="field">

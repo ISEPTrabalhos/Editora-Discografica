@@ -13,6 +13,19 @@ angular
 		$('.error_message').hide();	// hide eventually inputs error message, maybe unnecessary because user is redirected in case of succes 
 		
 		$scope.error = false;
+		$scope.email_error = "";
+		$scope.username_error = "";
+
+		$scope.checkEmail = function() {
+			alert("Check Email");
+			$scope.email_error = "Email already in use";
+		}
+
+		$scope.checkUsername = function() {
+			alert("Check Username");
+			$scope.username_error = "Username already in use";
+		}
+
 
 		$scope.register = function() {
 			if($scope.username !== undefined && $scope.password !== undefined && $scope.email !== undefined
