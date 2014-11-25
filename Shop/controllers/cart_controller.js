@@ -12,7 +12,7 @@ angular
 
 		$scope.loadItems = function() {
 			//check if user is logged in
-			if(window.localStorage.getItem('userid')!=null) {
+			//if(window.localStorage.getItem('userid')!=null) {
 				// load cart
 				var cart = getCart();
 				// get cart albums info
@@ -24,10 +24,10 @@ angular
 						$scope.totalPrice += parseFloat(cd[0].price);
 					});
 				});
-			} else {
+			/*} else {
 				$location.path('login');
 				$location.replace();
-			}
+			}*/
 		}
 		
 		$scope.loadItems();
@@ -53,35 +53,40 @@ angular
 		}
 
 		$scope.confirm = function() {
-			// update cart and DB
-			var qtds = document.querySelectorAll(".quantity");
-			var products = getCart().split(',');
-			var stocks = [];
-			for(var i = 0; i < qtds.length; i++) {
-				var qtd = qtds[i].value;
-				var id = qtds[i].id;
-				if(qtd >= 1) { // user bought something
-					// remove from cart
-					var index = products.indexOf(id);
-					if(index !=-1 ) { // if exists on cart ( unnecessary but good for testing purpose )
-						products.splice(index, 1);
+			if(window.localStorage.getItem('userid')!=null) { // need to be logged in
+				// update cart and DB
+				var qtds = document.querySelectorAll(".quantity");
+				var products = getCart().split(',');
+				var stocks = [];
+				for(var i = 0; i < qtds.length; i++) {
+					var qtd = qtds[i].value;
+					var id = qtds[i].id;
+					if(qtd >= 1) { // user bought something
+						// remove from cart
+						var index = products.indexOf(id);
+						if(index !=-1 ) { // if exists on cart ( unnecessary but good for testing purpose )
+							products.splice(index, 1);
+						}
 					}
+					stocks[i] = qtds[i].max - qtds[i].value;
 				}
-				stocks[i] = qtds[i].max - qtds[i].value;
-			}
-			// update DB stock from that album
-			var userid = localStorage.getItem('userid');
-			$http.get("assets/php/DB_Handler.php?func=updateStock&cart="+cart.toString()+"&stocks="+stocks.toString()+"&userid="+userid)
-			.success(function(data) {
-				if(data == true) {
-					// delete shopping cart
-					window.localStorage.removeItem("cart");
-					window.localStorage.setItem("buy",true);
-					updateCartInfo();
-					//REDIRECT TO HOMEPAGE
-					$location.path('/');
+				// update DB stock from that album
+				var userid = localStorage.getItem('userid');
+				$http.get("assets/php/DB_Handler.php?func=updateStock&cart="+cart.toString()+"&stocks="+stocks.toString()+"&userid="+userid)
+				.success(function(data) {
+					if(data == true) {
+						// delete shopping cart
+						window.localStorage.removeItem("cart");
+						window.localStorage.setItem("buy",true);
+						updateCartInfo();
+						//REDIRECT TO HOMEPAGE
+						$location.path('/');
+						$location.replace();
+					}
+				});
+				} else {
+					$location.path('login');
 					$location.replace();
 				}
-			});
 		}
 	}]);
