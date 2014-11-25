@@ -20,6 +20,9 @@ switch ($function) {
 	case 'updateStock':
 		echo updateStock();
 		break;
+	case 'saveNewAlbums':
+		echo saveNewAlbums();
+		break;
 	default:
 		break;
 }
@@ -118,16 +121,55 @@ function updateStock() {
 
 	// get cart albums INFO
 	for ($i=0; $i < sizeof($cart); $i++) {
+		// update stock
 		$statement = $db->prepare("UPDATE albums SET qtd = :qtd WHERE id = :id");
 		$statement->execute(array(':id' => $cart[$i], ':qtd' => $stocks[$i]));
-
-
+		// add new sale
 		$statement = $db->prepare("INSERT INTO sales (album_id,user_id) VALUES(:album,:user)");
 		$statement->execute(array(':album' => $cart[$i], ':user' => $userid));
 	}
 
 	return true;
 
+}
+
+
+function saveNewAlbums() {
+	$albums = json_decode($_GET['albums']);
+	/*print_r($albums);
+	echo '<br/><br/>';
+	foreach($albums as $album){
+		echo '<br/>';
+     	echo $album->name;
+     	echo '<br/>';
+     	echo $album->tags;
+  	}
+  	echo '<br/>';*/
+  	// save albums in database
+  	$db = new PDO('mysql:host='.DB_HOSTNAME.';dbname='.DB_DATABASE,
+						DB_USERNAME, DB_PASSWORD);
+	$db->exec("SET CHARACTER SET utf8");
+	foreach($albums as $album) { // loop through each album
+		$exists = false;
+		// check if album exists already
+		$statement = $db->prepare("SELECT * FROM albums WHERE name = :name");
+		$statement->execute(array(':name' => $album->name));
+		$results = $statement->fetchAll(PDO::FETCH_ASSOC);
+		if($results) {
+			$exists = true;
+		}
+
+		if($exists == true)  { // then update stock 
+			$statement = $db->prepare("UPDATE albums SET qtd = qtd+:qtd WHERE name = :name");
+			$statement->execute(array(':qtd' => $album->qtd, ':name' => $album->name));
+		} else { //  insert it 
+			$statement = $db->prepare("INSERT INTO albums (name,artist,img,qtd,price,tags) 
+			VALUES(:name,:artist,:img,:qtd,:price,:tags)");
+			$statement->execute(array(':name' => $album->name, ':artist' => $album->artist,
+		 ':img' => $album->img, ':qtd' => $album->qtd, ':price' => $album->price, ':tags' => $album->tags));
+		}	
+	}
+	return true;
 }
 
 
