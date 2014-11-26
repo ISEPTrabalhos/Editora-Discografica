@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.Serialization;
-using System.ServiceModel;
-using System.Text;
 using IDEIMusic.Models;
+using IDEIMusic.DAL;
 
 namespace IDEIMusic.Services
 {
@@ -12,12 +9,13 @@ namespace IDEIMusic.Services
     // NOTE: In order to launch WCF Test Client for testing this service, please select IDEIMusicService.svc or IDEIMusicService.svc.cs at the Solution Explorer and start debugging.
     public class IDEIMusicService : IIDEIMusicService
     {
+        private IDEIMusicContext db = new IDEIMusicContext();
+
         public List<Album> getCatalog()
         {
-            Album a = new Album();
-            List<Album> list = new List<Album>();
-            list.Add(a);
-            return list;
+            var albums = from a in db.Albums
+                         select a;
+            return albums.ToList();
         }
     }
 }
