@@ -1,5 +1,6 @@
 <?php
 require_once("nusoap.php");
+require_once("DAL.php");
 
 $server = new soap_server;
 $server->configureWSDL( 'ImportMusicService', 'urn:ImportMusicService', '', 'document');
@@ -20,12 +21,17 @@ $server->register($methodname, $params["in"], $params["out"],
 $server->wsdl->endpoint .'#'. $methodname, // soapaction
 'document', // style
 'literal', // use
-'N/A' // documentation
+'Method to save a sale into the Import Music Database' // documentation
 );
 }
 
 function SaveSale($Title,$Quantity) {
-return array('Response'=> "");
+	global $db;
+
+	$statement = $db->prepare("INSERT INTO sales (Title,Quantity) VALUES(:title,:quantity)");
+		$statement->execute(array(':title' => $Title, ':quantity' => $Quantity));
+		
+	return array('Response'=> "");
 }
 
 ?>
