@@ -152,6 +152,7 @@ header #menu ul li a:hover {
 	border-radius: 5px;
 	border: 1px solid #DE6666;
 	margin-top: -20px;
+	font-size: 14px;
 }
 #login-box form {
 	text-align: center;

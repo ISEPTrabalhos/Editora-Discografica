@@ -45,7 +45,6 @@ function checkEmail() {
 			}
 		}
 	}
-	//echo 'TRUE';
 	return true;
 }
 

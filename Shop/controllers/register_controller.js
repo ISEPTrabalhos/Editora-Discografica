@@ -12,7 +12,7 @@ angular
 		$("#message").hide(); // hide eventually message
 		$('.error_message').hide();	// hide eventually inputs error message, maybe unnecessary because user is redirected in case of succes 
 		
-		$scope.error = false;
+		$scope.error = true;
 		$scope.email_error = "";
 		$scope.username_error = "";
 		$scope.password_error = "";
@@ -65,10 +65,11 @@ angular
 		$scope.checkPasswords = function() {
 			if($scope.password !== undefined && $scope.password.trim().length!== 0 
 				&& $scope.newpassword !== undefined && $scope.newpassword.trim().length !== 0) {
-				if($scope.password !== $scope.newpassword) {
+				if(!($scope.password == $scope.newpassword)) {
 					$scope.password_error = "Passwords don't match";
 					$scope.error = true;
 				} else {
+					$scope.password_error = "";
 					$scope.error = false;
 				}
 			} else {
@@ -86,28 +87,21 @@ angular
 		}
 
 		$scope.register = function() {
-			/*if($scope.username !== undefined && $scope.password !== undefined && $scope.email !== undefined
-				&& $scope.newpassword !== undefined && $scope.name != undefined) 
-			{
-				if($scope.username.trim().length !== 0 && $scope.password.trim().length !== 0
-					&& $scope.email.trim().length !== 0 && $scope.newpassword.trim().length !== 0
-					&& $scope.name.trim().length!== 0)
-				{
-					if($scope.password === $scope.newpassword) {
-						$http.get("assets/php/register.php?func=registerUser&username="+$scope.username+"&password="+$scope.password+"&email="+$scope.email+"&name="+$scope.name)
-						.success(function(data) {
-							if(data.error == false){
-								// sign in user
-								window.localStorage.setItem("userid", data.user);
-								window.localStorage.setItem("message", "Thank you for sign up. You're now automatically logged in.");
-								$location.path('/');
-								$location.replace();
-							}else $scope.error = data;
-						});
-					} else $scope.error = "Passwords don't match";
-				}	else $scope.error = "You need to fill all the fields";
-			} else $scope.error = "You need to fill all the fields";
-			*/
+			if($scope.error == false && $scope.error !== undefined) {
+				console.log('sign up user');
+				$http.get("assets/php/register.php?func=registerUser&username="+$scope.username+"&password="+$scope.password+"&email="+$scope.email+"&name="+$scope.name)
+				.success(function(data) {
+					if(data.error == false){
+						// sign in user
+						window.localStorage.setItem("userid", data.user);
+						window.localStorage.setItem("message", "Thank you for sign up. You're now automatically logged in.");
+						$location.path('/');
+						$location.replace();
+					} else $scope.error = data;
+				});
+			} else {
+				$scope.error = "There are problems with your data";
+			}
 		}
 
 	}]);
