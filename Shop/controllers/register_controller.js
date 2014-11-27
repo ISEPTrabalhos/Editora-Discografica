@@ -1,6 +1,6 @@
 angular
 	.module('app')
-	.controller('register_controller', ['$scope', '$location', '$http', function($scope, $location, $http) { 
+	.controller('register_controller', ['$scope', '$location', '$http', function($scope, $location, $http) {
 		$http.get("assets/php/dbstatus.php")
         .success(function(data) {
             if(data == 'false'){
@@ -15,19 +15,32 @@ angular
 		$scope.error = false;
 		$scope.email_error = "";
 		$scope.username_error = "";
+		$scope.password_error = "";
+		$scope.name_error = "";
 
 		$scope.checkEmail = function() {
+			var regExp = /[A-Z0-9._%+-]+@[A-Z0-9.-]+.[A-Z]{2,4}/igm;
+			var valid = regExp.test($scope.email);
+
 			if($scope.email !== undefined && $scope.email.trim().length !== 0) {
-				$http.get("assets/php/register.php?func=checkEmail&email="+$scope.email)
-				.success(function(data) {
-					if(data == false) {
-						$scope.email_error = "Email already in use.";
-					} else {
-						$scope.email_error = "Email available.";
-					}
-				});
+				if(valid) {
+					$http.get("assets/php/register.php?func=checkEmail&email="+$scope.email)
+					.success(function(data) {
+						if(data == false) {
+							$scope.email_error = "Email already in use";
+							$scope.error = true;
+						} else {
+							$scope.email_error = "";
+							$scope.error = false;
+						}
+					});
+				} else {
+					$scope.email_error = "Invalid email address";
+					$scope.error = true;
+				}
 			} else {
-				$scope.email_error = "";
+				$scope.email_error = "Email required";
+				$scope.error = true;
 			}
 		}
 
@@ -37,18 +50,43 @@ angular
 				.success(function(data) {
 					if(data == false) {
 						$scope.username_error = "Username already in use.";
+						$scope.error = true;
 					} else {
-						$scope.username_error = "Username available.";
+						$scope.username_error = "";
+						$scope.error = false;
 					}
 				});
 			} else {
-				$scope.username_error = "";
+				$scope.username_error = "Username required";
+				$scope.error = true;
 			}
 		}
 
+		$scope.checkPasswords = function() {
+			if($scope.password !== undefined && $scope.password.trim().length!== 0 
+				&& $scope.newpassword !== undefined && $scope.newpassword.trim().length !== 0) {
+				if($scope.password !== $scope.newpassword) {
+					$scope.password_error = "Passwords don't match";
+					$scope.error = true;
+				} else {
+					$scope.error = false;
+				}
+			} else {
+				$scope.password_error = "Password required"
+			}
+		}
+
+		$scope.checkName = function() {
+			if($scope.name !== undefined && $scope.name.trim().length !==0) {
+				$scope.error = false;
+			} else {
+				$scope.name_error = "Name required";
+				$scope.error = true;
+			}
+		}
 
 		$scope.register = function() {
-			if($scope.username !== undefined && $scope.password !== undefined && $scope.email !== undefined
+			/*if($scope.username !== undefined && $scope.password !== undefined && $scope.email !== undefined
 				&& $scope.newpassword !== undefined && $scope.name != undefined) 
 			{
 				if($scope.username.trim().length !== 0 && $scope.password.trim().length !== 0
@@ -69,6 +107,7 @@ angular
 					} else $scope.error = "Passwords don't match";
 				}	else $scope.error = "You need to fill all the fields";
 			} else $scope.error = "You need to fill all the fields";
+			*/
 		}
 
 	}]);
