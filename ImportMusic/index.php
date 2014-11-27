@@ -25,9 +25,7 @@ $server->wsdl->endpoint .'#'. $methodname, // soapaction
 }
 
 function SaveSale($Title,$Quantity) {
-$result=false;
-if ($Name=="mleiv" && $Age==35) $result=true;
-return array('Pass'=>$result);
+return array('Response'=> "");
 }
 
 ?>
