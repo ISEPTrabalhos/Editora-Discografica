@@ -7,7 +7,7 @@ myRegister($server,'SaveSale',
         array(
                 'in' => array('Title' => 'xsd:string',
                                 'Quantity' => 'xsd:int'),
-                'out' => array('Response' => 'xsd:string');
+                'out' => array('Response' => 'xsd:string')
             ));
 
 //if in safe mode, raw post data not set:
