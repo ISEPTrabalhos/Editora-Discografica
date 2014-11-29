@@ -1,5 +1,6 @@
 <?php
 require_once("nusoap.php");
+require_once("DAL.php");
 
 $server = new soap_server;
 $server->configureWSDL( 'ImportMusicService', 'urn:ImportMusicService', '', 'document');
@@ -7,7 +8,7 @@ myRegister($server,'SaveSale',
         array(
                 'in' => array('Title' => 'xsd:string',
                                 'Quantity' => 'xsd:int'),
-                'out' => array('Response' => 'xsd:string');
+                'out' => array('Response' => 'xsd:string')
             ));
 
 //if in safe mode, raw post data not set:
@@ -20,14 +21,17 @@ $server->register($methodname, $params["in"], $params["out"],
 $server->wsdl->endpoint .'#'. $methodname, // soapaction
 'document', // style
 'literal', // use
-'N/A' // documentation
+'Method to save a sale into the Import Music Database' // documentation
 );
 }
 
 function SaveSale($Title,$Quantity) {
-$result=false;
-if ($Name=="mleiv" && $Age==35) $result=true;
-return array('Pass'=>$result);
+	global $db;
+
+	$statement = $db->prepare("INSERT INTO sales (Title,Quantity) VALUES(:title,:quantity)");
+		$statement->execute(array(':title' => $Title, ':quantity' => $Quantity));
+		
+	return array('Response'=> "");
 }
 
 ?>

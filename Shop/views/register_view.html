@@ -9,12 +9,12 @@
 		<div class="field">
 			<label for="email">Email:</label><span>{{email_error}}</span>
 			<input type="text" name="email" id="email" ng-model="email" autocomplete="on" 
-			oninvalid="setCustomValidity('Invalid format. Example: email@domain.com')" ng-blur="checkEmail()">
+			 ng-blur="checkEmail()">
 		</div>
 
 		<div class="field">
-			<label for="name">Name:</label>
-			<input type="text" name="name" id="name" ng-model="name" autocomplete="on">
+			<label for="name">Name:</label><span>{{name_error}}</span>
+			<input type="text" name="name" id="name" ng-model="name" ng-blur="checkName()" autocomplete="on">
 		</div>
 
 		<div class="field">
@@ -23,13 +23,13 @@
 		</div>
 
 		<div class="field">
-			<label for="password">Password:</label>
-			<input type="password" name="password" id="password" ng-model="password" autocomplete="off">
+			<label for="password">Password:</label><span>{{password_error}}</span>
+			<input type="password" name="password" id="password" class="userInput" value="Choose a password" ng-model="password" autocomplete="off">
 		</div>
 
 		<div class="field">
 			<label for="newpassword">Confirm Password:</label>
-			<input type="password" name="newpassword" id="newpassword" ng-model="newpassword" autocomplete="off">
+			<input type="password" name="newpassword" id="newpassword" ng-model="newpassword" ng-blur="checkPasswords()"autocomplete="off">
 		</div>
 
 		<button ng-click="register()">Register</button>
