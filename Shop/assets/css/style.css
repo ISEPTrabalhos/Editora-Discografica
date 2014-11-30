@@ -201,7 +201,7 @@ header #menu ul li a:hover {
 	color: #C21515;
 }
 
-#cart { 
+#cart , #suggestions { 
 	width: 100%;
 	margin-top: 20px;
 	background: white;

@@ -9,30 +9,23 @@ angular
                 $location.replace();
             }
         });
-
+        
 		$scope.loadItems = function() {
-			//check if user is logged in
-			//if(window.localStorage.getItem('userid')!=null) {
-				// load cart
-				var cart = getCart();
-				// get cart albums info
-				$http.get("assets/php/DB_Handler.php?func=getCartAlbumsInfo&cart="+cart.toString())
-				.success(function(data) {
-					$scope.cart = data.albums;
-					$scope.totalPrice = 0;
-					$scope.cart.forEach(function(cd) {
-						$scope.totalPrice += parseFloat(cd[0].price);
-					});
+			var cart = getCart();
+			// get cart albums info
+			$http.get("assets/php/DB_Handler.php?func=getCartAlbumsInfo&cart="+cart.toString())
+			.success(function(data) {
+				$scope.cart = data.albums;
+				$scope.totalPrice = 0;
+				$scope.cart.forEach(function(cd) {
+					$scope.totalPrice += parseFloat(cd[0].price);
 				});
-			/*} else {
-				$location.path('login');
-				$location.replace();
-			}*/
+			});
 		}
 		
 		$scope.loadItems();
 
-		// NOT READY YET 
+
 		$scope.removeFromCart = function(id) {
 			var products = getCart().split(',');
 			var index = products.indexOf(id);

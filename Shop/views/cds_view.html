@@ -5,7 +5,7 @@
 				<img class="albumImage" ng-src="{{cd.img}}" alt="albumpic" />
 				<p class="albumname">{{cd.name}}</p>
 				<p class="artistname">{{cd.artist}}
-					<img id="{{cd.id}}" name="{{cd.name}}" class="addCart" onload="checkImages(this.id)" src="assets/img/cartAdd.png" onclick="addOrRemoveCDtoCart(this.id, this.name)"/>
+					<img id="{{cd.id}}" name="{{cd.name}},{{cd.tags}}" class="addCart" onload="checkImages(this.id)" src="assets/img/cartAdd.png" onclick="addOrRemoveCDtoCart(this.id, this.name)"/>
 				<p ng-if="cd.off != 0">
 					<span class="off" >Was {{cd.price}}</span>
 					<span>{{cd.price * cd.off | currency:"&euro;"}}</span>

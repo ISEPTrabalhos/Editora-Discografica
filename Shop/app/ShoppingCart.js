@@ -46,7 +46,12 @@ function updateShoppingCart(products) {
 }
 
 //add new cd product to shopping cart
-function addOrRemoveCDtoCart(id, albumName) {
+function addOrRemoveCDtoCart(id, albumInfo) {
+	// albumInfo is a string containing:
+	// 1st position -> album name
+	// 2nd to last -> album tags
+	var info = albumInfo.split(",");
+	var albumName = info[0];
 	var cartImage = document.getElementById(id);
 	var products;
 	if(isSet() == false) { // if there's no cart
