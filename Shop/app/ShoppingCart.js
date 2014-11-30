@@ -46,12 +46,7 @@ function updateShoppingCart(products) {
 }
 
 //add new cd product to shopping cart
-function addOrRemoveCDtoCart(id, albumInfo) {
-	// albumInfo is a string containing:
-	// 1st position -> album name
-	// 2nd to last -> album tags
-	var info = albumInfo.split(",");
-	var albumName = info[0];
+function addOrRemoveCDtoCart(id, albumName) {
 	var cartImage = document.getElementById(id);
 	var products;
 	if(isSet() == false) { // if there's no cart
@@ -67,7 +62,6 @@ function addOrRemoveCDtoCart(id, albumInfo) {
 			products.push(id);
 			cartImage.src = "assets/img/cartRemove.png";
 			showSuccess(albumName + " added to cart.");
-			saveTags(info);
 		} else { // else remove it
 			cartImage.src = "assets/img/cartAdd.png";
 			products.splice(exists, 1);
@@ -104,18 +98,3 @@ function checkImages(id) {
 		}
 	}
 }
-
-// function to manage cart tags
-function saveTags(info) {
-	var tags = [];
-	if(window.localStorage.getItem('tags') == null) { // if dont exist, create it
-		window.localStorage.setItem("tags", JSON.stringify(tags));
-	} 
-	tags = JSON.parse(window.localStorage.getItem('tags'));
-	// add album tag(s) to global variable
-	for (var i = 1; i < info.length; i++) {
-		tags.push(info[i]);
-	};
-	window.localStorage.setItem("tags",JSON.stringify(tags));
-}
-

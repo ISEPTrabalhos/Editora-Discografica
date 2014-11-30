@@ -23,8 +23,18 @@ angular
 			});
 		}
 		
-		$scope.loadItems();
+		$scope.getTopTagOnCart = function() {
+			var cart = getCart();
+			// get cart top tag
+			$http.get("assets/php/DB_Handler.php?func=getTopTag&cart="+cart.toString())
+			.success(function(data) {
+				console.log(data);
+			});
+		}
 
+
+		$scope.loadItems();
+		$scope.getTopTagOnCart();
 
 		$scope.removeFromCart = function(id) {
 			var products = getCart().split(',');

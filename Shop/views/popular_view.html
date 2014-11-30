@@ -6,7 +6,7 @@
 				<img class="albumImage" ng-src="{{album.img}}" alt="albumpic" />
 				<p class="albumname">{{album.name}}</p>
 				<p class="artistname">{{album.artist}}
-					<img id="{{album.id}}" name="{{album.name}},{{album.tags}}" class="addCart" onload="checkImages(this.id)" src="assets/img/cartAdd.png" onclick="addOrRemoveCDtoCart(this.id, this.name)"/>
+					<img id="{{album.id}}" name="{{album.name}}" class="addCart" onload="checkImages(this.id)" src="assets/img/cartAdd.png" onclick="addOrRemoveCDtoCart(this.id, this.name)"/>
 				</p>
 				<p ng-if="album.off != 0">
 					<span class="off" >Was {{album.price}}</span>
@@ -28,7 +28,7 @@
 				<img class="albumImage" ng-src="{{album[0].img}}" alt="albumpic" />
 				<p class="albumname">{{album[0].name}}</p>
 				<p class="artistname">{{album[0].artist}}
-					<img id="{{album[0].id}}" name="{{album[0].name}},{{album[0].tags}}" class="addCart" onload="checkImages(this.id)" src="assets/img/cartAdd.png" onclick="addOrRemoveCDtoCart(this.id, this.name)"/>
+					<img id="{{album[0].id}}" name="{{album[0].name}}" class="addCart" onload="checkImages(this.id)" src="assets/img/cartAdd.png" onclick="addOrRemoveCDtoCart(this.id, this.name)"/>
 				</p>
 				<p ng-if="album[0].off != 0">
 					<span class="off" >Was {{album[0].price}}</span>

@@ -23,6 +23,9 @@ switch ($function) {
 	case 'saveNewAlbums':
 		echo saveNewAlbums();
 		break;
+	case 'getTopTag':
+		echo getTopTag();
+		break;
 	default:
 		break;
 }
@@ -83,7 +86,6 @@ function getTopSold() {
 	return json_encode(array('albums' => $albums, 'error' => $error));
 }
 
-//1,5,6,7,10
 function getCartAlbumsInfo() {
 	$string = $_GET['cart'];
 	$cart = explode(",",$string);
@@ -123,7 +125,6 @@ function updateStock() {
 
 }
 
-
 function saveNewAlbums() {
 	$albums = json_decode($_GET['albums']);
   	// save albums in database
@@ -149,6 +150,41 @@ function saveNewAlbums() {
 		}	
 	}
 	return true;
+}
+
+function getTopTag() {
+	$ids = explode(",", $_GET['albums']);
+	$query = "SELECT tags FROM albums WHERE ";
+	for($i = 0; $i < sizeof($ids); $i++) {
+		if($i == sizeof($ids) - 1) {
+			$query = $query . "id = " . $ids[$i];
+		} else {
+			$query = $query . "id = " . $ids[$i] . " OR ";
+		}
+	}
+	global $db;
+	$statement = $db->prepare($query);
+	$statement->execute();
+	$results = $statement->fetchAll(PDO::FETCH_ASSOC);
+	$tags = array();
+	foreach ($results as $result) { 
+		$tag = $result["tags"];
+		$pos = strpos($tag, ',');
+		if($pos !== false) { // more than one tag
+			$tg = explode(",", $tag);
+			for($j = 0; $j < sizeof($tg); $j++) {
+				$tags[] = $tg[$j];
+			}
+		} else { // just one tag
+			$tags[] = $tag;
+		}
+	}
+	for($i = 0; $i < sizeof($tags); $i++) {
+		echo $tags[$i] . '<br/>';
+	}
+
+	// it will return top tag
+	return "TopTag";
 }
 
 
