@@ -193,5 +193,4 @@ function getTopTag() {
 	return $topTag;
 }
 
-
 ?>

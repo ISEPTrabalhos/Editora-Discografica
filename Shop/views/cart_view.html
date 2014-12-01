@@ -12,5 +12,8 @@
 </form>
 
 <div id="suggestions">
-	<h4>Suggestions based on top tag on cart : {{topTag}}</h4>
+	<h4>Suggestions based on top tag on cart : {{topTag | uppercase }}</h4>
+	<span style="font-size: 10px" ng-repeat="album in topAlbuns">
+		{{album.name}} by {{album.artist.name}} <br/>
+	</span>
 </div>
