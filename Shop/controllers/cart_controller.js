@@ -45,6 +45,22 @@ angular
 		$scope.loadItems();
 		$scope.getTopTagOnCart();
 
+		$scope.searchByTag = function() {
+			if($scope.searchTag !== undefined && $scope.searchTag.trim().length !== 0) {
+				var url = "http://ws.audioscrobbler.com/2.0/?method=tag.getTopAlbums&tag=" + $scope.searchTag + "&limit=10&api_key=e85bfd5e26e0e91b53160653d86ba063&format=json";
+				$http.get(url)
+				.success(function(data) {
+					console.log(data);
+					// data contains all the top albums by tag
+					var albums = data.topalbums.album;
+					$scope.topAlbuns = albums;
+				});
+			} else {
+				alert("Please enter a name.");
+			}
+		}
+
+
 		$scope.removeFromCart = function(id) {
 			var products = getCart().split(',');
 			var index = products.indexOf(id);

@@ -313,3 +313,18 @@ footer {
 	font-size: 13px;
 	cursor: pointer;
 }
+
+h4 span a {
+	font-size: 11px;
+	padding-left: 30px;
+	color: #DCDCDC;
+}
+
+h4 span a:hover {
+	text-decoration: underline;
+}
+
+.search {
+	float: right;
+	margin-right: 50px;
+}
