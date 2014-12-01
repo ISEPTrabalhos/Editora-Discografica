@@ -29,11 +29,9 @@ angular
 			$http.get("assets/php/DB_Handler.php?func=getTopTag&albums="+cart.toString())
 			.success(function(data) {
 				$scope.topTag = data;
-				// call method on Last FM to get top albums by tag
-				var url = "http://ws.audioscrobbler.com/2.0/?method=tag.getTopAlbums&tag=" + $scope.topTag + "&limit=10&api_key=e85bfd5e26e0e91b53160653d86ba063&format=json";
+				var url = "http://ws.audioscrobbler.com/2.0/?method=tag.getTopAlbums&tag=" + $scope.topTag + "&limit=7&api_key=e85bfd5e26e0e91b53160653d86ba063&format=json";
 				$http.get(url)
 				.success(function(data) {
-					console.log(data);
 					// data contains all the top albums by tag
 					var albums = data.topalbums.album;
 					$scope.topAlbuns = albums;
@@ -47,10 +45,9 @@ angular
 
 		$scope.searchByTag = function() {
 			if($scope.searchTag !== undefined && $scope.searchTag.trim().length !== 0) {
-				var url = "http://ws.audioscrobbler.com/2.0/?method=tag.getTopAlbums&tag=" + $scope.searchTag + "&limit=10&api_key=e85bfd5e26e0e91b53160653d86ba063&format=json";
+				var url = "http://ws.audioscrobbler.com/2.0/?method=tag.getTopAlbums&tag=" + $scope.searchTag + "&limit=7&api_key=e85bfd5e26e0e91b53160653d86ba063&format=json";
 				$http.get(url)
 				.success(function(data) {
-					console.log(data);
 					// data contains all the top albums by tag
 					var albums = data.topalbums.album;
 					$scope.topAlbuns = albums;
@@ -59,7 +56,6 @@ angular
 				alert("Please enter a name.");
 			}
 		}
-
 
 		$scope.removeFromCart = function(id) {
 			var products = getCart().split(',');
@@ -117,4 +113,10 @@ angular
 					$location.replace();
 				}
 		}
+
+		// verify if album exist on stock, if exist show button "Add to cart"
+		$scope.existsOnStock = function(albumID) {
+            return false;
+        };
+
 	}]);

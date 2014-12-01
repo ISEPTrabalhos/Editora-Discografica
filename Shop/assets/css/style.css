@@ -226,10 +226,6 @@ header #menu ul li a:hover {
 	margin-right: 15px;
 }
 
-.confirm button {
-	background: rgba(81,193,19,1.0);
-}
-
 #cart span {
 	font-weight: bold;
 	padding: 0 7px 0 7px;
@@ -296,23 +292,6 @@ footer {
 	font-size: 11px;
 	color: red;
 }
-button {
-	margin-left: 15px;
-	padding: 5px 15px 5px 15px;
-	border: none;
-	border-radius: 5px;
-	color: white;
-	font-size: 13px;
-	cursor: pointer;
-}
-
-.remove{
-	background: rgba(255,0,0,0.8);
-}
-
-.info {
-	background: rgba(0,0,255,0.8);
-}
 
 h4 span a {
 	font-size: 11px;
@@ -327,4 +306,34 @@ h4 span a:hover {
 .search {
 	float: right;
 	margin-right: 50px;
+}
+
+#suggestions p.suggestion {
+	padding: 5px 0 5px 0;
+}
+
+/* BUTTONS STYLING */
+button {
+	margin-left: 15px;
+	padding: 5px 15px 5px 15px;
+	border: none;
+	border-radius: 5px;
+	color: white;
+	font-size: 13px;
+	cursor: pointer;
+}
+
+.success {
+	background: rgba(81,193,19,1.0);
+}
+.remove{
+	background: rgba(255,0,0,0.8);
+}
+
+.info {
+	background: rgba(0,0,255,0.8);
+}
+
+.neutral {
+	background: #1A1A1A;
 }

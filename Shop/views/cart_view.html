@@ -7,7 +7,7 @@
 			Quantity: <input type="number" min="0" max="{{cd[0].qtd}}" value="1" oninvalid="setCustomValidity('Invalid quantity.')" class="quantity" id="{{cd[0].id}}"> <small>( Available Stock = {{cd[0].qtd}} )</small>
 			<button class="remove" ng-click="removeFromCart(this.cd[0].id)">Remove</button>
 		</p>
-		<p class="confirm">Total : {{totalPrice | currency:"&euro;"}} <button ng-click="confirm()">Confirm</button> </p>
+		<p class="confirm">Total : {{totalPrice | currency:"&euro;"}} <button class="success" ng-click="confirm()">Confirm</button> </p>
 	</div>
 </form>
 
@@ -19,7 +19,8 @@
 		<button class="info" ng-click="searchByTag()">Search</button>
 		</span>
 	</h4>
-	<span style="font-size: 10px" ng-repeat="album in topAlbuns">
-		{{album.name}} by {{album.artist.name}} <br/>
-	</span>
+	<p class="suggestion" ng-repeat="album in topAlbuns">
+		<b>{{album.name}}</b> <span style="font-size:12px">by </span>{{album.artist.name}} 
+		<button name="{{album.name}} ng-show="existsOnStock(this.name)" class="neutral">Add to cart</button>
+	</p>
 </div>
