@@ -26,9 +26,10 @@ angular
 		$scope.getTopTagOnCart = function() {
 			var cart = getCart();
 			// get cart top tag
-			$http.get("assets/php/DB_Handler.php?func=getTopTag&cart="+cart.toString())
+			$http.get("assets/php/DB_Handler.php?func=getTopTag&albums="+cart.toString())
 			.success(function(data) {
 				console.log(data);
+				$scope.topTag = data;
 			});
 		}
 

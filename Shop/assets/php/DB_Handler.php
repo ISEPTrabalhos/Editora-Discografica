@@ -179,12 +179,18 @@ function getTopTag() {
 			$tags[] = $tag;
 		}
 	}
-	for($i = 0; $i < sizeof($tags); $i++) {
-		echo $tags[$i] . '<br/>';
-	}
 
-	// it will return top tag
-	return "TopTag";
+	$countTags = array_count_values($tags); // count each tag appearance
+	$topTag = "";
+	$max = 0;
+	foreach ($countTags as $key => $value) { // get top tag
+		if($value > $max) {
+			$max = $value;
+			$topTag = $key;
+		}
+	};
+
+	return $topTag;
 }
 
 
