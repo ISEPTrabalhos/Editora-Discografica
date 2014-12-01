@@ -16,7 +16,7 @@
 		Suggestions based on top tag on cart : {{topTag | uppercase }}<span><a href="http://www.lastfm.pt/" target="_blank">by LastFM</a></span>
 		<span class="search">Or choose your tag: 
 		<input type="text" name="searchTag" id="searchTag" ng-model="searchTag">
-		<button ng-click="searchByTag()">Search</button>
+		<button class="info" ng-click="searchByTag()">Search</button>
 		</span>
 	</h4>
 	<span style="font-size: 10px" ng-repeat="album in topAlbuns">

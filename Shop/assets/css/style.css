@@ -226,15 +226,8 @@ header #menu ul li a:hover {
 	margin-right: 15px;
 }
 
-#cart .confirm button {
-	margin-left: 10px;
-	padding: 5px 15px 5px 15px;
+.confirm button {
 	background: rgba(81,193,19,1.0);
-	border: none;
-	border-radius: 5px;
-	color: white;
-	font-size: 13px;
-	cursor: pointer;
 }
 
 #cart span {
@@ -303,15 +296,22 @@ footer {
 	font-size: 11px;
 	color: red;
 }
-.remove {
+button {
 	margin-left: 15px;
 	padding: 5px 15px 5px 15px;
-	background: rgba(255,0,0,0.8);
 	border: none;
 	border-radius: 5px;
 	color: white;
 	font-size: 13px;
 	cursor: pointer;
+}
+
+.remove{
+	background: rgba(255,0,0,0.8);
+}
+
+.info {
+	background: rgba(0,0,255,0.8);
 }
 
 h4 span a {
