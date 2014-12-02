@@ -98,6 +98,7 @@ angular
 
 		$scope.searchByTag = function() {
 			if($scope.searchTag !== undefined && $scope.searchTag.trim().length !== 0) {
+				$scope.topTag = $scope.searchTag;
 				$scope.getLastFMTopAlbuns($scope.searchTag);
 			} else {
 				alert("Please enter a name.");
