@@ -204,9 +204,8 @@ function existOnShop() {
 	$results = $statement->fetchAll(PDO::FETCH_ASSOC);
 	if(sizeof($results) == 1) { // if album exists
 		return $results[0]["id"]; // return id
-	} else {
-		return false;
-	}
+	} 
+	return -1;
 }
 
 ?>
