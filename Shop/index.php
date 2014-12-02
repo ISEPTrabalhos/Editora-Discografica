@@ -10,7 +10,7 @@
 <div class="main-app" ng-app="app">
 	<header ng-include="'views/header.html'"></header>
 	<div id="message"></div>
-	<div ui-view></div>
+	<div id="main" ui-view></div>
 	<footer ng-include="'views/footer.html'"></footer>
 	<a href="#" class="scrollToTop"></a>
 </div>
