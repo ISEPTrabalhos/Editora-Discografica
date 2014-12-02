@@ -15,12 +15,19 @@
 	<h4>
 		Suggestions based on top tag on cart : {{topTag | uppercase }}<span><a href="http://www.lastfm.pt/" target="_blank">by LastFM</a></span>
 		<span class="search">Or choose your tag: 
-		<input type="text" name="searchTag" id="searchTag" ng-model="searchTag">
-		<button class="info" ng-click="searchByTag()">Search</button>
+			<input type="text" name="searchTag" id="searchTag" ng-model="searchTag">
+			<button class="info" ng-click="searchByTag()">Search</button>
 		</span>
 	</h4>
 	<p class="suggestion" ng-repeat="album in topAlbuns">
 		<b>{{album.name}}</b> <span style="font-size:12px">by </span>{{album.artist.name}} 
-		<button name="{{album.name}} ng-show="existsOnStock(this.name)" class="neutral">Add to cart</button>
+		{{album.exist}}
+		<!-- Not ready yet -->
+		<!--<button name="{{album.name}}" ng-show="existsOnStock('{{album.name}}')" class="neutral">Add to cart</button>-->
 	</p>
 </div>
+
+<!-- testing [ same shit ]-->
+<!--<p ng-repeat="album in topAlbuns">
+	<button ng-show="existsOnStock('{{album.name}}')" class="neutral">Add to cart</button>
+</p>-->

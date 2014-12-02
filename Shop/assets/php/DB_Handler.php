@@ -26,6 +26,9 @@ switch ($function) {
 	case 'getTopTag':
 		echo getTopTag();
 		break;
+	case 'existOnShop':
+		echo existOnShop();
+		break;
 	default:
 		break;
 }
@@ -191,6 +194,19 @@ function getTopTag() {
 	};
 
 	return $topTag;
+}
+
+function existOnShop() {
+	$albumName = $_GET['albumName'];
+	global $db;
+	$statement = $db->prepare("SELECT id FROM albums WHERE name = :albumName");
+	$statement->execute(array(':albumName' => $albumName));
+	$results = $statement->fetchAll(PDO::FETCH_ASSOC);
+	if(sizeof($results) == 1) { // if album exists
+		return $results[0]["id"]; // return id
+	} else {
+		return false;
+	}
 }
 
 ?>

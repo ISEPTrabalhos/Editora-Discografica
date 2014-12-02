@@ -23,19 +23,28 @@ angular
 			});
 		}
 		
+		$scope.getLastFMTopAlbuns = function(tag) {
+			var url = "http://ws.audioscrobbler.com/2.0/?method=tag.getTopAlbums&tag=" + tag + "&limit=7&api_key=e85bfd5e26e0e91b53160653d86ba063&format=json";
+			$http.get(url)
+			.success(function(data) {
+				// data contains all the top albums by tag
+				var albums = data.topalbums.album;
+				for (var i = 0; i < albums.length; i++) {
+					albums[i].exists = false;
+					console.log(albums[i]);
+				}
+				$scope.topAlbuns = albums;
+			});
+		}
+
+
 		$scope.getTopTagOnCart = function() {
 			var cart = getCart();
 			// get cart top tag
 			$http.get("assets/php/DB_Handler.php?func=getTopTag&albums="+cart.toString())
 			.success(function(data) {
 				$scope.topTag = data;
-				var url = "http://ws.audioscrobbler.com/2.0/?method=tag.getTopAlbums&tag=" + $scope.topTag + "&limit=7&api_key=e85bfd5e26e0e91b53160653d86ba063&format=json";
-				$http.get(url)
-				.success(function(data) {
-					// data contains all the top albums by tag
-					var albums = data.topalbums.album;
-					$scope.topAlbuns = albums;
-				});
+				$scope.getLastFMTopAlbuns($scope.topTag);
 			});
 		}
 
@@ -45,13 +54,7 @@ angular
 
 		$scope.searchByTag = function() {
 			if($scope.searchTag !== undefined && $scope.searchTag.trim().length !== 0) {
-				var url = "http://ws.audioscrobbler.com/2.0/?method=tag.getTopAlbums&tag=" + $scope.searchTag + "&limit=7&api_key=e85bfd5e26e0e91b53160653d86ba063&format=json";
-				$http.get(url)
-				.success(function(data) {
-					// data contains all the top albums by tag
-					var albums = data.topalbums.album;
-					$scope.topAlbuns = albums;
-				});
+				$scope.getLastFMTopAlbuns($scope.searchTag);
 			} else {
 				alert("Please enter a name.");
 			}
@@ -115,8 +118,17 @@ angular
 		}
 
 		// verify if album exist on stock, if exist show button "Add to cart"
-		$scope.existsOnStock = function(albumID) {
+		// not ready yet
+		$scope.existsOnStock = function(albumName) {
+			console.log(albumName);
+			var url = "assets/php/DB_Handler.php?func=existOnShop&albumName=" + albumName;
+			console.log(url);
+			/*$http.get(url)
+			.success(function(data) {
+				console.log(data);
+				return true;
+			});*/
             return false;
         };
 
-	}]);
+}]);
