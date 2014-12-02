@@ -50,7 +50,7 @@ angular
 				// send sales to editor's
 				// ... console.log(selected);
 				var new_albums = JSON.stringify(albums);
-				var url = "assets/php/DB_Handler.php?func=saveNewAlbums&albums="+new_albums;
+				var url = "assets/php/RequestDB.php?f=saveNewAlbums&albums="+new_albums;
 				// get albuns on sale
 				$http.get(url)
 				.success(function(data) {
