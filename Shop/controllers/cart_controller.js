@@ -10,6 +10,26 @@ angular
             }
         });
         
+        $scope.updateTotalPrice = function() {
+        	$scope.totalPrice = 0;
+			$scope.cart.forEach(function(cd) {
+				$scope.totalPrice += parseFloat(cd[0].totalPrice);
+			});
+		}
+
+		$scope.updatePrices = function(cd) {
+			var input = document.getElementById(cd.id);
+			var newAmount = input.value;
+			var regExp = /^[1-9]\d*$/;
+			if(regExp.test(newAmount) && newAmount >= parseInt(input.min) && newAmount <= parseInt(input.max)) {
+				cd.totalPrice = cd.price * newAmount;
+				$scope.updateTotalPrice();
+			} else {
+				alert("Invalid amount");
+				input.value = 1;
+			}
+		}
+
 		$scope.loadItems = function() {
 			var cart = getCart();
 			// get cart albums info
@@ -17,26 +37,51 @@ angular
 			.success(function(data) {
 				$scope.cart = data.albums;
 				$scope.totalPrice = 0;
-				$scope.cart.forEach(function(cd) {
-					$scope.totalPrice += parseFloat(cd[0].price);
+				$scope.cart.forEach(function(cd) { // add some new properties, JUST HERE, to manipulate prices
+					cd[0].amount = 1;
+					cd[0].totalPrice = cd[0].price; // at the beggining its just one
 				});
+				$scope.updateTotalPrice();
 			});
 		}
 		
+		// not ready yet
+		// verify if album exist on stock, if TRUE show button "Add to cart"
+		$scope.existsOnStock = function(albumName) {
+			var url = "assets/php/DB_Handler.php?func=existOnShop&albumName=" + albumName;
+			var promise = $http.get(url)
+			.success(function(data) {
+				var id;
+				if(data != false) {
+					//console.log(data + " " + albumName);
+				} else {
+					data = -1;
+				}
+				return data;
+			});
+			console.log(promise.success);
+			return promise;
+        };
+
 		$scope.getLastFMTopAlbuns = function(tag) {
 			var url = "http://ws.audioscrobbler.com/2.0/?method=tag.getTopAlbums&tag=" + tag + "&limit=7&api_key=e85bfd5e26e0e91b53160653d86ba063&format=json";
 			$http.get(url)
 			.success(function(data) {
 				// data contains all the top albums by tag
 				var albums = data.topalbums.album;
-				for (var i = 0; i < albums.length; i++) {
-					albums[i].exists = false;
-					console.log(albums[i]);
-				}
-				$scope.topAlbuns = albums;
+				$scope.topAlbums = albums;
+				/* NOT READY YET */
+				/*for (var i = 0; i < $scope.topAlbums.length; i++) {
+					var url = "assets/php/DB_Handler.php?func=existOnShop&albumName=" + $scope.topAlbums[i].name;
+					$http.get(url).success(function(data2) {
+						if(data2 != -1) {
+							console.log("DATA2: " + data2);
+							console.log($scope.topAlbums[i]);
+						}
+					});
+				}*/
 			});
 		}
-
 
 		$scope.getTopTagOnCart = function() {
 			var cart = getCart();
@@ -47,7 +92,6 @@ angular
 				$scope.getLastFMTopAlbuns($scope.topTag);
 			});
 		}
-
 
 		$scope.loadItems();
 		$scope.getTopTagOnCart();
@@ -116,19 +160,5 @@ angular
 					$location.replace();
 				}
 		}
-
-		// verify if album exist on stock, if exist show button "Add to cart"
-		// not ready yet
-		$scope.existsOnStock = function(albumName) {
-			console.log(albumName);
-			var url = "assets/php/DB_Handler.php?func=existOnShop&albumName=" + albumName;
-			console.log(url);
-			/*$http.get(url)
-			.success(function(data) {
-				console.log(data);
-				return true;
-			});*/
-            return false;
-        };
 
 }]);
