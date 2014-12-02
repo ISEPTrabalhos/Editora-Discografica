@@ -10,5 +10,8 @@ namespace IDEIMusic.Services
     {
         [OperationContract]
         List<Album> getCatalog();
+
+        [OperationContract]
+        void sellAlbums(int[] ids);
     }
 }

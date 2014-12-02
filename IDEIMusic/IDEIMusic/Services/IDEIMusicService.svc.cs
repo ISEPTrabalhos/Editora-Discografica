@@ -18,7 +18,7 @@ namespace IDEIMusic.Services
             return albums.ToList();
         }
 
-        public void sellAlbum(int[] ids)
+        public void sellAlbums(int[] ids)
         {
             // insert the order of the albums to the database
         }
