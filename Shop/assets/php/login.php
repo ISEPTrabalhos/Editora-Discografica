@@ -16,7 +16,7 @@ if(isset($_GET['username']) && isset($_GET['password'])) {
 		$statement->execute(array(':username' => $username, ':password' => md5($password)));
 		$row = $statement->fetchAll(PDO::FETCH_ASSOC);
 
-		if(empty($row)) $error = "Invalid email or password";
+		if(empty($row)) $error = "Invalid username or password";
 	} else $error = '';
 }else $error = '';
 
