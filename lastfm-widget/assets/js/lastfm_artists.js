@@ -1,6 +1,38 @@
 // Global Variables
 //var divTooltip;
 
+
+function getTopTracksArtist() {
+    var artist = document.getElementById("artistName").value;
+    artist = artist.replace(/ /g, "%20");
+    if(artist == "")
+        return;
+
+    var limit = document.getElementById("topTrackLimit").value;
+
+    sendRequest("assets/php/ajaxRequest.php?func=getTopTracksArtist&artist=" + artist + "&limit=" + limit, function(xmlHttpObj) {
+        var topTracks = JSON.parse(xmlHttpObj.responseText);
+        var divTagTopTracks = document.getElementById("divTagTopTracks");
+        divTagTopTracks.innerHTML="";
+        var table = document.createElement("table");
+        for (var i = 0; i < topTracks.length; i++) {
+            var tr = document.createElement("tr");
+            var td = document.createElement("td");
+            td.id = topTracks[i].name;
+            var a = document.createElement("a");
+            var text = document.createTextNode(topTracks[i].name);
+            a.appendChild(text);
+            var method = "getMoreInfo("+'"'+topTracks[i].artist.name+'"'+","+'"'+topTracks[i].name+'"'+")";
+            a.href="javascript:"+method+";";
+            td.appendChild(a);
+            tr.appendChild(td);
+            table.appendChild(tr);
+        }
+
+        divTagTopTracks.appendChild(table);
+    }, "GET");
+}
+
 //Function that calls via AJaX the php function that returns the top tags of an artist
 function getArtistTopTags(){
     var artist = document.getElementById("artistName").value;
