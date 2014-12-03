@@ -30,6 +30,32 @@ function getArtistTopTags(){
     }, "GET");
 }
 
+function setTopTagsMain() {
+     //send ajax request
+    sendRequest("assets/php/ajaxRequest.php?func=getTopTagsMain", function(xmlHttpObj) {
+        var response = JSON.parse(xmlHttpObj.responseText);
+
+        var divTopTags = document.getElementById("divTopTags");
+        var select = document.getElementById("selectTopTag");
+        select.innerHTML="";
+        select.onchange = function(){getTopTracksTag();};
+
+        var option0 = document.createElement("option");
+        var text0 = document.createTextNode("--");
+        option0.appendChild(text0);
+        option0.value = "--";
+        select.appendChild(option0);
+
+        for (var i = 0; i < response.length; i++){
+            var option = document.createElement("option");
+            var text = document.createTextNode(response[i].name);
+            option.appendChild(text);
+            option.value = response[i].name;
+            select.appendChild(option);
+        }
+    }, "GET");
+}
+
 //Function that get's via AJaX the N top tracks of a tag
 function getTopTracksTag() {
     var limit = document.getElementById("topTrackLimit").value;

@@ -43,6 +43,12 @@ class LastfmController {
         return json_encode($info);
     }
 
+    public function getTopTagsMain($get){
+        $json = file_get_contents($this->_api_url . 'tag.getTopTags&api_key='. $this->_api_key .'&format=json');
+        $response = json_decode($json, true);
+        return json_encode($response['toptags']['tag']);
+    }
+
 
     /**
      * getArtistTopTrack
