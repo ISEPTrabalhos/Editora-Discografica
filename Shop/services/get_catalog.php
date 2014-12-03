@@ -1,8 +1,8 @@
 <?php 
-	//error_reporting(0);
-	require_once 'connection.php';
-	$client = new SoapClient(SOAP_URL);
-
-	$result = $client->GetCatalog();
+	//error_reporting(E_ALL);
+	//ini_set('display_errors',1);
+	$var = $_GET['var'];
+	$client = new SoapClient('http://localhost:49305/Services/IDEIMusicService.svc?wsdl');
+	$result = $client->getCatalog();
 	
-	echo json_encode($results);
+	return json_encode($result->getCatalogResult);

@@ -11,6 +11,7 @@ using IDEIMusic.Models;
 
 namespace IDEIMusic.Controllers
 {
+    [Authorize(Roles="Manager, Administrator")]
     public class AlbumController : Controller
     {
         private IDEIMusicContext db = new IDEIMusicContext();

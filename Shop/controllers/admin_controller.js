@@ -5,7 +5,15 @@ angular
 		loadShoppingCart();
 
 		// receive catalog through service ( get_catalog.php )
-		
+		$scope.loadCatalog = function() {
+			$http.get("services/controller.php?func=getCatalogo")
+			.success(function(data) {
+				console.log(data);
+			});	
+		}
+
+		$scope.loadCatalog();
+
 		$scope.catalog = [
 		{
 			id: 10,

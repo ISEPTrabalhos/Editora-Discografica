@@ -94,6 +94,7 @@ angular
 			var url = "assets/php/RequestDB.php?f=existOnShop&albumName=" + albumName;
 			$http.get(url)
 			.success(function(data) {
+				console.log(data);
 				if(data !== false) {
 					alert("Album Available , ID  " + data);
 				} else {
