@@ -10,13 +10,16 @@ angular
             }
         });
         
+        // calculate total price
         $scope.updateTotalPrice = function() {
         	$scope.totalPrice = 0;
 			$scope.cart.forEach(function(cd) {
 				$scope.totalPrice += parseFloat(cd[0].totalPrice);
 			});
+			$scope.totalPrice = $scope.totalPrice.toFixed(2);
 		}
 
+		// update 'number of items' prices
 		$scope.updatePrices = function(cd) {
 			var input = document.getElementById(cd.id);
 			var newAmount = input.value;
@@ -38,7 +41,7 @@ angular
 				$scope.cart = data.albums;
 				$scope.totalPrice = 0;
 				$scope.cart.forEach(function(cd) { // add some new properties, JUST HERE, to manipulate prices
-					cd[0].amount = 1;
+					//cd[0].amount = 1;
 					cd[0].totalPrice = cd[0].price; // at the beggining its just one
 				});
 				$scope.updateTotalPrice();
