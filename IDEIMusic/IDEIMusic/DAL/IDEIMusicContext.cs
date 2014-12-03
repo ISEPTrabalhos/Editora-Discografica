@@ -17,7 +17,7 @@ namespace IDEIMusic.DAL
 
         
         public System.Data.Entity.DbSet<IDEIMusic.Models.Album> Albums { get; set; }
-        public System.Data.Entity.DbSet<IDEIMusic.Models.Sale> Orders { get; set; }
-        public System.Data.Entity.DbSet<IDEIMusic.Models.SaleDetails> OrderDetails { get; set; }
+        public System.Data.Entity.DbSet<IDEIMusic.Models.Sale> Sale { get; set; }
+        public System.Data.Entity.DbSet<IDEIMusic.Models.SaleDetails> SaleDetails { get; set; }
     }
 }

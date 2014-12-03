@@ -9,7 +9,7 @@ namespace IDEIMusic.Models
     {
         public int ID { get; set; }
         public int SaleID { get; set; }
-        public int AlbumID { get; set; }
+        public string Album { get; set; }
         public int Quantity { get; set; }
         public decimal Price { get; set; }
     }

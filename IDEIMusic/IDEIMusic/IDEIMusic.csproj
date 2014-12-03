@@ -165,6 +165,7 @@
     <Compile Include="Controllers\AlbumController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\SaleController.cs" />
     <Compile Include="DAL\IDEIMusicContext.cs" />
     <Compile Include="DAL\IDEIMusicInitializer.cs" />
     <Compile Include="Global.asax.cs">
@@ -182,6 +183,7 @@
     </Compile>
     <Compile Include="Services\IIDEIMusicService.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\SaleView.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
@@ -245,6 +247,7 @@
     <Content Include="Views\Album\Details.cshtml" />
     <Content Include="Views\Album\Edit.cshtml" />
     <Content Include="Views\Album\Index.cshtml" />
+    <Content Include="Views\Sale\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
