@@ -7,10 +7,10 @@
 				<span>Name: </span>{{cd.title}}
 				<span>Artist: </span>{{cd.artistName}}
 				<span>Price: </span>{{cd.price | currency:"&euro;"}}
-				<span><input type="number" min="0" name="qtd" id="{{cd.id}}" oninvalid="setCustomValidity('Invalid quantity.')" value="1"></span>
+				<span><input type="text" size="7 " min="1" value="1" id="{{cd.ID}}" ng-blur="updatePrices(this.cd)"></span>
 				<input type="checkbox" class="check" id="{{cd.id}}"><label>Order this album</label>
 			</p>
-			<p class="confirm">Total :  <button ng-click="order()">Confirm</button>
+			<p class="confirm">Total :  {{totalPrice | currency}} <button ng-click="order()">Confirm</button>
 		</form>
 	</div>
 </div>

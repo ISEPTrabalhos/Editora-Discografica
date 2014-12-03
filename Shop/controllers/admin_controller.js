@@ -4,11 +4,37 @@ angular
 		
 		loadShoppingCart();
 
+		// calculate total price
+		$scope.updateTotalPrice = function() {
+        	$scope.totalPrice = 0;
+			$scope.catalog.forEach(function(cd) {
+				$scope.totalPrice += parseFloat(cd.totalPrice);			
+			});
+			$scope.totalPrice = $scope.totalPrice.toFixed(2);
+		}
+
+		$scope.updatePrices = function(cd) {
+			var input = document.getElementById(cd.ID);
+			var newAmount = input.value;
+			var regExp = /^[1-9]\d*$/;
+			if(regExp.test(newAmount) && newAmount >= parseInt(input.min)) {
+				cd.totalPrice = cd.price * newAmount;
+				$scope.updateTotalPrice();
+			} else {
+				alert("Invalid amount");
+				input.value = 1;
+			}
+		}
+
 		// receive catalog through service ( get_catalog.php )
 		$scope.loadCatalog = function() {
 			$http.get("services/controller.php?func=getCatalogo")
 			.success(function(data) {
 				$scope.catalog = data.Album;
+				$scope.catalog.forEach(function(cd) { // add some new properties, JUST HERE, to manipulate prices
+					cd.totalPrice = cd.price; // at the beggining its just one
+				});
+				$scope.updateTotalPrice();
 			});	
 		}
 
