@@ -45,32 +45,16 @@ angular
 			});
 		}
 		
-		// not ready yet
-		// verify if album exist on stock, if TRUE show button "Add to cart"
-		$scope.existsOnStock = function(albumName) {
-			var url = "assets/php/RequestDB.php?f=existOnShop&albumName=" + albumName;
-			var promise = $http.get(url)
-			.success(function(data) {
-				var id;
-				if(data != false) {
-					//console.log(data + " " + albumName);
-				} else {
-					data = -1;
-				}
-				return data;
-			});
-			console.log(promise.success);
-			return promise;
-        };
-
 		$scope.getLastFMTopAlbuns = function(tag) {
-			var url = "http://ws.audioscrobbler.com/2.0/?method=tag.getTopAlbums&tag=" + tag + "&limit=7&api_key=e85bfd5e26e0e91b53160653d86ba063&format=json";
+			var url = "http://ws.audioscrobbler.com/2.0/?method=tag.getTopAlbums&tag=" + tag + "&limit=8&api_key=e85bfd5e26e0e91b53160653d86ba063&format=json";
 			$http.get(url)
 			.success(function(data) {
 				// data contains all the top albums by tag
 				var albums = data.topalbums.album;
 				$scope.topAlbums = albums;
-				/* NOT READY YET */
+				/* NOT READY YET 
+					keeping this here, just in case
+				*/
 				/*for (var i = 0; i < $scope.topAlbums.length; i++) {
 					var url = "assets/php/RequestDB.php?f=existOnShop&albumName=" + $scope.topAlbums[i].name;
 					$http.get(url).success(function(data2) {
@@ -104,6 +88,19 @@ angular
 				alert("Please enter a name.");
 			}
 		}
+
+		// verify if album exist on stock
+		$scope.checkIfAvailable = function(albumName) {
+			var url = "assets/php/RequestDB.php?f=existOnShop&albumName=" + albumName;
+			$http.get(url)
+			.success(function(data) {
+				if(data !== false) {
+					alert("Album Available , ID  " + data);
+				} else {
+					alert("Album Unavailable");
+				}
+			});
+        };
 
 		$scope.removeFromCart = function(id) {
 			var products = getCart().split(',');
