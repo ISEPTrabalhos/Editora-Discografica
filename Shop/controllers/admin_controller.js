@@ -8,17 +8,17 @@ angular
 		$scope.loadCatalog = function() {
 			$http.get("services/controller.php?func=getCatalogo")
 			.success(function(data) {
-				console.log(data);
+				$scope.catalog = data.Album;
 			});	
 		}
 
 		$scope.loadCatalog();
 
-		$scope.catalog = [
+		/*$scope.catalog = [
 		{
 			id: 10,
 			img: 'http://userserve-ak.last.fm/serve/_/95407343/I+am+Hardwell.png',
-			name: 'I am Hardwell',
+			title: 'I am Hardwell',
 			artist: 'Hardwell',
 			price: 8.99,
 			qtd: 2,
@@ -27,12 +27,12 @@ angular
 		{
 			id: 11,
 			img: 'http://userserve-ak.last.fm/serve/_/95407343/I+am+Hardwell.png',
-			name: 'I am Hardwell',
+			title: 'I am Hardwell',
 			artist: 'Hardwell',
 			price: 8.99,
 			qtd: 2,
 			tags: 'house,electro'
-		}];
+		}];*/
 
 		$scope.order = function() {
 			var albums = []; // array to save selected albums
