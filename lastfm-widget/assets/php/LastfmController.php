@@ -27,6 +27,19 @@ class LastfmController {
 		ini_set('display_errors', '1');
 	}
 
+
+    public function getTopTracksArtist($get){
+        $artist = $get['artist'];
+        $artist = str_replace(' ', "%20", $artist);
+
+        $limit = $get['limit'];
+
+        $json = file_get_contents($this->_api_url . 'artist.getTopTracks' . '&artist=' . $artist . '&limit=' . $limit . '&api_key='. $this->_api_key . '&autocorrect=1' . '&format=json');
+        $response = json_decode($json, true);
+        return json_encode($response['toptracks']['track']);
+
+    }
+
     public function getAllInfo($get) {
         $info = array(); // array to store all info receveid
         // get track info : ALBUM AND MBID
@@ -142,7 +155,7 @@ class LastfmController {
 	    // add exception. Return error '';
 	    if(empty($get["artist"]) || $get["artist"] == ' ') return '';
 
-        $url = $this->_api_url . 'artist.gettoptags&artist=' . $artist . '&api_key=' . $this->_api_key;
+        $url = $this->_api_url . 'artist.gettoptags&artist=' . $artist . '&autocorrect=1' . '&api_key=' . $this->_api_key;
         $responseXML = @file_get_contents($url);
 
         $newXML = new DOMDocument('1.0', 'ISO-8859-1');
