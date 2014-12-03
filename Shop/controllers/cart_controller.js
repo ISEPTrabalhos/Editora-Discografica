@@ -66,6 +66,11 @@ angular
 				// data contains all the top albums by tag
 				var albums = data.topalbums.album;
 				$scope.topAlbums = albums;
+				var index = 0;
+				$scope.topAlbums.forEach(function(album){
+					album.id = index;
+					index = index + 1; 
+				});
 				/* NOT READY YET 
 					keeping this here, just in case
 				*/
@@ -93,16 +98,19 @@ angular
 		}
 
 		// verify if album exist on stock
-		$scope.checkIfAvailable = function(albumName) {
+		$scope.checkIfAvailable = function(element) {
+			var albumName = element.$parent.album.name;
+			var span = document.getElementsByClassName(albumName);
 			var url = "assets/php/RequestDB.php?f=existOnShop&albumName=" + albumName;
 			$http.get(url)
 			.success(function(data) {
-				console.log(data);
-				if(data !== false) {
-					alert("Album Available , ID  " + data);
+				if(data != -1) {
+					span[0].innerHTML = "Add to cart";
 				} else {
-					alert("Album Unavailable");
+					span[0].innerHTML = "Unavailable";
 				}
+				// define id to add to cart
+				element.$parent.album.id = data;
 			});
         };
 
