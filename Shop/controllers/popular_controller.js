@@ -10,7 +10,7 @@ angular
         });
 
 		// get albuns on sale
-		$http.get("assets/php/DB_Handler.php?func=getOffAlbums")
+		$http.get("assets/php/RequestDB.php?f=getOffAlbums")
 		.success(function(data) {
 			if(data.error === false){
 				$scope.sales = data.albuns;
@@ -18,7 +18,7 @@ angular
 		});
 
 		// get top sold albums
-		$http.get("assets/php/DB_Handler.php?func=getTopSold")
+		$http.get("assets/php/RequestDB.php?f=getTopSold")
 		.success(function(data) {
 			if(data.error === false){
 				$scope.tops = data.albums;

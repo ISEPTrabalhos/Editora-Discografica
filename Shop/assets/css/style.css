@@ -308,8 +308,18 @@ h4 span a:hover {
 	margin-right: 50px;
 }
 
+#suggestions table td {
+	padding: 5px;
+}
+
 #suggestions p.suggestion {
 	padding: 5px 0 5px 0;
+}
+
+#suggestions p.suggestion a {
+	padding-left: 15px;
+	font-size: 12px;
+	color: blue;
 }
 
 /* BUTTONS STYLING */
@@ -337,3 +347,13 @@ button {
 .neutral {
 	background: #1A1A1A;
 }
+
+iframe {
+	float: right;
+	border: none;
+	margin: 20px 30px 0 20px;
+	border-radius: 10px;
+}
+
+
+

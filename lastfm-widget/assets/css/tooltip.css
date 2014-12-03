@@ -1,0 +1,46 @@
+.divToolTip {
+    width: 100%;
+    margin: 0 auto;
+    height: 200px;
+    background: rgba(0,0,0,0.7);
+    border: 1px solid black;
+    border-radius: 3px;
+    /*display: none;*/
+}
+.divToolTip div {
+    float: left;
+    color: green;
+    font-family: 'Oldenburg', cursive;
+    font-size: 13px;
+}
+.divToolTip .images {
+    width: 25%;
+    height: 100%;
+    text-align: center;
+}
+.divToolTip .infos {
+    width: 50%;
+    height: 100%;
+    margin: 0 auto;
+    padding: 10px 0 0 0;
+    text-align: center;
+}
+.divToolTip .images img {
+   padding-top: 10px;
+    width: 100px;
+    height: 100px;
+}
+.divToolTip div span {
+    color: white;
+}
+.close{
+    width: 100%;
+    display: block;
+    text-align: right;
+}
+.close .fa{
+    color: white;
+    text-decoration: none;
+    font-size: 12px;
+    padding-right: 10px;
+}

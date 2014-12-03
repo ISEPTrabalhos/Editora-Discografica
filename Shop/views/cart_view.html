@@ -4,30 +4,50 @@
 		<p ng-repeat="cd in cart">
 			<img ng-src="{{cd[0].img}}" alt="albumpic"/>
 			<b>{{cd[0].name}}</b>, {{cd[0].artist}}, {{cd[0].price | currency:"&euro;"}}, 
-			Quantity: <input type="number" min="0" max="{{cd[0].qtd}}" value="1" oninvalid="setCustomValidity('Invalid quantity.')" class="quantity" id="{{cd[0].id}}"> <small>( Available Stock = {{cd[0].qtd}} )</small>
+			Quantity: <input type="text" size="7 " min="1" max="{{cd[0].qtd}}" value="1"  class="quantity" 
+			id="{{cd[0].id}}" ng-blur="updatePrices(this.cd[0])">
+			<small>( Available Stock = {{cd[0].qtd}} )</small>
+			<b>Total: </b>{{cd[0].totalPrice}}
 			<button class="remove" ng-click="removeFromCart(this.cd[0].id)">Remove</button>
 		</p>
-		<p class="confirm">Total : {{totalPrice | currency:"&euro;"}} <button class="success" ng-click="confirm()">Confirm</button> </p>
+		<p class="confirm">Total Order Price: {{totalPrice | currency:"&euro;"}} <button class="success" ng-click="confirm()">Confirm</button> </p>
 	</div>
 </form>
 
 <div id="suggestions">
 	<h4>
-		Suggestions based on top tag on cart : {{topTag | uppercase }}<span><a href="http://www.lastfm.pt/" target="_blank">by LastFM</a></span>
+		Suggestions based on : {{topTag | uppercase }}<span><a href="http://www.lastfm.pt/" target="_blank">by LastFM</a></span>
 		<span class="search">Or choose your tag: 
 			<input type="text" name="searchTag" id="searchTag" ng-model="searchTag">
 			<button class="info" ng-click="searchByTag()">Search</button>
 		</span>
 	</h4>
-	<p class="suggestion" ng-repeat="album in topAlbuns">
-		<b>{{album.name}}</b> <span style="font-size:12px">by </span>{{album.artist.name}} 
-		{{album.exist}}
-		<!-- Not ready yet -->
-		<!--<button name="{{album.name}}" ng-show="existsOnStock('{{album.name}}')" class="neutral">Add to cart</button>-->
-	</p>
+	<div style="margin-top: 75px;">
+		<table style="float: left;">
+			<tr ng-if="$index % 2 == 0" ng-repeat="album in topAlbums">
+				<td>
+					<b>{{album.name}} </b><span style="font-size:12px">by </span>{{album.artist.name}}
+				</td>
+				<td>
+					<button class="neutral" ng-click="checkIfAvailable('{{album.name}}')">Check if available</button>
+				</td>
+			</tr>
+		</table>
+		<table style="float: right;">
+			<tr ng-if="$index % 2 !== 0" ng-repeat="album in topAlbums">
+				<td>
+					<b>{{album.name}} </b><span style="font-size:12px">by </span>{{album.artist.name}}
+				</td>
+				<td>
+					<button class="neutral" ng-click="checkIfAvailable('{{album.name}}')">Check if available</button>
+				</td>
+			</tr>
+		</table>
+	</div>
+	<!--<p class="suggestion" >
+		<b>{{album.name}}</b> <span style="font-size:12px">by </span>{{album.artist.name}}
+		<!-- Not ready yet 
+		<button name="{{album.name}}" ng-show="album.exists" class="neutral">Add to cart</button>
+		<button class="neutral" ng-click="checkIfAvailable()">Check if available</button>
+	</p>-->
 </div>
-
-<!-- testing [ same shit ]-->
-<!--<p ng-repeat="album in topAlbuns">
-	<button ng-show="existsOnStock('{{album.name}}')" class="neutral">Add to cart</button>
-</p>-->

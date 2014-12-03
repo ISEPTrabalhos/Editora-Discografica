@@ -1,0 +1,94 @@
+@import url(http://fonts.googleapis.com/css?family=Oldenburg|Open+Sans);
+@import url("tooltip.css");
+@import url("location.css");
+@import url("artists.css");
+@import url("//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css");
+
+body {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: url('../img/bg.png') no-repeat fixed center;
+}
+#content {
+    width: 60%;
+    margin: 0 auto;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.wraper {
+    width: 600px;
+    margin: 0 auto;
+}
+
+#content header h1 {
+    text-align: center;
+    font-family: 'Oldenburg', cursive;
+    font-size: 50pt;
+}
+
+#headerTop {
+    position: fixed;
+    top: 0px;
+    width: 100%;
+    height: 25px;
+    background: rgba(0,0,0,0.5);
+}
+
+#headerTop div {
+    padding: 5px;
+    color: white;
+    font-size: 12px;
+    text-align: center;
+}
+
+.clear {
+    clear: both;
+}
+
+.invisible {
+    display: none;
+}
+
+#warnings {
+	width: 300px;
+
+	background-color: rgb(160, 101, 79);
+
+	-moz-box-shadow:    -2px 2px 7px 3px rgba(0,0,0,0.4);
+	-webkit-box-shadow: -2px 2px 7px 3px rgba(0,0,0,0.4);
+	box-shadow:         -2px 2px 7px 3px rgba(0,0,0,0.4);
+
+	border-radius: 7px;
+	color: #fff;
+	font-family: 'Open Sans', sans-serif;
+
+	padding: 5px 20px 5px 20px;
+
+	position: absolute;
+	top: 40px;
+	right: 10px;
+}
+
+#warnings p {margin: 0;  padding: 0;}
+
+#loading {
+	width: 100%;
+	position: absolute;
+	padding: 0;
+	margin: 0;
+	border: 0px;
+
+	text-align: center;
+
+	top: 300px;
+}
+
+#loading img {
+	width: 100px;
+}
+
+.clickable {
+	cursor: pointer;
+	color: orangered;
+}
