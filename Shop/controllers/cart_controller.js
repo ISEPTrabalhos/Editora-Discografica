@@ -33,7 +33,7 @@ angular
 		$scope.loadItems = function() {
 			var cart = getCart();
 			// get cart albums info
-			$http.get("assets/php/DB_Handler.php?func=getCartAlbumsInfo&cart="+cart.toString())
+			$http.get("assets/php/RequestDB.php?fgetCartAlbumsInfo&cart="+cart.toString())
 			.success(function(data) {
 				$scope.cart = data.albums;
 				$scope.totalPrice = 0;
@@ -56,7 +56,7 @@ angular
 					keeping this here, just in case
 				*/
 				/*for (var i = 0; i < $scope.topAlbums.length; i++) {
-					var url = "assets/php/DB_Handler.php?func=existOnShop&albumName=" + $scope.topAlbums[i].name;
+					var url = "assets/php/RequestDB.php?f=existOnShop&albumName=" + $scope.topAlbums[i].name;
 					$http.get(url).success(function(data2) {
 						if(data2 != -1) {
 							console.log("DATA2: " + data2);
@@ -70,7 +70,7 @@ angular
 		$scope.getTopTagOnCart = function() {
 			var cart = getCart();
 			// get cart top tag
-			$http.get("assets/php/DB_Handler.php?func=getTopTag&albums="+cart.toString())
+			$http.get("assets/php/DRequestDB.php?f=getTopTag&albums="+cart.toString())
 			.success(function(data) {
 				$scope.topTag = data;
 				$scope.getLastFMTopAlbuns($scope.topTag);
@@ -91,7 +91,7 @@ angular
 
 		// verify if album exist on stock
 		$scope.checkIfAvailable = function(albumName) {
-			var url = "assets/php/DB_Handler.php?func=existOnShop&albumName=" + albumName;
+			var url = "assets/php/RequestDB.php?f=existOnShop&albumName=" + albumName;
 			$http.get(url)
 			.success(function(data) {
 				if(data !== false) {
@@ -141,7 +141,7 @@ angular
 				}
 				// update DB stock from that album
 				var userid = localStorage.getItem('userid');
-				$http.get("assets/php/DB_Handler.php?func=updateStock&cart="+cart.toString()+"&stocks="+stocks.toString()+"&userid="+userid)
+				$http.get("assets/php/RequestDB.php?f=updateStock&cart="+cart.toString()+"&stocks="+stocks.toString()+"&userid="+userid)
 				.success(function(data) {
 					if(data == true) {
 						// delete shopping cart

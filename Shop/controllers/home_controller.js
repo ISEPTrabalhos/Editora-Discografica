@@ -25,7 +25,7 @@ angular
 		}
 		
 		// get album collection
-		$http.get("assets/php/DB_Handler.php?func=getAllAlbums")
+		$http.get("assets/php/RequestDB.php?f=getAllAlbums")
 		.success(function(data) {
 			if(data.error === false){
 				$scope.cds = data.albuns;
