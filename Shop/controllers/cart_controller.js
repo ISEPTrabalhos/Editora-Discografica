@@ -33,7 +33,7 @@ angular
 		$scope.loadItems = function() {
 			var cart = getCart();
 			// get cart albums info
-			$http.get("assets/php/RequestDB.php?fgetCartAlbumsInfo&cart="+cart.toString())
+			$http.get("assets/php/RequestDB.php?f=getCartAlbumsInfo&cart="+cart.toString())
 			.success(function(data) {
 				$scope.cart = data.albums;
 				$scope.totalPrice = 0;
@@ -70,7 +70,7 @@ angular
 		$scope.getTopTagOnCart = function() {
 			var cart = getCart();
 			// get cart top tag
-			$http.get("assets/php/DRequestDB.php?f=getTopTag&albums="+cart.toString())
+			$http.get("assets/php/RequestDB.php?f=getTopTag&albums="+cart.toString())
 			.success(function(data) {
 				$scope.topTag = data;
 				$scope.getLastFMTopAlbuns($scope.topTag);
