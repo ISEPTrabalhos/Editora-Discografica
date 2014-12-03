@@ -33,6 +33,16 @@ angular
 			}
 		}
 
+		$scope.getTopTagOnCart = function() {
+			var cart = getCart();
+			// get cart top tag
+			$http.get("assets/php/RequestDB.php?f=getTopTag&albums="+cart.toString())
+			.success(function(data) {
+				$scope.topTag = data;
+				$scope.getLastFMTopAlbuns($scope.topTag);
+			});
+		}
+
 		$scope.loadItems = function() {
 			var cart = getCart();
 			// get cart albums info
@@ -45,6 +55,7 @@ angular
 					cd[0].totalPrice = cd[0].price; // at the beggining its just one
 				});
 				$scope.updateTotalPrice();
+				$scope.getTopTagOnCart();
 			});
 		}
 		
@@ -70,18 +81,7 @@ angular
 			});
 		}
 
-		$scope.getTopTagOnCart = function() {
-			var cart = getCart();
-			// get cart top tag
-			$http.get("assets/php/RequestDB.php?f=getTopTag&albums="+cart.toString())
-			.success(function(data) {
-				$scope.topTag = data;
-				$scope.getLastFMTopAlbuns($scope.topTag);
-			});
-		}
-
 		$scope.loadItems();
-		$scope.getTopTagOnCart();
 
 		$scope.searchByTag = function() {
 			if($scope.searchTag !== undefined && $scope.searchTag.trim().length !== 0) {
@@ -115,7 +115,6 @@ angular
 			}
 			if(size == 1) {
 				window.localStorage.removeItem('cart');
-				loadShoppingCart();
 				$location.path('/');
 				$location.replace();
 				loadShoppingCart();
