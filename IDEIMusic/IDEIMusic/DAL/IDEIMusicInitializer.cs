@@ -11,6 +11,27 @@ namespace IDEIMusic.DAL
     {
         protected override void Seed(IDEIMusicContext context)
         {
+            var sales = new List<Sale>
+            {
+                new Sale{
+                    ID = 1,
+                    UserID = "abc",
+                    Date = System.DateTime.Now,
+                    Total = 50.00m
+                }
+            };
+
+            var salesDetails = new List<SaleDetails>
+            {
+                new SaleDetails{
+                    ID = 1,
+                    SaleID = 1,
+                    Album = "Uau",
+                    Quantity = 2,
+                    Price = 20
+                }
+            };
+
             var albums = new List<Album>
             {
             new Album{
@@ -63,6 +84,8 @@ namespace IDEIMusic.DAL
 		    } 
             };
 
+            sales.ForEach(s => context.Sale.Add(s));
+            salesDetails.ForEach(sd => context.SaleDetails.Add(sd));
             albums.ForEach(a => context.Albums.Add(a));
             context.SaveChanges();
         }

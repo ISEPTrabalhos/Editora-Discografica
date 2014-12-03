@@ -8,8 +8,8 @@
 <body>
 
 <div class="main-app" ng-app="app">
-	<header ng-include="'views/header.html'"></header>
 	<div id="message"></div>
+	<header ng-include="'views/header.html'"></header>
 	<div id="main" ui-view></div>
 	<footer ng-include="'views/footer.html'"></footer>
 	<a href="#" class="scrollToTop"></a>
