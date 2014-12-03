@@ -251,13 +251,17 @@ header #menu ul li a:hover {
 }
 
 #message {
+	position: fixed;
+	top: 0;
+	left: 0;
 	width: 100%;
 	padding: 10px 0 10px 0;
-	margin: 10px 0 20px 0;
-	border-radius: 5px;
+	/*margin: 10px 0 20px 0;
+	border-radius: 5px;*/
 	text-align: center;
 	color: black;
 	display: none;
+	border: none;
 }
 
 footer {
@@ -354,6 +358,3 @@ iframe {
 	margin: 20px 30px 0 20px;
 	border-radius: 10px;
 }
-
-
-
