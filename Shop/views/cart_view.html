@@ -22,9 +22,32 @@
 			<button class="info" ng-click="searchByTag()">Search</button>
 		</span>
 	</h4>
-	<p class="suggestion" ng-repeat="album in topAlbums">
+	<div style="margin-top: 75px;">
+		<table style="float: left;">
+			<tr ng-if="$index % 2 == 0" ng-repeat="album in topAlbums">
+				<td>
+					<b>{{album.name}} </b><span style="font-size:12px">by </span>{{album.artist.name}}
+				</td>
+				<td>
+					<button class="neutral" ng-click="checkIfAvailable('{{album.name}}')">Check if available</button>
+				</td>
+			</tr>
+		</table>
+		<table style="float: right;">
+			<tr ng-if="$index % 2 !== 0" ng-repeat="album in topAlbums">
+				<td>
+					<b>{{album.name}} </b><span style="font-size:12px">by </span>{{album.artist.name}}
+				</td>
+				<td>
+					<button class="neutral" ng-click="checkIfAvailable('{{album.name}}')">Check if available</button>
+				</td>
+			</tr>
+		</table>
+	</div>
+	<!--<p class="suggestion" >
 		<b>{{album.name}}</b> <span style="font-size:12px">by </span>{{album.artist.name}}
-		<!-- Not ready yet -->
+		<!-- Not ready yet 
 		<button name="{{album.name}}" ng-show="album.exists" class="neutral">Add to cart</button>
-	</p>
+		<button class="neutral" ng-click="checkIfAvailable()">Check if available</button>
+	</p>-->
 </div>
