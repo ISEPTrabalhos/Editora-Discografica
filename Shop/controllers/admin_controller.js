@@ -40,26 +40,6 @@ angular
 
 		$scope.loadCatalog();
 
-		/*$scope.catalog = [
-		{
-			id: 10,
-			img: 'http://userserve-ak.last.fm/serve/_/95407343/I+am+Hardwell.png',
-			title: 'I am Hardwell',
-			artist: 'Hardwell',
-			price: 8.99,
-			qtd: 2,
-			tags: 'house,electro'
-		},
-		{
-			id: 11,
-			img: 'http://userserve-ak.last.fm/serve/_/95407343/I+am+Hardwell.png',
-			title: 'I am Hardwell',
-			artist: 'Hardwell',
-			price: 8.99,
-			qtd: 2,
-			tags: 'house,electro'
-		}];*/
-
 		$scope.order = function() {
 
 			// CHECK IF ADMIN OWNS AN API_KEY, IF NOT APPLY FOR ONE
@@ -76,9 +56,6 @@ angular
 					console.log("API_KEY: " + data.api_key);
 				}
 			});
-
-
-
 
 			var albums = []; // array to save selected albums ( to save or update in DB )
 			var selected = []; // array to save selected albums ID's ( editor sales history )

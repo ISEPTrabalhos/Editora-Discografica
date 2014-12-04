@@ -71,18 +71,6 @@ angular
 					album.id = index;
 					index = index + 1; 
 				});
-				/* NOT READY YET 
-					keeping this here, just in case
-				*/
-				/*for (var i = 0; i < $scope.topAlbums.length; i++) {
-					var url = "assets/php/RequestDB.php?f=existOnShop&albumName=" + $scope.topAlbums[i].name;
-					$http.get(url).success(function(data2) {
-						if(data2 != -1) {
-							console.log("DATA2: " + data2);
-							console.log($scope.topAlbums[i]);
-						}
-					});
-				}*/
 			});
 		}
 
@@ -139,16 +127,6 @@ angular
 				var stocks = [];
 				var amounts = [];
 				for(var i = 0; i < qtds.length; i++) { // get amounts
-					/* var qtd = qtds[i].value;
-					var id = qtds[i].id;
-					WHY I DONE THIS ?!? 
-					if(qtd >= 1) { // user bought something
-						// remove from cart
-						var index = products.indexOf(id);
-						if(index !=-1 ) { // if exists on cart ( unnecessary but good for testing purpose )
-							products.splice(index, 1);
-						}
-					}*/
 					stocks[i] = qtds[i].max - qtds[i].value;
 					amounts[i] = qtds[i].value;
 				}
