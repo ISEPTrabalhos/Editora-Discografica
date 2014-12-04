@@ -8,10 +8,10 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.saleDetails.Album)
+            @Html.DisplayNameFor(model => model.sale.ID)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.sale.Date)
+            @Html.DisplayNameFor(model => model.saleDetails.Album)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.saleDetails.Quantity)
@@ -19,25 +19,28 @@
         <th>
             @Html.DisplayNameFor(model => model.saleDetails.Price)
         </th>
-        <th></th>
+        <th>
+            @Html.DisplayNameFor(model => model.sale.Total)
+        </th>
     </tr>
-
     @foreach (var item in Model)
     {
         <tr>
             <td>
+                @Html.DisplayFor(modelItem => item.sale.ID)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.saleDetails.Album)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.sale.Date)
-            </td>
-            <td>
-               @Html.DisplayFor(modelItem => item.saleDetails.Quantity)
+                @Html.DisplayFor(modelItem => item.saleDetails.Quantity)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.saleDetails.Price)
             </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.sale.Total)
+            </td>
         </tr>
     }
-
 </table>

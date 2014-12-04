@@ -22,22 +22,28 @@ namespace IDEIMusic.Services
         // insert the sale to the database
         public void sellAlbums(int[] ids, string userID)
         {
-            Sale sale = new Sale { UserID = userID };
+            Sale sale = new Sale { UserID = userID, Date = System.DateTime.Now };
             db.Sale.Add(sale);
-            //db.SaveChanges();
+            db.SaveChanges();
+            decimal total = 0m;
 
-            var albums = from a in db.Albums
-                         select a;
+            for (int i = 0; i < ids.Length; i++) {
+                int id = ids[i];
 
-            albums = albums.Where(a => a.ID.Equals(1));
+                var albums = from a in db.Albums
+                             where a.ID == id
+                             select a;
+                var album = albums.First();
 
-            foreach (Album a in albums)
-            {
-                SaleDetails saleDetails = new SaleDetails { Album = a.title, SaleID = sale.ID, Price = a.price, Quantity = 10 };
+                total += album.price * 10.00m;
+
+                SaleDetails saleDetails = new SaleDetails { Album = album.title, SaleID = sale.ID, Price = album.price, Quantity = 10 };
                 db.SaleDetails.Add(saleDetails);
+
             }
 
-            //db.SaveChanges();
+            sale.Total = total;
+            db.SaveChanges();
         }
 
         public string getApiKey(string username)
