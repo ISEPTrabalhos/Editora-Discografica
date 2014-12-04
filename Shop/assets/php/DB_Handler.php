@@ -184,4 +184,13 @@ class DB_Handler {
 		} 
 		return -1;
 	}
+
+	public static function getAPIKEY($_get) {
+		global $db;
+		$statement = $db->prepare("SELECT api_key FROM shop");
+		$statement->execute();
+		$results = $statement->fetch();
+		echo $results[0];
+	}
+
 }

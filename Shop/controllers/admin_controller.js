@@ -62,6 +62,23 @@ angular
 		}];*/
 
 		$scope.order = function() {
+
+
+			// CHECK IF ADMIN OWNS AN API_KEY, IF NOT APPLY FOR ONE
+			$http.get("assets/php/RequestDB.php?f=getAPIKEY")
+			.success(function(data) {
+				console.log(data);
+				if(data == "") {
+					console.log('SERVICE TO GET API KEY');
+					// SERVICE TO GET API KEY
+				} else {
+					console.log("API_KEY: " + data);
+				}
+			});
+
+
+
+
 			var albums = []; // array to save selected albums ( to save or update in DB )
 			var selected = []; // array to save selected albums ID's ( editor sales history )
 			var checkboxes = document.getElementsByClassName("check"); // grab all checkboxes
