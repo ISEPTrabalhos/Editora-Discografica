@@ -28,7 +28,7 @@ angular
 
 		// receive catalog through service ( get_catalog.php )
 		$scope.loadCatalog = function() {
-			$http.get("services/get_catalog.php?func=getCatalog")
+			$http.get("services/call_service.php?func=getCatalog")
 			.success(function(data) {
 				console.log(data);
 				$scope.catalog = data.Album;
@@ -71,6 +71,10 @@ angular
 				if(data == "") {
 					console.log('SERVICE TO GET API KEY');
 					// SERVICE TO GET API KEY
+					/*$http.get("services/call_service.php?func=getAPIKEY?email="+email)
+					.success(function(data) {
+							//data = api_key
+					});*/
 				} else {
 					console.log("API_KEY: " + data);
 				}
