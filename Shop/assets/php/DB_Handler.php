@@ -187,10 +187,12 @@ class DB_Handler {
 
 	public static function getAPIKEY($_get) {
 		global $db;
-		$statement = $db->prepare("SELECT api_key FROM shop");
+		$statement = $db->prepare("SELECT api_key,email FROM shop");
 		$statement->execute();
-		$results = $statement->fetch();
-		echo $results[0];
+		$results = $statement->fetchAll(PDO::FETCH_ASSOC);
+		
+		return json_encode($results[0]);
+		//echo $results[0]["email"];
 	}
 
 }

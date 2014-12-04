@@ -63,20 +63,18 @@ angular
 
 		$scope.order = function() {
 
-
 			// CHECK IF ADMIN OWNS AN API_KEY, IF NOT APPLY FOR ONE
 			$http.get("assets/php/RequestDB.php?f=getAPIKEY")
 			.success(function(data) {
-				console.log(data);
-				if(data == "") {
-					console.log('SERVICE TO GET API KEY');
+				if(data.api_key == "") {
+					console.log('SERVICE TO GET API KEY TO: ' + data.email);
 					// SERVICE TO GET API KEY
-					/*$http.get("services/call_service.php?func=getAPIKEY?email="+email)
+					/*$http.get("services/call_service.php?func=getAPIKEY?email="+data.email)
 					.success(function(data) {
 							//data = api_key
 					});*/
 				} else {
-					console.log("API_KEY: " + data);
+					console.log("API_KEY: " + data.api_key);
 				}
 			});
 
