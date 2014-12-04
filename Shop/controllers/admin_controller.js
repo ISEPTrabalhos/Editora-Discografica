@@ -48,9 +48,13 @@ angular
 				if(data.api_key == "") { // dont have api key
 					// SERVICE TO GET API KEY
 					$http.get("services/call_service.php?func=getApiKey&username=username&email="+data.email)
-					.success(function(data) {
-						console.log("API-KEY: " + data);
-						//save on DB
+					.success(function(data2) {
+						var key = data2;
+						key = key.replace(/"/g , '');
+						var url = "assets/php/RequestDB.php?f=saveAPIKEY&key="+key+"&email="+data.email;
+						$http.get(url)
+						.success(function(data3) {
+						});
 					});
 				}
 			});

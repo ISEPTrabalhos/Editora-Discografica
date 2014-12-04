@@ -3,6 +3,12 @@ require 'connection.php';
 
 class DB_Handler {
 
+	public function saveAPIKEY($get) {
+		global $db;
+		$statement = $db->prepare("UPDATE shop SET api_key = :key WHERE email = :email");
+		$statement->execute(array(':key' => $get['key'], ':email' => $get['email']));
+	}
+
 	public static function getAllAlbums($get) {
 		global $db;
 		$statement = $db->prepare("SELECT * FROM albums");
