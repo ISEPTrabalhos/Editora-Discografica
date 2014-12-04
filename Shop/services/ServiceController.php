@@ -9,10 +9,16 @@ class ServiceController {
 		$this->_soapclient = new SoapClient($mainurl);
 	}
 
-	public function requestData($method_name) {
+	public function requestData($get) {
+		$method_name = $get['func'];
 		try{
-			$r = $this->_soapclient->$method_name();
-		
+			if(isset($get['username']) && isset($get['email'])) {
+				$param = $get['username'];
+				$email = $get['email'];
+				$r = $this->_soapclient->$method_name(array($param => $email));
+			} else {
+				$r = $this->_soapclient->$method_name();
+			}
 			$method_name .= 'Result';
 			return json_encode($r->$method_name);
 		}catch(Exception $ex){

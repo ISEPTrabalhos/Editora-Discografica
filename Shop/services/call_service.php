@@ -5,7 +5,7 @@
 
 	$service = new ServiceController('http://localhost:49305/Services/IDEIMusicService.svc?wsdl');
 	
-	$data = $service->requestData($_GET['func']);
+	$data = $service->requestData($_GET);
 
 	echo $data;
 

@@ -45,15 +45,13 @@ angular
 			// CHECK IF ADMIN OWNS AN API_KEY, IF NOT APPLY FOR ONE
 			$http.get("assets/php/RequestDB.php?f=getAPIKEY")
 			.success(function(data) {
-				if(data.api_key == "") {
-					console.log('SERVICE TO GET API KEY TO: ' + data.email);
+				if(data.api_key == "") { // dont have api key
 					// SERVICE TO GET API KEY
-					/*$http.get("services/call_service.php?func=getAPIKEY?email="+data.email)
+					$http.get("services/call_service.php?func=getApiKey&username=username&email="+data.email)
 					.success(function(data) {
-							//data = api_key
-					});*/
-				} else {
-					console.log("API_KEY: " + data.api_key);
+						console.log("API-KEY: " + data);
+						//save on DB
+					});
 				}
 			});
 
