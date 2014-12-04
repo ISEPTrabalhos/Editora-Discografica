@@ -136,23 +136,28 @@ angular
 			if(window.localStorage.getItem('userid')!=null) { // need to be logged in
 				// update cart and DB
 				var qtds = document.querySelectorAll(".quantity");
-				var products = getCart().split(',');
 				var stocks = [];
-				for(var i = 0; i < qtds.length; i++) {
-					var qtd = qtds[i].value;
+				var amounts = [];
+				for(var i = 0; i < qtds.length; i++) { // get amounts
+					/* var qtd = qtds[i].value;
 					var id = qtds[i].id;
+					WHY I DONE THIS ?!? 
 					if(qtd >= 1) { // user bought something
 						// remove from cart
 						var index = products.indexOf(id);
 						if(index !=-1 ) { // if exists on cart ( unnecessary but good for testing purpose )
 							products.splice(index, 1);
 						}
-					}
+					}*/
 					stocks[i] = qtds[i].max - qtds[i].value;
+					amounts[i] = qtds[i].value;
 				}
 				// update DB stock from that album
 				var userid = localStorage.getItem('userid');
-				$http.get("assets/php/RequestDB.php?f=updateStock&cart="+cart.toString()+"&stocks="+stocks.toString()+"&userid="+userid)
+				var products = getCart().split(',');
+				var url = "assets/php/RequestDB.php?f=updateStock&cart="+products+"&stocks="+stocks.toString()+
+					"&amounts="+amounts.toString()+"&userid="+userid+"&totalPrice="+$scope.totalPrice;
+				$http.get(url)
 				.success(function(data) {
 					if(data == true) {
 						// delete shopping cart
@@ -164,10 +169,10 @@ angular
 						$location.replace();
 					}
 				});
-				} else {
-					$location.path('login');
-					$location.replace();
-				}
+			} else {
+				$location.path('login');
+				$location.replace();
+			}
 		}
 
 }]);

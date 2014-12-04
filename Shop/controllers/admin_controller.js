@@ -30,7 +30,6 @@ angular
 		$scope.loadCatalog = function() {
 			$http.get("services/call_service.php?func=getCatalog")
 			.success(function(data) {
-				console.log(data);
 				$scope.catalog = data.Album;
 				$scope.catalog.forEach(function(cd) { // add some new properties, JUST HERE, to manipulate prices
 					cd.totalPrice = cd.price; // at the beggining its just one

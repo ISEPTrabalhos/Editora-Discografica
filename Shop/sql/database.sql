@@ -125,3 +125,6 @@ INSERT INTO `users` (`id`, `username`, `password`, `name`, `email`, `timestamp`)
 (2, 'pajo1471', '4297f44b13955235245b2497399d7a93', 'Paulo', 'pajolool1471@gmail.com', '2014-11-20 10:46:00'),
 (3, 'username', 'password', 'name', 'email', '2014-11-20 21:50:17'),
 (4, 'username123', '202cb962ac59075b964b07152d234b70', 'adsasdas', 'pajo123@gmail.com', '2014-12-02 16:00:58');
+
+
+ALTER TABLE `sales_details` ADD `id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY FIRST;
