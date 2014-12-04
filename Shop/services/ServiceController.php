@@ -9,12 +9,12 @@ class ServiceController {
 		$this->_soapclient = new SoapClient($mainurl);
 	}
 
-	public function requestData() {
+	public function requestData($method_name) {
 		try{
 			$r = $this->_soapclient->$method_name();
 		
 			$method_name .= 'Result';
-			return json_encode($r->$method_name());
+			return json_encode($r->$method_name);
 		}catch(Exception $ex){
 			return -1;
 		}

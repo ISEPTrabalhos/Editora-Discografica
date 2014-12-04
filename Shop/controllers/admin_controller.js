@@ -28,8 +28,9 @@ angular
 
 		// receive catalog through service ( get_catalog.php )
 		$scope.loadCatalog = function() {
-			$http.get("services/controller.php?func=getCatalogo")
+			$http.get("services/get_catalog.php?func=getCatalog")
 			.success(function(data) {
+				console.log(data);
 				$scope.catalog = data.Album;
 				$scope.catalog.forEach(function(cd) { // add some new properties, JUST HERE, to manipulate prices
 					cd.totalPrice = cd.price; // at the beggining its just one
