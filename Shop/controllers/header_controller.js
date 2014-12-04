@@ -1,6 +1,6 @@
 angular
     .module('app')
-    .controller('header_controller',['$scope', function($scope) {
+    .controller('header_controller',['$scope', '$location', function($scope, $location) {
         $scope.tag = 0;
 
         loadShoppingCart();
@@ -20,6 +20,8 @@ angular
         $scope.logout = function() {
             window.localStorage.removeItem("message");
             window.localStorage.removeItem("userid");
+            $location.path('/');
+            $location.replace();
             showMessage("See you next time.");
         }
 

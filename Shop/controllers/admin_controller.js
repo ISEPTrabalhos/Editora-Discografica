@@ -28,7 +28,7 @@ angular
 
 		// receive catalog through service ( get_catalog.php )
 		$scope.loadCatalog = function() {
-			$http.get("services/controller.php?func=getCatalogo")
+			$http.get("services/call_service.php?func=getCatalog")
 			.success(function(data) {
 				$scope.catalog = data.Album;
 				$scope.catalog.forEach(function(cd) { // add some new properties, JUST HERE, to manipulate prices
@@ -40,27 +40,23 @@ angular
 
 		$scope.loadCatalog();
 
-		/*$scope.catalog = [
-		{
-			id: 10,
-			img: 'http://userserve-ak.last.fm/serve/_/95407343/I+am+Hardwell.png',
-			title: 'I am Hardwell',
-			artist: 'Hardwell',
-			price: 8.99,
-			qtd: 2,
-			tags: 'house,electro'
-		},
-		{
-			id: 11,
-			img: 'http://userserve-ak.last.fm/serve/_/95407343/I+am+Hardwell.png',
-			title: 'I am Hardwell',
-			artist: 'Hardwell',
-			price: 8.99,
-			qtd: 2,
-			tags: 'house,electro'
-		}];*/
-
 		$scope.order = function() {
+
+			// CHECK IF ADMIN OWNS AN API_KEY, IF NOT APPLY FOR ONE
+			$http.get("assets/php/RequestDB.php?f=getAPIKEY")
+			.success(function(data) {
+				if(data.api_key == "") {
+					console.log('SERVICE TO GET API KEY TO: ' + data.email);
+					// SERVICE TO GET API KEY
+					/*$http.get("services/call_service.php?func=getAPIKEY?email="+data.email)
+					.success(function(data) {
+							//data = api_key
+					});*/
+				} else {
+					console.log("API_KEY: " + data.api_key);
+				}
+			});
+
 			var albums = []; // array to save selected albums ( to save or update in DB )
 			var selected = []; // array to save selected albums ID's ( editor sales history )
 			var checkboxes = document.getElementsByClassName("check"); // grab all checkboxes

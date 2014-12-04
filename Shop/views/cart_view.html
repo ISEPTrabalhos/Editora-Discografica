@@ -29,7 +29,9 @@
 					<b>{{album.name}} </b><span style="font-size:12px">by </span>{{album.artist.name}}
 				</td>
 				<td>
-					<button class="neutral" ng-click="checkIfAvailable('{{album.name}}')">Check if available</button>
+					<button class="neutral" id="{{album.id}}" ng-click="checkIfAvailable(this)">
+						<span class="{{album.name}}">Check if available</span>
+					</button>
 				</td>
 			</tr>
 		</table>
@@ -39,15 +41,11 @@
 					<b>{{album.name}} </b><span style="font-size:12px">by </span>{{album.artist.name}}
 				</td>
 				<td>
-					<button class="neutral" ng-click="checkIfAvailable('{{album.name}}')">Check if available</button>
+					<button class="neutral" id="{{album.id}}" ng-click="checkIfAvailable(this)">
+						<span class="{{album.name}}">Check if available</span>
+					</button>
 				</td>
 			</tr>
 		</table>
 	</div>
-	<!--<p class="suggestion" >
-		<b>{{album.name}}</b> <span style="font-size:12px">by </span>{{album.artist.name}}
-		<!-- Not ready yet 
-		<button name="{{album.name}}" ng-show="album.exists" class="neutral">Add to cart</button>
-		<button class="neutral" ng-click="checkIfAvailable()">Check if available</button>
-	</p>-->
 </div>

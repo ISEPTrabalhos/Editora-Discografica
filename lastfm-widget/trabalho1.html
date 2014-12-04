@@ -14,9 +14,8 @@
 		<script type="text/javascript" src="assets/js/system-status.js"></script>
 
 		<!--<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">-->
-
 	</head>
-	<body>
+	<body onload="setTopTagsMain();">
 		<div id="tooltip"></div>
 
 		<div id="headerTop"><div>Trabalho 1 ARQSI - 2014 / 2015 | 1111305, 1111314, 1111623</div></div>
@@ -33,16 +32,21 @@
 
 				<table border="0" width="100%" id="controlls" style="display: block;" >
 					<tr>
-						<th width="60%">Artist name</th>
-						<th width="20%">Tag list</th>
-						<th width="15%">Nº Results</th>
-						<th width="5%"></th>
+						<td width="95%">
+							Artist name&nbsp;
+							<input id="artistName" onkeyup="getArtistTopTags();getTopTracksArtist();" placeholder="Stevie Wonder" />
+						</td>
+						<td width="5%"><button class="button" style="margin-top: 20px;" onclick="changeSearchTextField();"><i class="fa fa-plus"></i></button></td>
 					</tr>
 					<tr>
-						<td><input id="artistName" onkeyup="getArtistTopTags()" placeholder="Stevie Wonder" /></td>
-						<td><select id="selectTopTag"><option value="--">--</option></select></td>
-						<td><input type="text" id="topTrackLimit" value="5" placeholder="All" onkeyup="getTopTracksTag()"/></td>
-						<td><button class="button" onclick="changeSearchTextField();"><i class="fa fa-plus"></i></button></td>
+						<td width="80%">
+							Tags&nbsp;
+							<select id="selectTopTag"><option value="--">--</option></select>
+						</td>
+						<td width="20%">
+							Nº&nbsp;
+							<input type="text" id="topTrackLimit" value="5" placeholder="All" onkeyup="getTopTracksTag()"/>
+						</td>
 					</tr>
 				</table>
 

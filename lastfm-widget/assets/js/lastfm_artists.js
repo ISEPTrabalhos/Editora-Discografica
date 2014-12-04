@@ -1,6 +1,38 @@
 // Global Variables
 //var divTooltip;
 
+
+function getTopTracksArtist() {
+    var artist = document.getElementById("artistName").value;
+    artist = artist.replace(/ /g, "%20");
+    if(artist == "")
+        return;
+
+    var limit = document.getElementById("topTrackLimit").value;
+
+    sendRequest("assets/php/ajaxRequest.php?func=getTopTracksArtist&artist=" + artist + "&limit=" + limit, function(xmlHttpObj) {
+        var topTracks = JSON.parse(xmlHttpObj.responseText);
+        var divTagTopTracks = document.getElementById("divTagTopTracks");
+        divTagTopTracks.innerHTML="";
+        var table = document.createElement("table");
+        for (var i = 0; i < topTracks.length; i++) {
+            var tr = document.createElement("tr");
+            var td = document.createElement("td");
+            td.id = topTracks[i].name;
+            var a = document.createElement("a");
+            var text = document.createTextNode(topTracks[i].name);
+            a.appendChild(text);
+            var method = "getMoreInfo("+'"'+topTracks[i].artist.name+'"'+","+'"'+topTracks[i].name+'"'+")";
+            a.href="javascript:"+method+";";
+            td.appendChild(a);
+            tr.appendChild(td);
+            table.appendChild(tr);
+        }
+
+        divTagTopTracks.appendChild(table);
+    }, "GET");
+}
+
 //Function that calls via AJaX the php function that returns the top tags of an artist
 function getArtistTopTags(){
     var artist = document.getElementById("artistName").value;
@@ -25,6 +57,32 @@ function getArtistTopTags(){
             var text = document.createTextNode(tagNameList[i]);
             option.appendChild(text);
             option.value = tagNameList[i];
+            select.appendChild(option);
+        }
+    }, "GET");
+}
+
+function setTopTagsMain() {
+     //send ajax request
+    sendRequest("assets/php/ajaxRequest.php?func=getTopTagsMain", function(xmlHttpObj) {
+        var response = JSON.parse(xmlHttpObj.responseText);
+
+        var divTopTags = document.getElementById("divTopTags");
+        var select = document.getElementById("selectTopTag");
+        select.innerHTML="";
+        select.onchange = function(){getTopTracksTag();};
+
+        var option0 = document.createElement("option");
+        var text0 = document.createTextNode("--");
+        option0.appendChild(text0);
+        option0.value = "--";
+        select.appendChild(option0);
+
+        for (var i = 0; i < response.length; i++){
+            var option = document.createElement("option");
+            var text = document.createTextNode(response[i].name);
+            option.appendChild(text);
+            option.value = response[i].name;
             select.appendChild(option);
         }
     }, "GET");

@@ -80,22 +80,32 @@ class DB_Handler {
 	public static  function updateStock($get) {
 		$cart = explode(",",$get['cart']);
 		$stocks = explode(",",$get['stocks']);
+		$amounts = explode(",", $get['amounts']);
 		$userid = $get['userid'];
+		$total_price = $get['totalPrice'];
 
 		global $db;
+		
+		// add new sale
+		$statement = $db->prepare("INSERT INTO sales (user_id,total_price) VALUES(:user,:total)");
+		$statement->execute(array(':user' => $userid, ':total' => $total_price));
+		$id = $db->lastInsertId();
 
-		// get cart albums INFO
+		// update stocks and save sales details
 		for ($i=0; $i < sizeof($cart); $i++) {
 			// update stock
 			$statement = $db->prepare("UPDATE albums SET qtd = :qtd WHERE id = :id");
 			$statement->execute(array(':id' => $cart[$i], ':qtd' => $stocks[$i]));
-			// add new sale
-			$statement = $db->prepare("INSERT INTO sales (album_id,user_id) VALUES(:album,:user)");
-			$statement->execute(array(':album' => $cart[$i], ':user' => $userid));
+			// get unity prices
+			$statement = $db->prepare("SELECT price FROM albums WHERE id = :id");
+			$statement->execute(array('id' => $cart[$i]));
+			$price = $statement->fetch()['price'];
+			// add sales details
+			$statement = $db->prepare("INSERT INTO sales_details (sales_id,album_id,quantity,price) 
+				VALUES(:sales_id, :album_id, :quantity, :price)");
+			$statement->execute(array(':sales_id' => $id, ':album_id' => $cart[$i], ':quantity' => $amounts[$i], ':price' => $price));
 		}
-
 		return true;
-
 	}
 
 	public static  function saveNewAlbuns($get) {
@@ -184,4 +194,15 @@ class DB_Handler {
 		} 
 		return -1;
 	}
+
+	public static function getAPIKEY($_get) {
+		global $db;
+		$statement = $db->prepare("SELECT api_key,email FROM shop");
+		$statement->execute();
+		$results = $statement->fetchAll(PDO::FETCH_ASSOC);
+		
+		return json_encode($results[0]);
+		//echo $results[0]["email"];
+	}
+
 }
