@@ -46,6 +46,7 @@ namespace IDEIMusic.Services
             db.SaveChanges();
         }
 
+        //  return the API_KEY for the user
         public string getApiKey(string username)
         {
             var context = new ApplicationDbContext();
