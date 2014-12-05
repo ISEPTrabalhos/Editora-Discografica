@@ -3,6 +3,12 @@ using System.Linq;
 using IDEIMusic.Models;
 using IDEIMusic.DAL;
 using Microsoft.AspNet.Identity;
+using System;
+using System.Net;
+using System.Net.Mail;
+using System.Net.Mime;
+using System.Threading;
+using System.ComponentModel;
 
 namespace IDEIMusic.Services
 {
@@ -22,11 +28,28 @@ namespace IDEIMusic.Services
         // insert the sale to the database
         public void sellAlbums(int[] ids, string userID)
         {
+            var context = new ApplicationDbContext();
+
+            var mail = (from m in context.Users
+                        where m.Id == userID
+                        select m.UserName).First();
+
+            SmtpClient client = new SmtpClient("smtp.gmail.com", 587);
+            client.EnableSsl = true;
+            MailAddress from = new MailAddress("bizzkitarqsi@gmail.com",
+               "Bizzkit " + (char)0xD8 + " Enterprise",
+            System.Text.Encoding.UTF8);
+            MailAddress to = new MailAddress(mail);
+            MailMessage message = new MailMessage(from, to);
+            message.Subject = "Sale";
+            NetworkCredential myCreds = new NetworkCredential("bizzkitarqsi@gmail.com", "bizzkitarqsi123", "");
+            client.Credentials = myCreds;
+
             Sale sale = new Sale { UserID = userID, Date = System.DateTime.Now };
             db.Sale.Add(sale);
             db.SaveChanges();
             decimal total = 0m;
-
+            message.Body = "Your sale number is: " + sale.ID;
             for (int i = 0; i < ids.Length; i++) {
                 int id = ids[i];
 
@@ -35,17 +58,21 @@ namespace IDEIMusic.Services
                              select a;
                 var album = albums.First();
 
+                message.Body += "\nAlbum: " + album.title + " and each cost: " + album.price;
                 total += album.price * 10.00m;
 
-                SaleDetails saleDetails = new SaleDetails { Album = album.title, SaleID = sale.ID, Price = album.price, Quantity = 10 };
+                SaleDetails saleDetails = new SaleDetails { Album = album.title, SaleID = sale.ID, Price = album.price, Quantity = 5 };
                 db.SaleDetails.Add(saleDetails);
 
             }
 
+            message.Body += "\nSale total: " + total;
+            client.Send(message);
             sale.Total = total;
             db.SaveChanges();
         }
 
+        //  return the API_KEY for the user
         public string getApiKey(string username)
         {
             var context = new ApplicationDbContext();
