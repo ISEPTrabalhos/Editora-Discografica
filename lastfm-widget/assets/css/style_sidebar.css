@@ -11,7 +11,7 @@ body {
 	background-image: url('../img/bg.png');
 }
 #content {
-	width: 290px;
+	width: 90%;
 	height: 550px;
 	margin: 0 auto;
 	font-family: 'Open Sans', sans-serif;
