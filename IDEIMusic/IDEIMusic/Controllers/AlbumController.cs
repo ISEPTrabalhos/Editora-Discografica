@@ -73,7 +73,7 @@ namespace IDEIMusic.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "title,artistName,img,price")] Album album)
+        public ActionResult Create([Bind(Include = "title,artistName,img,price,tags")] Album album)
         {
             try{
                 if (ModelState.IsValid)
@@ -112,7 +112,7 @@ namespace IDEIMusic.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,title,artistName,img,price")] Album album)
+        public ActionResult Edit([Bind(Include = "ID,title,artistName,img,price,tags")] Album album)
         {
             if (ModelState.IsValid)
             {

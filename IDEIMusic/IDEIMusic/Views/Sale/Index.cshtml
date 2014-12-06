@@ -3,8 +3,14 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
-
+<h2>IDEIMusic Sales</h2>
+@using (Html.BeginForm())
+{
+<p>
+    Find by Date: @Html.TextBox("FromString") - @Html.TextBox("ToString")
+    <input type="submit" value="Search" />
+</p>
+}
 <table class="table">
     <tr>
         <th>

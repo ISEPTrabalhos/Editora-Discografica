@@ -28,7 +28,9 @@
         <th>
             @Html.ActionLink("Price", "Index", new { sortOrder = ViewBag.PriceSortParm })
         </th>
-        <th></th>
+        <th>
+            @Html.DisplayNameFor(model => model.tags)
+        </th>
     </tr>
 
     @foreach (var item in Model)
@@ -41,10 +43,13 @@
                 @Html.DisplayFor(modelItem => item.artistName)
             </td>
             <td>
-                <img src="@item.img" />
+                <img src="@item.img" class="img-thumbnail" width="250px" height="250px" />
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.tags)
             </td>
         </tr>
     }

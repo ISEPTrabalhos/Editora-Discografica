@@ -17,7 +17,7 @@ namespace IDEIMusic.DAL
                     ID = 1,
                     UserID = "abc",
                     Date = System.DateTime.Now,
-                    Total = 50.00m
+                    Total = 40.00m
                 }
             };
 
@@ -28,7 +28,7 @@ namespace IDEIMusic.DAL
                     SaleID = 1,
                     Album = "Uau",
                     Quantity = 2,
-                    Price = 20
+                    Price = 20.00m
                 }
             };
 
