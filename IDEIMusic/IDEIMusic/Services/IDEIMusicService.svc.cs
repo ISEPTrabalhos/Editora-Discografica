@@ -50,18 +50,18 @@ namespace IDEIMusic.Services
             db.SaveChanges();
             decimal total = 0m;
             message.Body = "Your sale number is: " + sale.ID;
-            for (int i = 0; i < ids.Length; i++) {
+            for (int i = 0; i < ids.Length; i = i + 2) {
                 int id = ids[i];
-
+                int quantity = ids[i + 1];
                 var albums = from a in db.Albums
                              where a.ID == id
                              select a;
                 var album = albums.First();
 
-                message.Body += "\nAlbum: " + album.title + " and each cost: " + album.price;
-                total += album.price * 10.00m;
+                message.Body += "\nAlbum: " + album.title + " and each cost: " + album.price + ", for a total of: " + album.price * quantity;
+                total += album.price * quantity;
 
-                SaleDetails saleDetails = new SaleDetails { Album = album.title, SaleID = sale.ID, Price = album.price, Quantity = 5 };
+                SaleDetails saleDetails = new SaleDetails { Album = album.title, SaleID = sale.ID, Price = album.price, Quantity = quantity };
                 db.SaleDetails.Add(saleDetails);
 
             }
