@@ -58,22 +58,22 @@ angular
 							albums.push(cd);
 						}
 					});
-
 				}
 			}
 			
 			if(albums.length == 0) { // if nothing is selected
 				showError("You need to choose at least one album.");
-			} else { //save albums on db
-				// SEND SALES THROUGH SERVICE
-				// ... 
-				console.log(selected.toString());
-				console.log($scope.email);
-				console.log($scope.apikey);
-				/*var new_albums = JSON.stringify(albums);
-				var url = "assets/php/RequestDB.php?f=saveNewAlbuns&albuns="+new_albums;
-				// get albuns on sale
+			} else { // save albums on db & send sales to editor's
+				// send sales through service
+				var apikey =  window.localStorage.getItem('apikey');
+				var url = "services/call_service.php?func=sellAlbums&ids="+selected.toString()+"&userID="+apikey;
 				$http.get(url)
+				.success(function(data2) {
+				});
+				// save albums on db
+				var new_albums = JSON.stringify(albums);
+				var url2 = "assets/php/RequestDB.php?f=saveNewAlbuns&albuns="+new_albums;
+				$http.get(url2)
 				.success(function(data) {
 					if(data == true){
 						// redirect to homepage
@@ -81,7 +81,7 @@ angular
 						$location.path('/');
 						$location.replace();
 					}
-				});*/
+				});
 			}
 			
 		};

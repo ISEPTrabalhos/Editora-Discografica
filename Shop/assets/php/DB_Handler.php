@@ -117,8 +117,6 @@ class DB_Handler {
 	public static  function saveNewAlbuns($get) {
 
 		$albums = json_decode($get['albuns']);
-		/*print_r($albums);
-		echo '<br/><br/>';*/
 	  	// save albums in database
 	  	global $db;
 		foreach($albums as $album) { // loop through each album
@@ -129,20 +127,16 @@ class DB_Handler {
 			$results = $statement->fetchAll(PDO::FETCH_ASSOC);
 			if($results) {
 				$exists = true;
-				//echo 'Existe<br/>';
 			}
 			
 			if($exists == true)  { // then update stock 
-				//echo 'UPDATE<br/>';
 				$statement = $db->prepare("UPDATE albums SET qtd = qtd+:qtd WHERE name = :name");
 				$statement->execute(array(':qtd' => $album->qtd, ':name' => $album->title));
 			} else { //  insert it 
-				//echo 'INSERT<br/>';
 				$statement = $db->prepare("INSERT INTO albums (name,artist,img,qtd,price,tags) 
 				VALUES(:name,:artist,:img,:qtd,:price,:tags)");
 				$statement->execute(array(':name' => $album->title, ':artist' => $album->artistName,
 			 ':img' => $album->img, ':qtd' => $album->qtd, ':price' => $album->price, ':tags' => $album->tags));
-			
 			}
 		}
 		return true;
