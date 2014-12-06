@@ -7,19 +7,6 @@ $server = new soap_server;
 
 $server->configureWSDL( 'ImportMusicService', 'urn:ImportMusicService', '', 'rpc');
 
-/*$server->wsdl->addComplexType(
-'Sale',	
-'complexType',	
-'struct',	
-'all',
-'',
-array(
-array(
-'title' => array('name' => 'title', 'type' => 'xsd:string'),
-'quantity' => array('name' => 'quantity', 'type' => 'xsd:int'),
-'price' => array('name' => "price", "type" => "xsd:decimal")
-)));*/
-
 myRegister($server,'SaveSale',
         array(
                 'in' => array("Sales" => "xsd:string"),
