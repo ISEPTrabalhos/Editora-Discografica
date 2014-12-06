@@ -19,6 +19,10 @@ angular
 			$scope.totalPrice = $scope.totalPrice.toFixed(2);
 		}
 
+		$scope.isEmpty = function() {
+			return (window.localStorage.getItem("cart") != null);
+		}
+
 		// update 'number of items' prices
 		$scope.updatePrices = function(cd) {
 			var input = document.getElementById(cd.id);
@@ -44,19 +48,21 @@ angular
 		}
 
 		$scope.loadItems = function() {
-			var cart = getCart();
-			// get cart albums info
-			$http.get("assets/php/RequestDB.php?f=getCartAlbumsInfo&cart="+cart.toString())
-			.success(function(data) {
-				$scope.cart = data.albums;
-				$scope.totalPrice = 0;
-				$scope.cart.forEach(function(cd) { // add some new properties, JUST HERE, to manipulate prices
-					//cd[0].amount = 1;
-					cd[0].totalPrice = cd[0].price; // at the beggining its just one
+			if(window.localStorage.getItem("cart") != null) {
+				var cart = getCart();
+				// get cart albums info
+				$http.get("assets/php/RequestDB.php?f=getCartAlbumsInfo&cart="+cart.toString())
+				.success(function(data) {
+					$scope.cart = data.albums;
+					$scope.totalPrice = 0;
+					$scope.cart.forEach(function(cd) { // add some new properties, JUST HERE, to manipulate prices
+						//cd[0].amount = 1;
+						cd[0].totalPrice = cd[0].price; // at the beggining its just one
+					});
+					$scope.updateTotalPrice();
+					$scope.getTopTagOnCart();
 				});
-				$scope.updateTotalPrice();
-				$scope.getTopTagOnCart();
-			});
+			}
 		}
 		
 		$scope.getLastFMTopAlbuns = function(tag) {

@@ -1,5 +1,5 @@
 <form>
-	<div id="cart">
+	<div ng-show="isEmpty()" id="cart">
 		<h2>Your Shopping Cart</h2>
 		<p ng-repeat="cd in cart">
 			<img ng-src="{{cd[0].img}}" alt="albumpic"/>
@@ -12,9 +12,12 @@
 		</p>
 		<p class="confirm">Total Order Price: {{totalPrice | currency:"&euro;"}} <button class="success" ng-click="confirm()">Confirm</button> </p>
 	</div>
+	<div ng-hide="isEmpty()" id="cart">
+		<h2>Your shopping cart is empty !! </h2>
+	</div>
 </form>
 
-<div id="suggestions">
+<div ng-show="isEmpty()" id="suggestions">
 	<h4>
 		Suggestions based on : {{topTag | uppercase }}<span><a href="http://www.lastfm.pt/" target="_blank">by LastFM</a></span>
 		<span class="search">Or choose your tag: 
