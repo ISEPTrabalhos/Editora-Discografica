@@ -52,6 +52,7 @@ angular
 					console.log();
 					var input = document.getElementById(id);
 					var qtd = input.value; // get the quantity
+					selected.push(qtd);
 					$scope.catalog.forEach(function(cd) { // get the selected cd
 						if(cd.ID == id) {
 							cd['qtd'] = qtd;
