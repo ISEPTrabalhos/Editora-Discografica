@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost:8889
--- Generation Time: Dec 03, 2014 at 07:54 PM
+-- Generation Time: Dec 06, 2014 at 01:40 AM
 -- Server version: 5.5.38
 -- PHP Version: 5.5.14
 
@@ -17,59 +17,62 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Order`
+-- Table structure for table `Sale`
 --
 
-CREATE TABLE `Order` (
+CREATE TABLE `Sale` (
 `ID` int(11) NOT NULL,
   `Date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `Total` int(11) NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=46 ;
+  `Total` decimal(10,0) NOT NULL
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
 --
--- Dumping data for table `Order`
+-- Dumping data for table `Sale`
 --
 
-INSERT INTO `Order` (`ID`, `Date`, `Total`) VALUES
-(45, '2014-12-02 22:22:51', 0);
+INSERT INTO `Sale` (`ID`, `Date`, `Total`) VALUES
+(1, '2014-12-06 00:35:34', 0),
+(2, '2014-12-06 00:36:50', 0),
+(3, '2014-12-06 00:37:46', 100),
+(4, '2014-12-06 00:38:41', 0),
+(5, '2014-12-06 00:39:15', 40);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `OrderDetail`
+-- Table structure for table `SaleDetails`
 --
 
-CREATE TABLE `OrderDetail` (
+CREATE TABLE `SaleDetails` (
 `ID` int(11) NOT NULL,
-  `OrderID` int(11) NOT NULL,
-  `Album` varchar(255) NOT NULL,
+  `SaleID` int(11) NOT NULL,
+  `Album` varchar(128) NOT NULL,
   `Quantity` int(11) NOT NULL,
-  `Total` decimal(11,0) NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=42 ;
+  `Price` decimal(10,0) NOT NULL
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
 --
--- Dumping data for table `OrderDetail`
+-- Dumping data for table `SaleDetails`
 --
 
-INSERT INTO `OrderDetail` (`ID`, `OrderID`, `Album`, `Quantity`, `Total`) VALUES
-(39, 45, 'A', 0, 0),
-(40, 45, 'A', 0, 0),
-(41, 45, 'A', 0, 0);
+INSERT INTO `SaleDetails` (`ID`, `SaleID`, `Album`, `Quantity`, `Price`) VALUES
+(1, 5, 'yes', 2, 10),
+(2, 5, 'no', 2, 10);
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `Order`
+-- Indexes for table `Sale`
 --
-ALTER TABLE `Order`
+ALTER TABLE `Sale`
  ADD PRIMARY KEY (`ID`);
 
 --
--- Indexes for table `OrderDetail`
+-- Indexes for table `SaleDetails`
 --
-ALTER TABLE `OrderDetail`
+ALTER TABLE `SaleDetails`
  ADD PRIMARY KEY (`ID`);
 
 --
@@ -77,12 +80,12 @@ ALTER TABLE `OrderDetail`
 --
 
 --
--- AUTO_INCREMENT for table `Order`
+-- AUTO_INCREMENT for table `Sale`
 --
-ALTER TABLE `Order`
-MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=1;
+ALTER TABLE `Sale`
+MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
 --
--- AUTO_INCREMENT for table `OrderDetail`
+-- AUTO_INCREMENT for table `SaleDetails`
 --
-ALTER TABLE `OrderDetail`
-MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=1;
+ALTER TABLE `SaleDetails`
+MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;

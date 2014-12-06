@@ -7,21 +7,22 @@ $server = new soap_server;
 
 $server->configureWSDL( 'ImportMusicService', 'urn:ImportMusicService', '', 'rpc');
 
-$server->wsdl->addComplexType(
-'Order',	
+/*$server->wsdl->addComplexType(
+'Sale',	
 'complexType',	
 'struct',	
 'all',
 '',
 array(
+array(
 'title' => array('name' => 'title', 'type' => 'xsd:string'),
 'quantity' => array('name' => 'quantity', 'type' => 'xsd:int'),
 'price' => array('name' => "price", "type" => "xsd:decimal")
-));
+)));*/
 
 myRegister($server,'SaveSale',
         array(
-                'in' => array("Orders" => "tns:Order"),
+                'in' => array("Sales" => "xsd:string"),
                 'out' => array('Response' => 'xsd:string')
             ));
 
@@ -39,24 +40,25 @@ $server->wsdl->endpoint .'#'. $methodname, // soapaction
 );
 }
 
-function SaveSale($Orders) {
+function SaveSale($Sales) {
 	global $db;
-	$statement = $db->prepare("INSERT INTO `Order` (Total) VALUES(:total)");
+	$statement = $db->prepare("INSERT INTO `Sale` (Total) VALUES(:total)");
 	$statement->execute(array(':total' => 0));
 	$id = $db->lastInsertId();
 	$total = 0;
-	foreach ($Orders as $Order) {
-		$totalAlbum = $Order["quantity"] * $Order["price"];
-		$statement = $db->prepare("INSERT INTO `OrderDetail` (OrderID,Album,Quantity,Total) VALUES(:orderid,:album,:quantity,:total)");
-		$statement->execute(array(':orderid' => $id, ':album' => $Order["title"], ':quantity' => $Order["quantity"],':total' => $totalAlbum));
+	$SalesDecod = json_decode($Sales, true);
+
+	foreach ($SalesDecod as $s) {
+		$totalAlbum = $s["quantity"] * $s["price"];
+		$statement = $db->prepare("INSERT INTO `SaleDetails` (SaleID,Album,Quantity,Price) VALUES(:saleid,:album,:quantity,:price)");
+		$statement->execute(array(':saleid' => $id, ':album' => $s["title"], ':quantity' => $s["quantity"],':price' => $s['price']));
 		$total += $totalAlbum;
 	}
-	
 
-	$statement = $db->prepare("UPDATE `Order` SET Total=:total WHERE ID=:id");
+	$statement = $db->prepare("UPDATE `Sale` SET Total=:total WHERE ID=:id");
 	$statement->execute(array(':total' => $total, ':id' => $id));
 
-	return array('Response'=> "True");
+	return "true";
 }
 
 
