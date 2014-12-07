@@ -4,7 +4,7 @@ angular
 		
 		loadShoppingCart();
 
-		$scope.page = 1;
+		$scope.page = 0;
 		$scope.numcds = 0;
 
 		$http.get("assets/php/dbstatus.php")
