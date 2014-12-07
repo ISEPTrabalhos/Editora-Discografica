@@ -45,6 +45,14 @@ function updateShoppingCart(products) {
 	}
 }
 
+// add suggested album to cart
+function addToCart(id) {
+	var products_string = getCart();
+	products = products_string.split(',');
+	products.push(id);
+	updateShoppingCart(products);
+}
+
 //add new cd product to shopping cart
 function addOrRemoveCDtoCart(id, albumName) {
 	var cartImage = document.getElementById(id);

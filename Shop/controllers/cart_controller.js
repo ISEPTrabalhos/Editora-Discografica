@@ -91,21 +91,30 @@ angular
 			}
 		}
 
+		// add suggested to current cart
+		$scope.addToCurrentCart = function(id) {
+        	addToCart(id);
+        	$scope.loadItems();
+        }
+
 		// verify if album exist on stock
 		$scope.checkIfAvailable = function(element) {
-			var albumName = element.$parent.album.name;
-			var span = document.getElementsByClassName(albumName);
-			var url = "assets/php/RequestDB.php?f=existOnShop&albumName=" + albumName;
-			$http.get(url)
-			.success(function(data) {
-				if(data != -1) {
-					span[0].innerHTML = "Add to cart";
-				} else {
-					span[0].innerHTML = "Unavailable";
-				}
-				// define id to add to cart
-				element.$parent.album.id = data;
-			});
+			if(element.id != undefined) { // add to cart
+				$scope.addToCurrentCart(element.id);
+			} else {
+				var albumName = element.$parent.album.name;
+				var span = document.getElementsByClassName(albumName);
+				var url = "assets/php/RequestDB.php?f=existOnShop&albumName=" + albumName;
+				$http.get(url)
+				.success(function(data) {
+					if(data != -1) {
+						span[0].innerHTML = "Add to cart";
+						element.id = data;
+					} else {
+						span[0].innerHTML = "Unavailable";
+					}
+				});
+			}
         };
 
 		$scope.removeFromCart = function(id) {
