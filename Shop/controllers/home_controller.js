@@ -4,6 +4,9 @@ angular
 		
 		loadShoppingCart();
 
+		$scope.page = 1;
+		$scope.numcds = 0;
+
 		$http.get("assets/php/dbstatus.php")
         .success(function(data) {
             if(data == 'false'){
@@ -23,14 +26,28 @@ angular
 			showMessage("Thank you !! You'll receive your order soon !!");
 			window.localStorage.removeItem("order");
 		}
+
+		getCDs();
 		
 		// get album collection
-		$http.get("assets/php/RequestDB.php?f=getAllAlbums")
-		.success(function(data) {
-			if(data.error === false){
-				$scope.cds = data.albuns;
-			}
-		});
+		function getCDs() {
+			$http.get("assets/php/RequestDB.php?f=getAllAlbums&page=" + $scope.page)
+				.success(function(data) {
+					if(data.error === false){
+						$scope.cds = data.albuns;
+					}
+				});
+		}
+
+		$scope.prevPage = function() {
+			$scope.page--;
+			getCDs();
+		}
+
+		$scope.nextPage = function() {
+			$scope.page++;
+			getCDs();
+		}
 
 		$scope.$on('$viewContentLoaded', function(){
 			var msg = window.localStorage.getItem("message");

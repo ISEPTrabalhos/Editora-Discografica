@@ -11,7 +11,11 @@ class DB_Handler {
 
 	public static function getAllAlbums($get) {
 		global $db;
-		$statement = $db->prepare("SELECT * FROM albums");
+		$limit = (isset($get['limit']) && !empty($get['limit'])) ? $get['limit'] : 20;
+		$page = (isset($get['page']) && !empty($get['page'])) ? $get['page'] : 0;
+		$start = $page * $limit;
+
+		$statement = $db->prepare("SELECT * FROM albums LIMIT {$start}, {$limit}");
 		$statement->execute();
 		$results = $statement->fetchAll(PDO::FETCH_ASSOC);
 

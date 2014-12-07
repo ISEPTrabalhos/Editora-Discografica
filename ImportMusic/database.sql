@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS `OrderDetail` (
+CREATE TABLE IF NOT EXISTS `SalesDetail` (
 `id` int(11) NOT NULL,
   `orderid` int(11) NOT NULL,
   `album` varchar(120) NOT NULL,
@@ -9,7 +9,7 @@ CREATE TABLE IF NOT EXISTS `OrderDetail` (
 ALTER TABLE `OrderDetail`
  ADD PRIMARY KEY (`id`);
 
-CREATE TABLE IF NOT EXISTS `Order` (
+CREATE TABLE IF NOT EXISTS `Sales` (
 `id` int(11) NOT NULL,
   `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `total` decimal(10,0) NOT NULL
