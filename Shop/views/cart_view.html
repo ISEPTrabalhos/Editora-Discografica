@@ -8,9 +8,9 @@
 			id="{{cd[0].id}}" ng-blur="updatePrices(this.cd[0])">
 			<small>( Available Stock = {{cd[0].qtd}} )</small>
 			<b>Total: </b>{{cd[0].totalPrice}}
-			<select>
+			<select class="type">
 				<option value="CD">CD</option>
-				<option value="VN">Vinyl</option>
+				<option value="Vinyl">Vinyl</option>
 			</select>
 			<button class="remove" ng-click="removeFromCart(this.cd[0].id)">Remove</button>
 		</p>

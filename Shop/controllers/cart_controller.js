@@ -153,7 +153,8 @@ angular
 			var sales = []; // sales array to send to ImportMusic
 			if(window.localStorage.getItem('userid')!=null) { // need to be logged in
 				// update cart and DB
-				var qtds = document.querySelectorAll(".quantity");
+				var qtds = document.querySelectorAll(".quantity"); // grab all qtds inputs
+				var types = document.querySelectorAll(".type"); // grab all types options
 				var stocks = [];
 				var amounts = [];
 				for(var i = 0; i < qtds.length; i++) { // get amounts
@@ -161,7 +162,8 @@ angular
 					amounts[i] = qtds[i].value;
 					//console.log(element[i][0].name);
 					//console.log(element[i][0].price);
-					var album = {title:element[i][0].name, quantity:qtds[i].value, price:element[i][0].price};
+					var type = types[i].options[types[i].selectedIndex].value;
+					var album = {title:element[i][0].name, quantity:qtds[i].value, price:element[i][0].price, type:type};
 					//console.log(album);
 					sales.push(album);
 				}
@@ -177,7 +179,6 @@ angular
 				// update DB stock from that album
 				var userid = localStorage.getItem('userid');
 				var products = getCart().split(',');
-				
 				url = "assets/php/RequestDB.php?f=updateStock&cart="+products+"&stocks="+stocks.toString()+
 					"&amounts="+amounts.toString()+"&userid="+userid+"&totalPrice="+$scope.totalPrice;
 				$http.get(url)
