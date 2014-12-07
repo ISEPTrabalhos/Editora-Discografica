@@ -100,7 +100,12 @@ angular
 		// verify if album exist on stock
 		$scope.checkIfAvailable = function(element) {
 			if(element.id != undefined) { // add to cart
-				$scope.addToCurrentCart(element.id);
+				var cart = getCart().split(",");
+				if(cart.indexOf(element.id) == -1 ) { // check if already exists
+					$scope.addToCurrentCart(element.id);
+				} else {
+					showError("Product already in shopping cart");
+				}
 			} else {
 				var albumName = element.$parent.album.name;
 				var span = document.getElementsByClassName(albumName);
@@ -109,6 +114,7 @@ angular
 				.success(function(data) {
 					if(data != -1) {
 						span[0].innerHTML = "Add to cart";
+						element.className = "success";
 						element.id = data;
 					} else {
 						span[0].innerHTML = "Unavailable";
