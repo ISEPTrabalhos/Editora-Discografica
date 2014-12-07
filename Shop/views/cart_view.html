@@ -14,7 +14,7 @@
 			</select>
 			<button class="remove" ng-click="removeFromCart(this.cd[0].id)">Remove</button>
 		</p>
-		<p class="confirm">Total Order Price: {{totalPrice | currency:"&euro;"}} <button class="success" ng-click="confirm()">Confirm</button> </p>
+		<p class="confirm">Total Order Price: {{totalPrice | currency:"&euro;"}} <button class="success" ng-click="confirm(this.cart)">Confirm</button> </p>
 	</div>
 	<div ng-hide="isEmpty()" id="cart">
 		<h2>Your shopping cart is empty !! </h2>
