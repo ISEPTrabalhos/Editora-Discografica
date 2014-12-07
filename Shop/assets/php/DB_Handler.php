@@ -49,15 +49,15 @@ class DB_Handler {
 
 		// get top albums => ID
 
-		$statement = $db->prepare("SELECT album_id, COUNT(*) AS total FROM sales GROUP BY album_id ORDER BY total DESC LIMIT 5");
+		$statement = $db->prepare("SELECT album_id, COUNT(*) AS total FROM sales_details GROUP BY album_id ORDER BY total DESC LIMIT 5");
 		$statement->execute();	
 		$results = $statement->fetchAll(PDO::FETCH_ASSOC);
 
 		if(empty($results))  { 
 			$error = "No albums";
 			return json_encode(array('albums' => $albums, 'error' => $error));
-		}
-
+		} 
+		
 		// get top albums => INFO 
 		foreach ($results as $row) {
 		    $statement = $db->prepare("SELECT * FROM albums WHERE id = :id");

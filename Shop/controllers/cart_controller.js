@@ -140,7 +140,8 @@ angular
 			}
 		}
 
-		$scope.confirm = function() {
+		$scope.confirm = function(element) {
+			var sales = []; // sales array to send to ImportMusic
 			if(window.localStorage.getItem('userid')!=null) { // need to be logged in
 				// update cart and DB
 				var qtds = document.querySelectorAll(".quantity");
@@ -149,11 +150,26 @@ angular
 				for(var i = 0; i < qtds.length; i++) { // get amounts
 					stocks[i] = qtds[i].max - qtds[i].value;
 					amounts[i] = qtds[i].value;
+					//console.log(element[i][0].name);
+					//console.log(element[i][0].price);
+					var album = {title:element[i][0].name, quantity:qtds[i].value, price:element[i][0].price};
+					//console.log(album);
+					sales.push(album);
 				}
+
+				// send sales to import music
+				console.log(JSON.stringify(sales));
+				/*var url = "../../ImportMusic/index.php?SaveSale?Sales="+JSON.stringify(sales);
+				$http.get(url)
+				.success(function(data2) {
+				});*/
+
+
 				// update DB stock from that album
 				var userid = localStorage.getItem('userid');
 				var products = getCart().split(',');
-				var url = "assets/php/RequestDB.php?f=updateStock&cart="+products+"&stocks="+stocks.toString()+
+				/*
+				url = "assets/php/RequestDB.php?f=updateStock&cart="+products+"&stocks="+stocks.toString()+
 					"&amounts="+amounts.toString()+"&userid="+userid+"&totalPrice="+$scope.totalPrice;
 				$http.get(url)
 				.success(function(data) {
@@ -166,7 +182,7 @@ angular
 						$location.path('/');
 						$location.replace();
 					}
-				});
+				});*/
 			} else {
 				$location.path('login');
 				$location.replace();
