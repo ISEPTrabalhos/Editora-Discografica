@@ -7,23 +7,23 @@
 
 	<form>
 		<div class="field">
-			<label for="email">Email:</label><span>{{email_error}}</span>
+			<label for="email">Email:</label><span ng-if="email_error!=false">{{email_error}}</span>
 			<input type="text" name="email" id="email" ng-model="email" autocomplete="on" 
 			 ng-blur="checkEmail()">
 		</div>
 
 		<div class="field">
-			<label for="name">Name:</label><span>{{name_error}}</span>
+			<label for="name">Name:</label><span ng-if="name_error!=false">{{name_error}}</span>
 			<input type="text" name="name" id="name" ng-model="name" ng-blur="checkName()" autocomplete="on">
 		</div>
 
 		<div class="field">
-			<label for="username">Username:</label><span>{{username_error}}</span>
+			<label for="username">Username:</label><span ng-if="username_error!=false">{{username_error}}</span>
 			<input type="text" name="username" id="username" ng-model="username" autocomplete="off" ng-blur="checkUsername()">
 		</div>
 
 		<div class="field">
-			<label for="password">Password:</label><span>{{password_error}}</span>
+			<label for="password">Password:</label><span ng-if="password_error!=false">{{password_error}}</span>
 			<input type="password" name="password" id="password" class="userInput" value="Choose a password" ng-model="password" autocomplete="off">
 		</div>
 

@@ -114,7 +114,6 @@ angular
 				.success(function(data) {
 					if(data != -1) {
 						span[0].innerHTML = "Add to cart";
-						element.className = "success";
 						element.id = data;
 					} else {
 						span[0].innerHTML = "Unavailable";

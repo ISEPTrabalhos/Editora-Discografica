@@ -12,7 +12,6 @@ angular
 		$("#message").hide(); // hide eventually message
 		$('.error_message').hide();	// hide eventually inputs error message, maybe unnecessary because user is redirected in case of succes 
 		
-		$scope.error = true;
 		$scope.email_error = "";
 		$scope.username_error = "";
 		$scope.password_error = "";
@@ -28,19 +27,15 @@ angular
 					.success(function(data) {
 						if(data == false) {
 							$scope.email_error = "Email already in use";
-							$scope.error = true;
 						} else {
-							$scope.email_error = "";
-							$scope.error = false;
+							$scope.email_error = false;
 						}
 					});
 				} else {
 					$scope.email_error = "Invalid email address";
-					$scope.error = true;
 				}
 			} else {
 				$scope.email_error = "Email required";
-				$scope.error = true;
 			}
 		}
 
@@ -50,15 +45,13 @@ angular
 				.success(function(data) {
 					if(data == false) {
 						$scope.username_error = "Username already in use.";
-						$scope.error = true;
+						$scope.hasError = true;
 					} else {
-						$scope.username_error = "";
-						$scope.error = false;
+						$scope.username_error = false;
 					}
 				});
 			} else {
 				$scope.username_error = "Username required";
-				$scope.error = true;
 			}
 		}
 
@@ -67,10 +60,8 @@ angular
 				&& $scope.newpassword !== undefined && $scope.newpassword.trim().length !== 0) {
 				if(!($scope.password == $scope.newpassword)) {
 					$scope.password_error = "Passwords don't match";
-					$scope.error = true;
 				} else {
-					$scope.password_error = "";
-					$scope.error = false;
+					$scope.password_error = false;
 				}
 			} else {
 				$scope.password_error = "Password required"
@@ -79,16 +70,16 @@ angular
 
 		$scope.checkName = function() {
 			if($scope.name !== undefined && $scope.name.trim().length !==0) {
-				$scope.error = false;
+				$scope.name_error = false;
 			} else {
 				$scope.name_error = "Name required";
-				$scope.error = true;
 			}
 		}
 
 		$scope.register = function() {
-			if($scope.error == false && $scope.error !== undefined) {
-				console.log('sign up user');
+			// $scope.hasError == false && $scope.hasError !== undefined
+			if($scope.email_error == false && $scope.username_error == false &&
+				$scope.name_error == false && $scope.password_error == false) {
 				$http.get("assets/php/register.php?func=registerUser&username="+$scope.username+"&password="+$scope.password+"&email="+$scope.email+"&name="+$scope.name)
 				.success(function(data) {
 					if(data.error == false){
@@ -97,7 +88,7 @@ angular
 						window.localStorage.setItem("message", "Thank you for sign up. You're now automatically logged in.");
 						$location.path('/');
 						$location.replace();
-					} else $scope.error = data;
+					} else $scope.hasError = data;
 				});
 			} else {
 				$scope.error = "There are problems with your data";
