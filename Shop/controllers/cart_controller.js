@@ -27,12 +27,20 @@ angular
 		$scope.updatePrices = function(cd) {
 			var input = document.getElementById(cd.id);
 			var newAmount = input.value;
-			var regExp = /^[1-9]\d*$/;
-			if(regExp.test(newAmount) && newAmount >= parseInt(input.min) && newAmount <= parseInt(input.max)) {
-				cd.totalPrice = cd.price * newAmount;
-				$scope.updateTotalPrice();
+			var regExp = /^[0-9]\d*$/;
+			if(regExp.test(newAmount)) {
+				if(newAmount < parseInt(input.min)) {
+					alert("You need to order at least 1.");
+					input.value = 1;
+				} else if(newAmount > parseInt(input.max)) {
+					alert("Sorry, we don't have enough stock for your order.");
+					input.value = 1;
+				} else {
+					cd.totalPrice = cd.price * newAmount;
+					$scope.updateTotalPrice();	
+				}
 			} else {
-				alert("Invalid amount");
+				alert("Invalid amount.");
 				input.value = 1;
 			}
 		}
@@ -92,22 +100,23 @@ angular
 		}
 
 		// add suggested to current cart
-		$scope.addToCurrentCart = function(id) {
+		$scope.addToCurrentCart = function(id, albumName) {
         	addToCart(id);
         	$scope.loadItems();
+        	showSuccess(albumName + " added to cart.");
         }
 
 		// verify if album exist on stock
 		$scope.checkIfAvailable = function(element) {
+			var albumName = element.$parent.album.name;
 			if(element.id != undefined) { // add to cart
 				var cart = getCart().split(",");
 				if(cart.indexOf(element.id) == -1 ) { // check if already exists
-					$scope.addToCurrentCart(element.id);
+					$scope.addToCurrentCart(element.id, albumName);
 				} else {
 					showError("Product already in shopping cart");
 				}
 			} else {
-				var albumName = element.$parent.album.name;
 				var span = document.getElementsByClassName(albumName);
 				var url = "assets/php/RequestDB.php?f=existOnShop&albumName=" + albumName;
 				$http.get(url)
