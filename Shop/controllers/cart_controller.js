@@ -163,17 +163,17 @@ angular
 					//console.log(element[i][0].name);
 					//console.log(element[i][0].price);
 					var type = types[i].options[types[i].selectedIndex].value;
-					var album = {title:element[i][0].name, quantity:qtds[i].value, price:element[i][0].price, type:type};
+					var album = {title:element[i][0].name, quantity:parseInt(qtds[i].value), price:parseFloat(element[i][0].price), type:type};
 					//console.log(album);
 					sales.push(album);
 				}
 
 				// send sales to import music
 				console.log(JSON.stringify(sales));
-				/*var url = "../../ImportMusic/index.php?SaveSale?Sales="+JSON.stringify(sales);
+				var url = "services/callImportMusic.php?Sales="+JSON.stringify(sales);
 				$http.get(url)
 				.success(function(data2) {
-				});*/
+				});
 
 
 				// update DB stock from that album
