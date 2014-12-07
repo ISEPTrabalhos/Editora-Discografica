@@ -168,7 +168,7 @@ angular
 				// update DB stock from that album
 				var userid = localStorage.getItem('userid');
 				var products = getCart().split(',');
-				/*
+				
 				url = "assets/php/RequestDB.php?f=updateStock&cart="+products+"&stocks="+stocks.toString()+
 					"&amounts="+amounts.toString()+"&userid="+userid+"&totalPrice="+$scope.totalPrice;
 				$http.get(url)
@@ -182,7 +182,7 @@ angular
 						$location.path('/');
 						$location.replace();
 					}
-				});*/
+				});
 			} else {
 				$location.path('login');
 				$location.replace();
