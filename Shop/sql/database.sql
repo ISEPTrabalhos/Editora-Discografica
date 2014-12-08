@@ -1,14 +1,5 @@
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
---
--- Database: `myshop`
---
-
--- --------------------------------------------------------
-
---
--- Estrutura da tabela `albums`
---
 
 CREATE TABLE IF NOT EXISTS `albums` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -21,10 +12,6 @@ CREATE TABLE IF NOT EXISTS `albums` (
   `tags` text NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=23 ;
-
---
--- Extraindo dados da tabela `albums`
---
 
 INSERT INTO `albums` (`id`, `name`, `artist`, `img`, `qtd`, `price`, `off`, `tags`) VALUES
 (1, '1989', 'Taylor Swift', 'http://a4.mzstatic.com/us/r30/Music3/v4/2c/b1/87/2cb187fa-2da2-839e-436a-8997561c0493/UMG_cvrart_00843930013562_01_RGB72_1400x1400_14UMDIM03405.600x600-75.jpg', 27, 19.99, 0, 'pop,dance'),
@@ -47,12 +34,6 @@ INSERT INTO `albums` (`id`, `name`, `artist`, `img`, `qtd`, `price`, `off`, `tag
 (21, 'Playing in the Shadows', 'Example', 'http://userserve-ak.last.fm/serve/500/67988466/Playing in the Shadows  HQ PNG.png', 16, 5.99, 0, 'rock,electronic'),
 (22, 'BEYONCÉ [Platinum Edition]', 'Beyoncé', 'http://a2.mzstatic.com/us/r30/Music3/v4/34/c1/73/34c173c0-faf9-27e6-cac4-f5b6b71f782a/886444955379.600x600-75.jpg', 4, 19.99, 0, 'Pop');
 
--- --------------------------------------------------------
-
---
--- Estrutura da tabela `sales`
---
-
 CREATE TABLE IF NOT EXISTS `sales` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
@@ -61,20 +42,10 @@ CREATE TABLE IF NOT EXISTS `sales` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=13 ;
 
---
--- Extraindo dados da tabela `sales`
---
-
 INSERT INTO `sales` (`id`, `user_id`, `total_price`, `date`) VALUES
 (1, 0, 0, '2014-12-04 15:48:19'),
 (11, 2, 92.94, '2014-12-04 16:48:00'),
 (12, 2, 92.94, '2014-12-04 16:48:58');
-
--- --------------------------------------------------------
-
---
--- Estrutura da tabela `sales_details`
---
 
 CREATE TABLE IF NOT EXISTS `sales_details` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -84,10 +55,6 @@ CREATE TABLE IF NOT EXISTS `sales_details` (
   `price` float NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=19 ;
-
---
--- Extraindo dados da tabela `sales_details`
---
 
 INSERT INTO `sales_details` (`id`, `sales_id`, `album_id`, `quantity`, `price`) VALUES
 (7, 11, 12, 1, 14.99),
@@ -103,12 +70,6 @@ INSERT INTO `sales_details` (`id`, `sales_id`, `album_id`, `quantity`, `price`) 
 (17, 12, 3, 1, 19.99),
 (18, 12, 1, 1, 19.99);
 
--- --------------------------------------------------------
-
---
--- Estrutura da tabela `shop`
---
-
 CREATE TABLE IF NOT EXISTS `shop` (
   `api_key` varchar(128) NOT NULL,
   `name` varchar(20) NOT NULL,
@@ -120,18 +81,8 @@ CREATE TABLE IF NOT EXISTS `shop` (
   PRIMARY KEY (`api_key`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Extraindo dados da tabela `shop`
---
-
 INSERT INTO `shop` (`api_key`, `name`, `addres`, `contact`, `NIF`, `license`, `email`) VALUES
 ('d8689e6f-d365-4923-a870-4f7fb8f6d772', 'BizzKit', 'BizzKit Address 123 Porto', 229999999, 123456789, 'License 1.0', 'bizzkit@gmail.com');
-
--- --------------------------------------------------------
-
---
--- Estrutura da tabela `users`
---
 
 CREATE TABLE IF NOT EXISTS `users` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -143,15 +94,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12 ;
 
---
--- Extraindo dados da tabela `users`
---
-
 INSERT INTO `users` (`id`, `username`, `password`, `name`, `email`, `timestamp`) VALUES
 (0, 'admin', '4297f44b13955235245b2497399d7a93', 'I''m the Boss', '', '2014-12-03 11:59:14'),
 (1, 'mrfhitz', '4297f44b13955235245b2497399d7a93', 'Mário', 'mrfhitz@gmail.com', '2014-11-19 22:32:29'),
 (2, 'pajo1471', '4297f44b13955235245b2497399d7a93', 'Paulo', 'pajolool1471@gmail.com', '2014-11-20 10:46:00');
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
