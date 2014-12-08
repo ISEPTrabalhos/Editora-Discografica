@@ -15,9 +15,9 @@ namespace IDEIMusic.DAL
             {
                 new Sale{
                     ID = 1,
-                    UserID = "abc",
+                    UserID = "Test",
                     Date = System.DateTime.Now,
-                    Total = 40.00m
+                    Total = 39.98m
                 }
             };
 
@@ -28,7 +28,16 @@ namespace IDEIMusic.DAL
                     SaleID = 1,
                     Album = "Uau",
                     Quantity = 2,
-                    Price = 20.00m
+                    Price = 19.99m,
+                    Type = "CD"
+                },
+                new SaleDetails{
+                    ID = 2,
+                    SaleID = 1,
+                    Album = "Uauw",
+                    Quantity = 2,
+                    Price = 19.99m,
+                    Type = "VN"
                 }
             };
 

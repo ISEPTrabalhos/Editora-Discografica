@@ -61,7 +61,7 @@ namespace IDEIMusic.Services
                 message.Body += "\nAlbum: " + album.title + " and each cost: " + album.price + ", for a total of: " + album.price * quantity;
                 total += album.price * quantity;
 
-                SaleDetails saleDetails = new SaleDetails { Album = album.title, SaleID = sale.ID, Price = album.price, Quantity = quantity };
+                SaleDetails saleDetails = new SaleDetails { Album = album.title, SaleID = sale.ID, Price = album.price, Quantity = quantity, Type = "CD" };
                 db.SaleDetails.Add(saleDetails);
 
             }
