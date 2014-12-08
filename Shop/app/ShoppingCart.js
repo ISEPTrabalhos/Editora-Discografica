@@ -12,11 +12,11 @@ function isSet() {
 
 //load shopping cart 'session' 
 function loadShoppingCart()  {
+	// update shopping cart info on header
+	updateCartInfo();
 	if(isSet()==false) {
 		return false;
 	}
-	// update shopping cart info on header
-	updateCartInfo();
 	return true;
 }
 
