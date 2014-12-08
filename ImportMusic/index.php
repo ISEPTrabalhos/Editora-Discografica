@@ -1,7 +1,7 @@
 <?php
 	require_once("DAL.php");
 	
-	$statement = $db->prepare("SELECT * FROM OrderList JOIN OrderDetail ON OrderList.id = OrderDetail.orderid");
+	$statement = $db->prepare("SELECT * FROM Sale JOIN SaleDetails ON Sale.ID = SaleDetails.SaleID");
 	$statement->execute();
 	$row = $statement->fetchAll(PDO::FETCH_ASSOC);
 ?>
@@ -15,17 +15,17 @@
 <body>
 	<table border="0">
 		<tr>
-			<th>Name</th>
+			<th>Album</th>
 			<th>Quantity</th>
-			<th>Total</th>
-			<th>Date</th>
+			<th>Type</th>
+			<th>Price</th>
 		</tr>
 		<?php foreach ($row as $elem) : ?>
 				<tr>
-					<td><?php echo $elem['album']; ?></td>
-					<td><?php echo $elem['quantity']; ?></td>
-					<td><?php echo $elem['total']; ?></td>
-					<td><?php echo $elem['date']; ?></td>
+					<td><?php echo $elem['Album']; ?></td>
+					<td><?php echo $elem['Quantity']; ?></td>
+					<td><?php echo $elem['Type']; ?></td>
+					<td><?php echo $elem['Price']; ?></td>
 				</tr>
 		<?php endforeach; ?>
 	</table>
