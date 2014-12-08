@@ -20,6 +20,7 @@ angular
 					.success(function(data) {
 						if(data.error === false){
 							window.localStorage.setItem("userid", data.user.id);
+							window.localStorage.setItem("username", $scope.username);
 							window.localStorage.setItem("message", "Welcome "+data.user.name);
 							$location.path('/');
 							$location.replace();

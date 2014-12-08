@@ -4,6 +4,7 @@ angular
 		
 		loadShoppingCart();
 
+		$scope.username = window.localStorage.getItem("username");
 		$scope.page = 0;
 		$scope.numcds = 0;
 

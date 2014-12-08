@@ -20,7 +20,7 @@
         <span><a ui-sref="register" ng-click="setActive(4)">Sign up</a></span>
     </div>
     <div id="join" ng-show="isLoggedin()">
-        <span><a href ng-click="setActive(5)">Settings</a></span>
+        <span><a href ng-click="setActive(5)">{{username}}</a></span>
         <span ng-click="logout();"><a href>Log out</a></span>
     </div>
 </div>

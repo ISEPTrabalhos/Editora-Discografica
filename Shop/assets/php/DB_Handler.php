@@ -11,7 +11,7 @@ class DB_Handler {
 
 	public static function getAllAlbums($get) {
 		global $db;
-		$limit = (isset($get['limit']) && !empty($get['limit'])) ? $get['limit'] : 20;
+		$limit = (isset($get['limit']) && !empty($get['limit'])) ? $get['limit'] : 10;
 		$page = (isset($get['page']) && !empty($get['page'])) ? $get['page'] : 0;
 		$start = $page * $limit;
 

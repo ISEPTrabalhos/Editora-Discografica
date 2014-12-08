@@ -2,6 +2,7 @@ angular
     .module('app')
     .controller('header_controller',['$scope', '$location', function($scope, $location) {
         $scope.tag = 0;
+        $scope.username = window.localStorage.getItem("username");
 
         loadShoppingCart();
 
