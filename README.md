@@ -1,6 +1,8 @@
 Editora IDEIMusic
 ====================
 
+[![video](http://i.imgur.com/udsAxhZ.png)](https://www.youtube.com/watch?v=LQbbkrzGSpM)
+
 O tema do trabalho é uma aplicação Web de apoio à gestão de uma editora discográfica.
 Esta empresa dedica-se à edição de discos em CD e Vinil. Os clientes da editora são as lojas de venda de discos. Estas registam-se na editora para posteriormente efectuarem encomendas à editora discográfica. Cada loja registada recebe da editora, via serviço, uma API_Key para poder efetuar comunicações com a editora via Serviços.
 As lojas de discos têm um contrato com uma empresa ImportMusic, implementada em PHP, que é responsável pela importação de discos desta e de outras editoras. Os discos das lojas não são fornecidos exclusivamente pela Editora IDEIMusic, mas esta questão não será implementada neste protótipo.
