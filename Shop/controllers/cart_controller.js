@@ -170,7 +170,7 @@ angular
 
 				// send sales to import music
 				console.log(JSON.stringify(sales));
-				var url = "services/callImportMusic.php?Sales="+JSON.stringify(sales);
+				var url = "services/callImportMusic.php?sales="+JSON.stringify(sales);
 				$http.get(url)
 				.success(function(data2) {
 				});
